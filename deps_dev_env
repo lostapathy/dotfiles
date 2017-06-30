@@ -16,6 +16,10 @@ function install_ruby(){
   if [[ ! `rbenv versions | grep $1` ]]; then
     rbenv install $1
   fi
+  # Install bundler if we don't have it already
+  RBENV_VERSION=$1 gem install bundler --conservative
+  # Update everything to current version
+  RBENV_VERSION=$1 gem update
 }
 
 install_ruby 2.3.4

@@ -1,6 +1,12 @@
 #!/bin/bash
 . ~/.dotfilesrc
 
+# update if we haven't in more than a day
+if [[ $(find "/var/cache/apt/pkgcache.bin" -mtime +1 -print) ]]; then
+  sudo apt-get update
+fi
+
+
 function pkg
 {
   if [[ ! `dpkg -s $1 | egrep 'Status.+installed'` ]] ; then
