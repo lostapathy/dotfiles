@@ -3,7 +3,7 @@
 
 function pkg
 {
-  if [ ! `command -v $1` ] ; then
+  if [ ! `dpkg -l $1` ] ; then
     sudo apt-get install -y $1
   fi
 }
@@ -17,7 +17,7 @@ pkg 'lzop'
 if [ "${DOTFILES_DEV}" == "y" ]; then
   pkg 'grip' # for viewing markdown
   pkg 'build-essential'
+  pkg 'libssl-dev'
+  pkg 'libreadline-dev'
+  pkg 'zlib1g-dev'
 fi
-
-
-
