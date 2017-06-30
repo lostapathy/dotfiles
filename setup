@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e # fail fast
+if [ -f ~/.dotfilesrc ]; then
+  . ~/.dotfilesrc
+fi
+
+DOTFILES_GUI="${DOTFILES_GUI:-n}"
+DOTFILES_DEV="${DOTFILES_DEV:-n}"
+
+read -n1 -e -p "Install GUI tools? (y/n)[${DOTFILES_GUI}] " DOTFILES_GUI
+read -n1 -e -p "Install full dev env? (y/n)[${DOTFILES_DEV}] " DOTFILES_DEV
+
+echo -e "DOTFILES_GUI=${DOTFILES_GUI,,}\n" > ~/.dotfilesrc
+echo -e "DOTFILES_DEV=${DOTFILES_DEV,,}\n" >> ~/.dotfilesrc

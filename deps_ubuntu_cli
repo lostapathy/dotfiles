@@ -1,0 +1,13 @@
+#!/bin/bash
+
+function pkg
+{
+  EXISTS=`command -v $1`
+  if [ "${EXISTS}" = "" ] ; then
+    sudo apt-get install -y $1
+  fi
+}
+
+pkg 'joe'
+pkg 'vim'
+pkg 'grip'

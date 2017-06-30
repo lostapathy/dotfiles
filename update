@@ -1,0 +1,65 @@
+#!/bin/bash
+set -e #fail fast
+
+if [ -f ~/.dotfilesrc ]; then
+  . ~/.dotfilesrc
+else
+  echo "ERROR: no ~/.dotfilesrc, run ./setup first"
+  exit
+fi
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PLATFORM=`uname`
+
+if [[ "$PLATFORM" -eq "Linux" ]]; then
+  echo "Setting up linux cli"
+  $DIR/deps_ubuntu_cli
+elif [[ "$PLATFORM" -eq "Darwin" ]]; then
+  echo "Mac"
+  $DIR/deps_mac_cli
+else
+  echo "ERROR: Unknown platform"
+  exit 1
+fi
+
+function create_links() {
+  LINK_FILES=( .gitconfig .gitignore-global .vimrc .bashrc .bash_profile )
+
+  for f in "${LINK_FILES[@]}"; do
+    target="${DIR}/${f}"
+    link="${HOME}/${f}"
+
+    if [ ! -f $target ]; then
+      echo "ERROR: ${target} is missing"
+      exit 1
+    fi
+
+    if [ -f $link ] && [ ! -L $link ]; then
+      echo "ERROR: ${link} already exists, aborting."
+      exit 1
+    fi
+
+    if [ -L $link ] &&  [ "$(readlink -- "$link")" != $target ]; then
+      echo "ERROR: ${link} already links elsewhere, aborting."
+      exit 1
+    fi
+
+    if [ ! -L $link ]; then
+      ln -s ${target} ${link}
+    fi
+  done
+}
+
+function update_vim() {
+  echo "Updating vim..."
+
+  if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+    mkdir -p ~/.vim/bundle
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  fi
+
+  vim -i NONE -c BundleInstall -c qall!
+}
+
+create_links
+update_vim
