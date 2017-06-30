@@ -1,13 +1,23 @@
 #!/bin/bash
+. ~/.dotfilesrc
 
 function pkg
 {
-  EXISTS=`command -v $1`
-  if [ "${EXISTS}" = "" ] ; then
+  if [ ! `command -v $1` ] ; then
     sudo apt-get install -y $1
   fi
 }
 
+# Minimal packages to get work done, like on a remote server
 pkg 'joe'
 pkg 'vim'
-pkg 'grip'
+pkg 'lzop'
+
+# Go big or go home in dev mode
+if [ "${DOTFILES_DEV}" == "y" ]; then
+  pkg 'grip' # for viewing markdown
+  pkg 'build-essential'
+fi
+
+
+

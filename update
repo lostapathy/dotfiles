@@ -13,10 +13,10 @@ PLATFORM=`uname`
 
 if [[ "$PLATFORM" -eq "Linux" ]]; then
   echo "Setting up linux cli"
-  $DIR/deps_ubuntu_cli
+  . $DIR/deps_ubuntu_cli
 elif [[ "$PLATFORM" -eq "Darwin" ]]; then
   echo "Mac"
-  $DIR/deps_mac_cli
+  . $DIR/deps_mac_cli
 else
   echo "ERROR: Unknown platform"
   exit 1
@@ -48,6 +48,7 @@ function create_links() {
       ln -s ${target} ${link}
     fi
   done
+  set +e && . .bashrc && set -e
 }
 
 function update_vim() {
@@ -63,3 +64,9 @@ function update_vim() {
 
 create_links
 update_vim
+
+if [ "${DOTFILES_DEV}" == "y"  ]; then
+  . $DIR/deps_dev_env
+fi
+
+
