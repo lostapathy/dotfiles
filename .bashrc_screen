@@ -1,0 +1,24 @@
+function changetitle {
+  echo -ne "\ek$USER@$HOSTNAME \$ $@\e\\"
+}
+PROMPT_COMMAND='changetitle $PWD'
+function ssh {
+  echo -ne "\ek$@\e\\"
+  /usr/bin/ssh $@
+}
+
+function tail {
+  changetitle tail $@
+  /usr/bin/tail $@
+}
+
+function rdp {
+  echo -ne "\ekrdp $@\e\\"
+  ~/bin/rdp $@
+}
+
+function top {
+  changetitle top
+  /usr/bin/top $@
+}
+

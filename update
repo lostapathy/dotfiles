@@ -23,7 +23,7 @@ else
 fi
 
 function create_links() {
-  LINK_FILES=( .gitconfig .gitignore-global .vimrc .bashrc .bash_profile )
+  LINK_FILES=( .gitconfig .gitignore-global .vimrc .bashrc .bash_profile .bashrc_screen )
 
   for f in "${LINK_FILES[@]}"; do
     target="${DIR}/${f}"
@@ -54,12 +54,13 @@ function create_links() {
 function update_vim() {
   echo "Updating vim..."
 
-  if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-    mkdir -p ~/.vim/bundle
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  if [ ! -f ~/.vim/autoload/plug.vim ]; then
+    mkdir -p ~/.vim/autoload
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   fi
 
-  vim -i NONE -c BundleInstall -c qall!
+  vim -i NONE -c PlugUpdate -c PlugClean -c qall!
 }
 
 create_links

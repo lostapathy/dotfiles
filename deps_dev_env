@@ -13,7 +13,7 @@ else
 fi
 
 function install_ruby(){
-  if [ ! `rbenv versions | grep $1` ]; then
+  if [[ ! `rbenv versions | grep $1` ]]; then
     rbenv install $1
   fi
 }

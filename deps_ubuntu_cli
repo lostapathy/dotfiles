@@ -3,7 +3,8 @@
 
 function pkg
 {
-  if [ ! `dpkg -l $1` ] ; then
+  if [[ ! `dpkg -s $1 | egrep 'Status.+installed'` ]] ; then
+    echo "need to install $1"
     sudo apt-get install -y $1
   fi
 }
