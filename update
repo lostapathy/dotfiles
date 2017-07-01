@@ -48,7 +48,7 @@ function create_links() {
       ln -s ${target} ${link}
     fi
   done
-  set +e && . .bashrc && set -e
+  set +e ; source .bashrc ; set -e
 }
 
 function update_vim() {
