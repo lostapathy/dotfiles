@@ -26,3 +26,22 @@ install_ruby 2.3.4
 install_ruby 2.4.1
 
 rbenv global 2.4.1
+
+
+# Python
+if [ -e "${HOME}/.pyenv" ]; then
+  cd ~/.pyenv && git pull
+else
+  git clone https://github.com/pyenv/pyenv.git ~/.pyenv/
+fi
+
+if [ -e "${HOME}/.pyenv/plugins/pyenv-virtualenv" ]; then
+  cd ~/.pyenv/plugins/pyenv-virtualenv && git pull
+else
+  git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+fi
+
+pyenv install -s 2.7.13
+pyenv install -s 3.6.1
+
+
