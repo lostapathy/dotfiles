@@ -51,7 +51,7 @@ else
 fi
 
 export EDITOR=vim
-export PATH=~/bin:/usr/local/bin:/usr/local/bin:$PATH:/usr/local/sbin:/home/joe/bin/packer:~/node_modules/elm/binwrappers
+export PATH=~/bin:/usr/local/bin:/usr/local/bin:$PATH:/usr/local/sbin:/home/joe/bin/packer:~/node_modules/elm/binwrappers:~/node_modules/elm-format/bin
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -61,4 +61,9 @@ export OPENSCADPATH=~/code/scadlibs/MCAD/:~/code/scadlibs/missile/:~/code/scadli
 # this tricks my binstubs into using docker compose
 export VIM_USE_DOCKER='yes'
 
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 

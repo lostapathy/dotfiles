@@ -21,6 +21,7 @@ pkg 'vim'
 pkg 'lzop'
 pkg 'openssh-server'
 pkg 'ncdu'
+pkg 'xbindkeys'
 
 # Go big or go home in dev mode
 if [ "${DOTFILES_DEV}" == "y" ]; then
@@ -29,4 +30,5 @@ if [ "${DOTFILES_DEV}" == "y" ]; then
   pkg 'libssl-dev'
   pkg 'libreadline-dev'
   pkg 'zlib1g-dev'
+  pkg 'exuberant-ctags'
 fi
