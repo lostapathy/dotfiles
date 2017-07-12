@@ -19,6 +19,8 @@ function pkg
 pkg 'joe'
 pkg 'vim'
 pkg 'lzop'
+pkg 'openssh-server'
+pkg 'ncdu'
 
 # Go big or go home in dev mode
 if [ "${DOTFILES_DEV}" == "y" ]; then

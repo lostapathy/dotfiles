@@ -18,6 +18,12 @@ function install_ruby(){
   fi
   # Install bundler if we don't have it already
   RBENV_VERSION=$1 gem install bundler --conservative
+  RBENV_VERSION=$1 gem install capistrano --conservative
+  RBENV_VERSION=$1 gem install capistrano-rails --conservative
+  RBENV_VERSION=$1 gem install capistrano-bundler --conservative
+  RBENV_VERSION=$1 gem install capistrano-passenger --conservative
+  RBENV_VERSION=$1 gem install whenever --conservative
+  
   # Update everything to current version
   RBENV_VERSION=$1 gem update
 }

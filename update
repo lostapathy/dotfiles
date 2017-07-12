@@ -23,13 +23,13 @@ else
 fi
 
 function create_links() {
-  LINK_FILES=( .gitconfig .gitignore-global .vimrc .bashrc .bash_profile .bashrc_screen .gemrc )
+  LINK_FILES=( .i3 .gitconfig .gitignore-global .vimrc .bashrc .bash_profile .bashrc_screen .gemrc )
 
   for f in "${LINK_FILES[@]}"; do
     target="${DIR}/${f}"
     link="${HOME}/${f}"
 
-    if [ ! -f $target ]; then
+    if [ ! -e $target ]; then
       echo "ERROR: ${target} is missing"
       exit 1
     fi
