@@ -23,7 +23,7 @@ else
 fi
 
 function create_links() {
-  LINK_FILES=( .xbindkeysrc .i3 .gitconfig .gitignore-global .vimrc .bashrc .bash_profile .bashrc_screen .gemrc )
+  LINK_FILES=( .xsessionrc .XCompose .xbindkeysrc .i3 .gitconfig .gitignore-global .vimrc .bashrc .bash_profile .bashrc_screen .gemrc )
 
   for f in "${LINK_FILES[@]}"; do
     target="${DIR}/${f}"

@@ -1,0 +1,4 @@
+#!/bin/bash
+GVFS_DISABLE_FUSE=1
+export GVFS_DISABLE_FUSE
+xmodmap -e "keysym Super_L = Multi_key"

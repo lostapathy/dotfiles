@@ -40,8 +40,23 @@
 
 #switch audio sync
 "~/bin/switch_audio_sink"
-    m:0x5 + c:127
-    Control+Shift + Pause 
+    m:0x5 + c:112
+    Control+Shift + Prior 
+
+#volume up 1%
+"~/bin/volume-up"
+    m:0xc + c:19
+    Control+Alt + 0 
+
+#volume down 1%
+"~/bin/volume-down"
+    m:0xc + c:18
+    Control+Alt + 9 
+
+#toggle fan
+"~/bin/toggle-fan"
+    m:0x4 + c:16
+    Control + 7 
 
 #
 # End of xbindkeys configuration

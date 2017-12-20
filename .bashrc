@@ -50,6 +50,8 @@ else
   fi
 fi
 
+set -o vi
+
 export EDITOR=vim
 export PATH=~/bin:/usr/local/bin:/usr/local/bin:$PATH:/usr/local/sbin:/home/joe/bin/packer:~/node_modules/elm/binwrappers:~/node_modules/elm-format/bin
 

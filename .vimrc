@@ -67,7 +67,20 @@ Plug 'ElmCast/elm-vim'
 Plug 'jiangmiao/auto-pairs'
 "Plug 'tpope/vim-dispatch'
 Plug 'skalnik/vim-vroom'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
 
+Plug 'johngrib/vim-game-code-break'
+
+
+Plug 'plasticboy/vim-markdown'
+Plug 'scrooloose/syntastic'
+" This might be uglier but look at snippet support?
+" Plug 'ekalinin/dockerfile.vim'
+Plug 'jceb/vim-orgmode'
+Plug 'tpope/vim-speeddating'
 call plug#end()
 
 "Launch vim and run :PlugInstall
@@ -527,7 +540,12 @@ let g:elm_format_autosave = 1
 let g:elm_format_fail_silently = 0
 let g:elm_setup_keybindings = 1
 
-
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
 
 
 
@@ -543,3 +561,16 @@ let g:elm_setup_keybindings = 1
 " ============================================================================
 
 " vim: foldmethod=marker foldmarker={{{,}}} ts=4 sts=4 sw=4 expandtab:
+
+set linebreak
+set shiftround
+
+:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+:nnoremap <leader>sv :source $MYVIMRC<cr>
+:nnoremap <leader>nh :nohlsearch<cr>
+
+:nnoremap <leader>fu /[^\x00-\x7F]<cr>
+:inoremap jk <esc>
+
+set showcmd
+

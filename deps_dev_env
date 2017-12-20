@@ -23,15 +23,15 @@ function install_ruby(){
   RBENV_VERSION=$1 gem install capistrano-bundler --conservative
   RBENV_VERSION=$1 gem install capistrano-passenger --conservative
   RBENV_VERSION=$1 gem install whenever --conservative
-  
+
   # Update everything to current version
   RBENV_VERSION=$1 gem update
 }
 
-install_ruby 2.3.4
-install_ruby 2.4.1
+install_ruby 2.3.6
+install_ruby 2.4.3
 
-rbenv global 2.4.1
+rbenv global 2.4.3
 
 
 # Python
@@ -47,7 +47,7 @@ else
   git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
 fi
 
-pyenv install -s 2.7.13
-pyenv install -s 3.6.1
+pyenv install -s 2.7.14
+pyenv install -s 3.6.3
 
 
