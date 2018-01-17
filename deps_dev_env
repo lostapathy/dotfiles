@@ -30,8 +30,8 @@ function install_ruby(){
 
 install_ruby 2.3.6
 install_ruby 2.4.3
-
-rbenv global 2.4.3
+install_ruby 2.5.0
+rbenv global 2.5.0
 
 
 # Python
@@ -49,5 +49,4 @@ fi
 
 pyenv install -s 2.7.14
 pyenv install -s 3.6.3
-
 pyenv global 3.6.3

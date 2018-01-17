@@ -12,9 +12,9 @@
 hide_edge_borders smart
 
 for_window [title="Write: .*"] floating enable
-for_window [title=".*Mozilla Thunderbird"] move workspace "3:T-Bird"
+#for_window [title=".*Mozilla Thunderbird"] move workspace "3:T-Bird"
 # ; rename workspace number 3 to "3: T-Bird"
-for_window [title=".*Chromium"] move workspace "2:Chrome"
+#for_window [title=".*Chromium"] move workspace "2:Chrome"
 # ; rename workspace number 2 to "2: Chrome"
 
 set $mod Mod1
@@ -186,3 +186,4 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 
 
 #exec i3-msg workspace number 3 ; i3-msg exec chromium-browser ;
+exec xscreensaver &
