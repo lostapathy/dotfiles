@@ -28,10 +28,10 @@ function install_ruby(){
   RBENV_VERSION=$1 gem update
 }
 
-install_ruby 2.3.6
-install_ruby 2.4.3
-install_ruby 2.5.0
-rbenv global 2.5.0
+#install_ruby 2.3.7
+install_ruby 2.4.4
+install_ruby 2.5.1
+rbenv global 2.5.1
 
 
 # Python

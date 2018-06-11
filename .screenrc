@@ -1,0 +1,10 @@
+#turn off annoying defaults
+startup_message off
+vbell off
+
+#go big or go home
+defscrollback 100000
+
+hardstatus alwayslastline
+hardstatus string '%{= KW}%-w%{= gW}%50> %n %t %{= KW}%+w%< %{= kG}%-=%{-}'
+caption always "%{= kc}%H (system load: %l)%-21=%{= .m}%D %d.%m.%Y %0c"

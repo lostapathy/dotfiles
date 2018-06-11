@@ -1,3 +1,7 @@
 #!/bin/bash
 
 sudo apt-get install -y scrot
+sudo apt-get install -y keepassxc kpcli
+sudo apt-get install -y gimp darktable
+sudo apt-get install -y xclip freerdp-x11
+sudo apt-get install -y wakeonlan
