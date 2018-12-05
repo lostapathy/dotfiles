@@ -50,7 +50,7 @@ Plug 'tpope/vim-surround'
 " Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-fugitive'
-" Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 Plug 'sirtaj/vim-openscad'
 Plug 'vim-ruby/vim-ruby'
 Plug 'ervandew/supertab'
@@ -81,6 +81,8 @@ Plug 'scrooloose/syntastic'
 " Plug 'ekalinin/dockerfile.vim'
 Plug 'jceb/vim-orgmode'
 Plug 'tpope/vim-speeddating'
+" Plug 'wincent/terminus'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 "Launch vim and run :PlugInstall
@@ -142,7 +144,7 @@ call plug#end()
 
         " Enable relative number in the left column
         set number
-        "set relativenumber
+        set relativenumber
 
         " Give context to where the cursor is positioned in a file
         set scrolloff=14
@@ -219,8 +221,8 @@ call plug#end()
     " }}}
     " Highlight Trailing Whitespace {{{2
     " -----------------------------
-        highlight ExtraWhitespace ctermbg=darkblue guibg=darkblue
-        match ExtraWhitespace /\s\+$/
+        "highlight ExtraWhitespace ctermbg=darkblue guibg=darkblue
+        "match ExtraWhitespace /\s\+$/
     " }}}
     " Persistent Undo {{{2
     " ---------------
@@ -396,6 +398,7 @@ call plug#end()
     " --------------------
         nnoremap / /\v
         vnoremap / /\v
+
     " }}}
     " Keep search matches in the center of the screen {{{2
     " --------------------
@@ -573,4 +576,55 @@ set shiftround
 :inoremap jk <esc>
 
 set showcmd
+
+" leave selctions selected while adjusting indentation
+vnoremap < <gv
+vnoremap > >gv
+
+highlight ErrorMsg ctermbg=darkgrey guibg=darkgrey
+match ErrorMsg '\%>120v.\+'
+
+
+highlight ExtraWhitespace ctermbg=darkblue guibg=darkblue
+match ExtraWhitespace /\s\+$/
+
+
+
+"Navigate vim splits with CTRL + h/j/k/l
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"Make vim open new splits to the right and bottom
+set splitbelow
+set splitright
+
+" Git status on leader + s
+nnoremap <leader>s :Gstatus<CR>
+" Git blame on leader + b
+nnoremap <leader>b :Gblame<CR>
+" Git commit on leader + c
+nnoremap <leader>c :Gcommit<CR>
+" Git push on leader + pull
+nnoremap <leader>push :Gpush<CR>
+" Git pull on leader + pull
+nnoremap <leader>pull :Gpull<CR>
+
+
+"Move vertically to wrapped line
+nnoremap j gj
+nnoremap k gk
+""Use E and B instead of $ and ^
+nnoremap B ^
+nnoremap E $
+"Make semicolon do what you normally need colon to do
+nnoremap ; :
+
+" make // in visual mode seach for the currently selected words
+"vnoremap // y/<C-R>"<CR>"
+
+
+set exrc
+set secure
 

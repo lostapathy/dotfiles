@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo apt-get install -y libmysqlclient-dev libpq-dev libsqlite3-dev
+
+
 if [ -e "${HOME}/.rbenv" ]; then
   cd ~/.rbenv && git pull
 else
@@ -29,9 +32,9 @@ function install_ruby(){
 }
 
 #install_ruby 2.3.7
-install_ruby 2.4.4
-install_ruby 2.5.1
-rbenv global 2.5.1
+install_ruby 2.4.5
+install_ruby 2.5.3
+rbenv global 2.5.3
 
 
 # Python
@@ -50,3 +53,7 @@ fi
 pyenv install -s 2.7.14
 pyenv install -s 3.6.3
 pyenv global 3.6.3
+
+
+# For elasticsearch to work in docker
+sudo sysctl -w vm.max_map_count=262144

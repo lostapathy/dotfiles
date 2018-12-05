@@ -35,5 +35,6 @@ if [ "${DOTFILES_DEV}" == "y" ]; then
   pkg 'exuberant-ctags'
   pkg 'golang-go'
   pkg 'exfat-fuse'
+  pkg 'exif'
   pkg 'ansible'
 fi
