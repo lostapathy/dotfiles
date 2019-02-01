@@ -12,7 +12,7 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-source .bash_prompt
+source ~/.bash_prompt
 
 if [ -f ~/.bash_aliases ]; then
   source ~/.bash_aliases
@@ -40,7 +40,8 @@ if [[ -f "~/.ssh/config" ]]; then
 fi
 
 # Override prompts if we're in a screen
-if [[ "$TERM" == screen* ]]; then
+#if [[ "$TERM" == screen* ]]; then
+if [[ -v STY ]]; then
   . ~/.bashrc_screen
 else
   if [[ "$SSH_CLIENT"  == "" ]]; then
