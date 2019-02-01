@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 sudo apt-get install -y libmysqlclient-dev libpq-dev libsqlite3-dev
 
 
@@ -34,7 +34,8 @@ function install_ruby(){
 #install_ruby 2.3.7
 install_ruby 2.4.5
 install_ruby 2.5.3
-rbenv global 2.5.3
+install_ruby 2.6.1
+rbenv global 2.6.1
 
 
 # Python
