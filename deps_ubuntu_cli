@@ -37,4 +37,6 @@ if [ "${DOTFILES_DEV}" == "y" ]; then
   pkg 'exfat-fuse'
   pkg 'exif'
   pkg 'ansible'
+  pkg 'xpra'
+  pkg 'xfonts-terminus'
 fi
