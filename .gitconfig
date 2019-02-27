@@ -8,6 +8,9 @@
 
 [alias]
   stat = status
+  s = status -s
+  amend = commit --amend --reuse-message=HEAD
+  ds = diff --staged
 
 [color]
   ui = true
@@ -16,3 +19,8 @@
   current = yellow reverse
   local   = yellow
   remote  = green
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
