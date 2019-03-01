@@ -19,6 +19,11 @@ for_window [title="Thunderbird Preferences"] floating enable
 for_window [title=".*LibreOffice"] floating enable
 
 focus_on_window_activation none
+focus_follows_mouse no
+
+# automatically go back to prior workspace if you try to select the one you're on
+workspace_auto_back_and_forth yes
+
 
 assign [title="darktable"] → 4
 assign [title="GIMP Startup"] → 3 Gimp
@@ -178,7 +183,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
 # Media player controls
 # bindsym XF86AudioPlay exec playerctl play
@@ -191,3 +196,5 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 #exec xscreensaver &
 exec --no-startup-id xautolock -time 5 -locker '~/bin/lock'
 exec --no-startup-id feh --bg-scale ~/Pictures/background.png
+exec --no-startup-id xcalib -d :0 ~/Documents/sm40unp.icc
+
