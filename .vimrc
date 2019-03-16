@@ -46,21 +46,26 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-rails'
 " Plug 'tpope/vim-bundler'
+
+" quoting/around things
+" Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-surround'
+
 " Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular'
 Plug 'sirtaj/vim-openscad'
 Plug 'vim-ruby/vim-ruby'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
 " theme
 Plug 'nanotech/jellybeans.vim'
+
 Plug 'scrooloose/nerdtree'
-" Plug 'jistr/vim-nerdtree-tabs'
+
 Plug 'plasticboy/vim-markdown'
 Plug 'markcornick/vim-terraform'
 Plug 'ElmCast/elm-vim'
@@ -68,21 +73,31 @@ Plug 'jiangmiao/auto-pairs'
 "Plug 'tpope/vim-dispatch'
 Plug 'skalnik/vim-vroom'
 Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+"Plug 'tomtom/tlib_vim'
+
+" Text completion/snippets
+" Plug 'rstacruz/sparkup'
+" Ultisnips is not currently working for me but leaving it here for now
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-Plug 'johngrib/vim-game-code-break'
+" Plug 'johngrib/vim-game-code-break'
+
+" Hard mode
+Plug 'takac/vim-hardtime'
 
 
-Plug 'plasticboy/vim-markdown'
+" Syntax highlighting
 Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
+
 " This might be uglier but look at snippet support?
 " Plug 'ekalinin/dockerfile.vim'
-Plug 'jceb/vim-orgmode'
+" Plug 'jceb/vim-orgmode'
 Plug 'tpope/vim-speeddating'
 " Plug 'wincent/terminus'
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 "Launch vim and run :PlugInstall
@@ -92,6 +107,10 @@ call plug#end()
 " ============================================================================
 
     au BufRead,BufNewFile *vimrc set foldmethod=marker
+
+    augroup Haml
+      autocmd! BufRead,BufEnter *.haml set filetype=haml
+    augroup end
 
     augroup Puppet
         autocmd! BufEnter *.pp set filetype=puppet tabstop=2 sts=2 shiftwidth=2
@@ -259,21 +278,7 @@ call plug#end()
     " }}}
     " Snippets Variables {{{2
     " ------------------
-        let g:snips_author = 'Britt Gresham'
-    " }}}
-    " NERDTree {{{2
-    " --------
-        let NERDTreeIgnore=['\.pyc$']
-        let g:NERDTreeChDirMode=2
-    " }}}
-    " Python Mode Settings {{{2
-    " --------------------
-        let g:pymode_lint_checker = "pyflakes,pep8"
-        let g:pymode_lint_onfly = 0
-        let g:pymode_folding = 0
-        let g:pymode_rope_complete_on_dot = 0
-        let g:pymode_rope_lookup_project = 0
-        let g:pymode_rope_regenerate_on_write = 0
+        let g:snips_author = 'Joe Francis'
     " }}}
     " CtrlP Settings {{{2
     " --------------------
@@ -369,26 +374,6 @@ call plug#end()
     " Format JSON with python {{{2
     " -----------------------
         map <Leader>j !python -m json.tool<CR>
-    " }}}
-    " Multipurpose Tab-key {{{2
-    " --------------------
-    " Taken from https://github.com/gregstallings/vimfiles/blob/master/vimrc
-        " Indent if at the beginning of a line, else do completion
-        function! InsertTabWrapper()
-            let col = col('.') - 1
-            if !col || getline('.')[col - 1] !~ '\k'
-                return "\<tab>"
-            else
-                if CanExpandSnippet() > 0
-                    return "\<C-r>=TriggerSnippet()\<cr>"
-                else
-                    return "\<c-p>"
-                endif
-            endif
-        endfunction
-        "inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-        "inoremap <s-tab> <c-n>
-        "inoremap <c-c> <C-r>=TriggerSnippet()<cr>
     " }}}
     " Toggle Paste/No Paste {{{2
     " --------------------
@@ -512,17 +497,6 @@ set spell
 
 let mapleader = ","
 
-
-function! NERDTreeToggleOrFocus()
-        if expand("%") =~ "NERD_tree"
-            :NERDTreeToggle
-        else
-            call NERDTreeFocus()
-        endif
-    endfunction
-
-nmap <leader>n :call NERDTreeToggleOrFocus()<CR>
-
 " colorscheme jellybeans
 colorscheme desert
 colorscheme darkblue
@@ -601,13 +575,13 @@ set splitbelow
 set splitright
 
 " Git status on leader + s
-nnoremap <leader>s :Gstatus<CR>
+" nnoremap <leader>s :Gstatus<CR>
 " Git blame on leader + b
-nnoremap <leader>b :Gblame<CR>
+" nnoremap <leader>b :Gblame<CR>
 " Git commit on leader + c
-nnoremap <leader>c :Gcommit<CR>
+" nnoremap <leader>c :Gcommit<CR>
 " Git push on leader + pull
-nnoremap <leader>push :Gpush<CR>
+noremap <leader>push :Gpush<CR>
 " Git pull on leader + pull
 nnoremap <leader>pull :Gpull<CR>
 
@@ -621,6 +595,10 @@ nnoremap E $
 "Make semicolon do what you normally need colon to do
 nnoremap ; :
 
+
+" Typo
+nnoremap :Bd :bd
+
 " make // in visual mode seach for the currently selected words
 "vnoremap // y/<C-R>"<CR>"
 
@@ -628,3 +606,10 @@ nnoremap ; :
 set exrc
 set secure
 
+let g:hardtime_default_on = 1
+let g:hardtime_showmsg = 1
+
+" method body when defining method
+autocmd FileType ruby iabbrev def def<cr>end<up>
+autocmd FileType ruby iabbrev class class<cr>end<esc>kA
+autocmd FileType haml iabbrev sff semantic_form_for
