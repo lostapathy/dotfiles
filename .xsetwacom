@@ -1,0 +1,20 @@
+#!/bin/bash
+# button layouts
+#1 - 2
+#2 - 3
+#3 - 8
+#4 - 9
+
+#scroll - AbsWheelUp/Down
+#button - 1
+
+#5 - 10
+#6 - 11
+#7 - 12
+#8 - 13
+
+xsetwacom set "Wacom Intuos4 6x9 Pad pad" Button 2 "key +shift ="
+xsetwacom set "Wacom Intuos4 6x9 Pad pad" Button 9 "key -"
+
+xsetwacom set "Wacom Intuos4 6x9 Pad pad" AbsWheelUp "key +shift +ctrl ="
+xsetwacom set "Wacom Intuos4 6x9 Pad pad" AbsWheelDown "key +shift +ctrl -"

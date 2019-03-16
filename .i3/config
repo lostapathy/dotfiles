@@ -32,6 +32,7 @@ assign [title="GNU Image Manipulation Program"] → 3 Gimp
 for_window [title="Fusion360"] floating disable, move to workspace 5 Fusion360, workspace number 5
 # [class='xfreerdp'] → 5 Fusion360
 
+bindsym $mod+o exec compton-trans -o 100 -c
 
 bindsym $mod+Shift+Tab workspace next
 set $mod Mod1
@@ -42,7 +43,7 @@ set $mod Mod1
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Terminus 10
+font pango:Terminus 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -54,6 +55,8 @@ font pango:Terminus 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Take a screenshot
+bindsym $mod+p exec ~/bin/screenshot-selection
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
@@ -95,6 +98,10 @@ bindsym $mod+z split h
 # split in vertical orientation
 bindsym $mod+v split v
 
+# Toggle split orientation
+bindsym $mod+t split toggle
+
+
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
@@ -107,7 +114,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -197,4 +204,6 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 exec --no-startup-id xautolock -time 5 -locker '~/bin/lock'
 exec --no-startup-id feh --bg-scale ~/Pictures/background.png
 exec --no-startup-id xcalib -d :0 ~/Documents/sm40unp.icc
-
+exec --no-startup-id ibus-daemon --xim # this gives you unicode input for urxvt
+exec --no-startup-id compton
+exec --no-startup-id ~/.xsetwacom

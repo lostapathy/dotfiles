@@ -39,4 +39,10 @@ if [ "${DOTFILES_DEV}" == "y" ]; then
   pkg 'ansible'
   pkg 'xpra'
   pkg 'xfonts-terminus'
+  pkg 'freerdp2-x11'
+  pkg 'i3lock'
+  pkg 'xautolock'
+  pkg 'feh'
+  pkg 'compton'
+  pkg 'ibus'
 fi

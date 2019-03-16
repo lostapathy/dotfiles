@@ -11,6 +11,7 @@
   s = status -s
   amend = commit --amend --reuse-message=HEAD
   ds = diff --staged
+  pf = push --force
 
 [color]
   ui = true
