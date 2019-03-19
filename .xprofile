@@ -1,0 +1,7 @@
+#!/bin/bash
+
+xrandr --dpi 110
+#export GDK_DPI_SCALE=0.8
+xrdb /home/joe/.Xresources
+exec i3
+
