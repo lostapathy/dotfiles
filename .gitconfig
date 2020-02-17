@@ -10,6 +10,7 @@
   stat = status
   s = status -s
   amend = commit --amend --reuse-message=HEAD
+  d = diff
   ds = diff --staged
   pf = push --force
 

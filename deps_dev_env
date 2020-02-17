@@ -32,10 +32,10 @@ function install_ruby(){
 }
 
 #install_ruby 2.3.7
-install_ruby 2.4.5
-install_ruby 2.5.3
-install_ruby 2.6.1
-rbenv global 2.6.1
+install_ruby 2.5.7
+install_ruby 2.6.5
+install_ruby 2.7.0
+rbenv global 2.7.0
 
 
 # Python
@@ -51,9 +51,8 @@ else
   git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
 fi
 
-pyenv install -s 2.7.14
-pyenv install -s 3.6.3
-pyenv global 3.6.3
+pyenv install -s 3.8.1
+pyenv global 3.8.1
 
 
 # For elasticsearch to work in docker

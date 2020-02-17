@@ -54,6 +54,7 @@ Plug 'tpope/vim-surround'
 " Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
 Plug 'godlygeek/tabular'
 Plug 'sirtaj/vim-openscad'
 Plug 'vim-ruby/vim-ruby'
@@ -120,6 +121,10 @@ call plug#end()
         autocmd! BufRead,BufEnter *.rb,*.rake set tabstop=2 sts=2 shiftwidth=2 filetype=ruby
         autocmd! BufEnter Rakefile set filetype=ruby
         autocmd! BufEnter Gemfile set filetype=ruby
+    augroup end
+
+    augroup gcodeFiles
+      autocmd! bufRead,Bufenter *.nc set nospell
     augroup end
 
     augroup MarkdownFiles " Instead of this Modulo file bullshit
@@ -606,10 +611,15 @@ nnoremap :Bd :bd
 set exrc
 set secure
 
-let g:hardtime_default_on = 1
+let g:hardtime_default_on = 0
 let g:hardtime_showmsg = 1
 
 " method body when defining method
 autocmd FileType ruby iabbrev def def<cr>end<up>
 autocmd FileType ruby iabbrev class class<cr>end<esc>kA
+" autocmd FileType ruby iabbrev test test '' do<cr><cr>end<esc>kk$3hi<esc>i
 autocmd FileType haml iabbrev sff semantic_form_for
+
+:nnoremap <leader>ns :set nospell <cr>
+:nnoremap <leader>np :set nopaste <cr>
+:nnoremap <leader>p :set paste <cr>

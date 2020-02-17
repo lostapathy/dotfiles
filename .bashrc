@@ -14,8 +14,8 @@ shopt -s checkwinsize
 
 source ~/.bash_prompt
 
-if [ -f ~/.bash_aliases ]; then
-  source ~/.bash_aliases
+if [ -f ~/.aliases ]; then
+  source ~/.aliases
 fi
 
 # enable color support of ls and also add handy aliases

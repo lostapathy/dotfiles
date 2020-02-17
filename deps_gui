@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sudo apt-get install -y scrot sshfs
+sudo apt-get install -y i3-wm suckless-tools xcalib i3status
 sudo apt-get install -y keepassxc kpcli
 sudo apt-get install -y gimp darktable
 sudo apt-get install -y xclip freerdp-x11
@@ -8,5 +9,6 @@ sudo apt-get install -y wakeonlan
 sudo apt-get install -y freeglut3
 sudo apt-get install -y texlive-full
 sudo apt-get install -y scribus inkscape
+sudo apt-get install -y chromium-browser
 
 ln -s ${DIR}/gimp-plugins ~/.gimp-2.8/plug-ins

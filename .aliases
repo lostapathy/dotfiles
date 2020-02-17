@@ -1,0 +1,2 @@
+alias rg="rg -i"
+alias Grep=grep

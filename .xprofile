@@ -3,5 +3,6 @@
 xrandr --dpi 110
 #export GDK_DPI_SCALE=0.8
 xrdb /home/joe/.Xresources
+dbus-update-activation-environment DISPLAY XAUTHORITY
+xrandr --output DisplayPort-0 --set TearFree on # Enable tearfree on amd gpu
 exec i3
-

@@ -24,6 +24,7 @@ pkg 'ncdu'
 pkg 'xbindkeys'
 pkg 'whois'
 pkg 'screen'
+pkg 'trash-cli'
 
 # Go big or go home in dev mode
 if [ "${DOTFILES_DEV}" == "y" ]; then
@@ -45,4 +46,6 @@ if [ "${DOTFILES_DEV}" == "y" ]; then
   pkg 'feh'
   pkg 'compton'
   pkg 'ibus'
+  pkg 'rapid-photo-downloader'
+  pkg 'libmediainfo0v5'
 fi
