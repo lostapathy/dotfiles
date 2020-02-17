@@ -27,3 +27,7 @@
         - freerdp2-x11
         - xbindkeys
         - sshfs
+
+  - name: Install slack
+    apt:
+      deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-4.3.2-amd64.deb

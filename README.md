@@ -18,3 +18,8 @@ cd dotfiles
 ```
 
 The `setup` script will set some per-machine preferences in `~/.dotfilesrc` and `update` will install or update your environment to match.
+
+
+## TODO
+
+The desktop ansible playbook has a hardcoded slack version.  Should make that auto-update.
