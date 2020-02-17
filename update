@@ -22,35 +22,6 @@ else
   exit 1
 fi
 
-function create_links() {
-  LINK_FILES=( .inputrc .screenrc .xscreensaver .xsessionrc .XCompose .xbindkeysrc .i3 .gitconfig .gitignore-global .vimrc .bash_prompt .bashrc .bash_profile .bashrc_screen .gemrc .i3status.conf .compton.conf .xprofile .xsetwacom .aliases )
-
-  for f in "${LINK_FILES[@]}"; do
-    target="${DIR}/${f}"
-    link="${HOME}/${f}"
-
-    if [ ! -e $target ]; then
-      echo "ERROR: ${target} is missing"
-      exit 1
-    fi
-
-    if [ -f $link ] && [ ! -L $link ]; then
-      echo "ERROR: ${link} already exists, aborting."
-      exit 1
-    fi
-
-    if [ -L $link ] &&  [ "$(readlink -- "$link")" != $target ]; then
-      echo "ERROR: ${link} already links elsewhere, aborting."
-      exit 1
-    fi
-
-    if [ ! -L $link ]; then
-      ln -s ${target} ${link}
-    fi
-  done
-  set +e ; source .bashrc ; set -e
-}
-
 function update_vim() {
   echo "Updating vim..."
 
@@ -63,7 +34,7 @@ function update_vim() {
   vim -i NONE -c PlugUpdate -c PlugClean -c qall!
 }
 
-create_links
+rcup -v
 update_vim
 
 if [ "${DOTFILES_DEV}" == "y"  ]; then

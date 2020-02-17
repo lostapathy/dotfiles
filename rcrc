@@ -1,0 +1,3 @@
+# vim: set nospell:
+DOTFILES_DIRS=~/code/dotfiles
+EXCLUDES="README.md update setup deps_* xps_13_9620 gimp-plugins"
