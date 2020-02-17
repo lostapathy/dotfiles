@@ -1,0 +1,23 @@
+# vim: set nospell:
+---
+- hosts: localhost
+  become: true
+  connection: local
+
+  tasks:
+  - name: Update apt cache if it's more than an hour old
+    apt:
+      update_cache: yes
+      cache_valid_time: 3600
+  - name: Install packages
+    apt:
+      name:
+        - git
+        - htop
+        - screen
+        - vim
+        - ncdu
+        - whois
+        - openssh-server
+        - lzop
+        - wakeonlan

@@ -2,6 +2,10 @@
 
 These are my dotfiles, use at your own risk.
 
+## Dependencies
+
+* [rcm](https://github.com/thoughtbot/rcm)
+
 ## Usage ##
 
 Clone this repo somewhere in your home directory, then `cd` into it.

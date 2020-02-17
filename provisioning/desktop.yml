@@ -1,0 +1,29 @@
+# vim: set nospell:
+---
+- hosts: localhost
+  become: true
+  connection: local
+
+  tasks:
+  - name: Install packages
+    apt:
+      name:
+        - feh
+        - xautolock
+        - i3-wm
+        - i3lock
+        - scrot
+        - xcalib
+        - i3status
+        - suckless-tools
+        - chromium-browser
+        - compton
+        - xfonts-terminus
+        - ibus
+        - xclip
+        - freeglut3
+        - trash-cli
+        # At one time we also used freerdp-x11
+        - freerdp2-x11
+        - xbindkeys
+        - sshfs

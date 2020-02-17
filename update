@@ -1,26 +1,24 @@
 #!/bin/bash
 set -e #fail fast
 
+# We need these commands to exist in order to proceed.
+# See README.md
+commands=(git ansible rcup)
+for cmd in "${commands[@]}"; do
+  which $cmd > /dev/null || { echo "ERROR: command not found: ${cmd}" ; exit 1; }
+done
+
+# TODO: we should check to make sure git, rcm, ansible are setup and bail here if they aren't
+
+
 if [ -f ~/.dotfilesrc ]; then
   . ~/.dotfilesrc
 else
   echo "ERROR: no ~/.dotfilesrc, run ./setup first"
   exit
 fi
-sudo apt-get install -y git
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PLATFORM=`uname`
 
-if [[ "$PLATFORM" -eq "Linux" ]]; then
-  echo "Setting up linux cli"
-  . $DIR/deps_ubuntu_cli
-elif [[ "$PLATFORM" -eq "Darwin" ]]; then
-  echo "Mac"
-  . $DIR/deps_mac_cli
-else
-  echo "ERROR: Unknown platform"
-  exit 1
-fi
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 function update_vim() {
   echo "Updating vim..."
@@ -34,14 +32,20 @@ function update_vim() {
   vim -i NONE -c PlugUpdate -c PlugClean -c qall!
 }
 
+# Update dotfiles with rcm
 rcup -v
+
 update_vim
 
-if [ "${DOTFILES_DEV}" == "y"  ]; then
-  . $DIR/deps_dev_env
-fi
+sudo ansible-playbook provisioning/core.yml
 
 if [ "${DOTFILES_GUI}" == "y" ]; then
-  . $DIR/deps_gui
+  sudo ansible-playbook provisioning/desktop.yml
+  sudo ansible-playbook provisioning/graphic-design.yml
 fi
+
+if [ "${DOTFILES_DEV}" == "y"  ]; then
+  sudo ansible-playbook provisioning/development.yml
+fi
+
 

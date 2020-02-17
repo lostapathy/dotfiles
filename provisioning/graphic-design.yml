@@ -1,0 +1,19 @@
+# vim: set nospell:
+---
+- hosts: localhost
+  become: true
+  connection: local
+
+  tasks:
+  - name: Install packages
+    apt:
+      name:
+        - gimp
+        - darktable
+        - scribus
+        - inkscape
+        - texlive-full
+        - exif
+        - libmediainfo0v5
+        - rapid-photo-downloader
+
