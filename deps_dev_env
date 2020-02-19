@@ -1,58 +1,5 @@
 #!/bin/bash
 set -e
-sudo apt-get install -y libmysqlclient-dev libpq-dev libsqlite3-dev
-
-
-if [ -e "${HOME}/.rbenv" ]; then
-  cd ~/.rbenv && git pull
-else
-  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-fi
-
-if [ -e "${HOME}/.rbenv/plugins/ruby-build" ]; then
-  cd ~/.rbenv/plugins/ruby-build && git pull
-else
-  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-fi
-
-function install_ruby(){
-  if [[ ! `rbenv versions | grep $1` ]]; then
-    rbenv install $1
-  fi
-  # Install bundler if we don't have it already
-  RBENV_VERSION=$1 gem install bundler --conservative
-  RBENV_VERSION=$1 gem install capistrano --conservative
-  RBENV_VERSION=$1 gem install capistrano-rails --conservative
-  RBENV_VERSION=$1 gem install capistrano-bundler --conservative
-  RBENV_VERSION=$1 gem install capistrano-passenger --conservative
-  RBENV_VERSION=$1 gem install whenever --conservative
-
-  # Update everything to current version
-  RBENV_VERSION=$1 gem update
-}
-
-#install_ruby 2.3.7
-install_ruby 2.5.7
-install_ruby 2.6.5
-install_ruby 2.7.0
-rbenv global 2.7.0
-
-
-# Python
-if [ -e "${HOME}/.pyenv" ]; then
-  cd ~/.pyenv && git pull
-else
-  git clone https://github.com/pyenv/pyenv.git ~/.pyenv/
-fi
-
-if [ -e "${HOME}/.pyenv/plugins/pyenv-virtualenv" ]; then
-  cd ~/.pyenv/plugins/pyenv-virtualenv && git pull
-else
-  git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
-fi
-
-pyenv install -s 3.8.1
-pyenv global 3.8.1
 
 
 # For elasticsearch to work in docker
