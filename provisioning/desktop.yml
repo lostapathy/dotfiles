@@ -27,7 +27,32 @@
         - freerdp2-x11
         - xbindkeys
         - sshfs
+        - hplip
+        - xdotool
+        - openvpn
+        - nvme-cli
+        - autofs
+        - cifs-utils
 
   - name: Install slack
     apt:
       deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-4.3.2-amd64.deb
+
+  - name: Install Dropbox
+    apt:
+      deb: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2019.02.14_amd64.deb
+
+  - name: install key for openscad ppa
+    apt_key:
+      url: https://files.openscad.org/OBS-Repository-Key.pub
+      state: present
+
+  - name: Install openscad nightly ppa
+    apt_repository:
+      repo: deb https://download.opensuse.org/repositories/home:/t-paul/xUbuntu_18.04/ ./
+      state: present
+
+  - name: Install openscad-nightly
+    apt:
+      name:
+        - openscad-nightly

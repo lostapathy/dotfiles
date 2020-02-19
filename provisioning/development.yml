@@ -16,6 +16,9 @@
         - exuberant-ctags
         - golang-go
         - docker.io
+        - libmysqlclient-dev
+        - libpq-dev
+        - libsqlite3-dev
 
   - name: enable docker
     service:
@@ -29,3 +32,11 @@
       name: joe
       groups: docker
       append: yes
+
+  - name: Setup asdf-vm
+    become: yes
+    become_user: joe
+    git:
+      repo: https://github.com/asdf-vm/asdf.git
+      dest: /home/joe/.asdf
+      update: yes
