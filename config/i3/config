@@ -34,6 +34,11 @@ workspace_auto_back_and_forth yes
 assign [title="darktable"] 4
 assign [title="GIMP Startup"] 3 Gimp
 assign [title="GNU Image Manipulation Program"] 3 Gimp
+assign [title="Gimp"] 3 Gimp
+
+# Center the gimp open image dialog - this doesn't seem to work but hoping it does after ubuntu upgrade
+for_window [title = "Open Image"] move position center
+
 #for_window [class="xfreerdp"] floating disable
 for_window [title="Fusion360"] floating disable, move to workspace 5 Fusion360, workspace number 5
 # [class='xfreerdp'] → 5 Fusion360
@@ -230,3 +235,4 @@ exec --no-startup-id xcalib -d :0 ~/Documents/sm40unp.icc
 exec --no-startup-id ibus-daemon --xim # this gives you unicode input for urxvt
 exec --no-startup-id compton
 exec --no-startup-id ~/.xsetwacom
+exec --no-startup-id dropbox start
