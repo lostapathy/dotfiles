@@ -231,7 +231,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 #exec xscreensaver &
 exec --no-startup-id xautolock -time 5 -locker '~/bin/lock'
 exec --no-startup-id feh --bg-scale ~/Pictures/background.png
-exec --no-startup-id xcalib -d :0 ~/Documents/sm40unp.icc
+exec --no-startup-id xcalib -d :0 ~/.monitor-profile.icc
 exec --no-startup-id ibus-daemon --xim # this gives you unicode input for urxvt
 exec --no-startup-id compton
 exec --no-startup-id ~/.xsetwacom
