@@ -35,6 +35,9 @@
         - cifs-utils
         - rofi
         - libx11-dev
+        - gcc-avr # for QMK
+        - avr-libc # for QMK
+        - dfu-programmer # for QMK
 
   - name: Install slack
     apt:
