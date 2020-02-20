@@ -25,6 +25,7 @@
       name: docker
       state: started
       enabled: yes
+      masked: false
       #
   # FIXME: have this pull account username from file
   - name: put joe in docker group
