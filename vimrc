@@ -45,6 +45,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-haml'
 " Plug 'tpope/vim-bundler'
 
 " quoting/around things
@@ -623,3 +624,5 @@ autocmd FileType haml iabbrev sff semantic_form_for
 :nnoremap <leader>ns :set nospell <cr>
 :nnoremap <leader>np :set nopaste <cr>
 :nnoremap <leader>p :set paste <cr>
+:nnoremap <leader>t <cr> :! docker-compose exec app rake test test:system <cr>
+

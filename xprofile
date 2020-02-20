@@ -1,6 +1,7 @@
 #!/bin/bash
 
-xrandr --dpi 110
+source ~/.xprofile.local
+
 #export GDK_DPI_SCALE=0.8
 xrdb /home/joe/.Xresources
 dbus-update-activation-environment DISPLAY XAUTHORITY
