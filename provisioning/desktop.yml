@@ -41,6 +41,7 @@
         - dfu-programmer # for QMK
         - apt-file
         - arandr
+        - nmap
 
   - name: Install slack
     apt:
