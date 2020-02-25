@@ -32,9 +32,9 @@ workspace_auto_back_and_forth yes
 
 
 assign [title="darktable"] 4
-assign [title="GIMP Startup"] 3 Gimp
-assign [title="GNU Image Manipulation Program"] 3 Gimp
-assign [title="Gimp"] 3 Gimp
+assign [title="GIMP Startup"] 3:Gimp
+assign [title="GNU Image Manipulation Program"] 3:Gimp
+assign [title="Gimp"] 3:Gimp
 
 # Center the gimp open image dialog - this doesn't seem to work but hoping it does after ubuntu upgrade
 for_window [title = "Open Image"] move position center
@@ -47,6 +47,7 @@ bindsym $mod+o exec compton-trans -o 100 -c
 
 bindsym $mod+Shift+Tab workspace next
 set $mod Mod1
+set $win Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -70,6 +71,9 @@ floating_modifier $mod
 bindsym $mod+p exec ~/bin/screenshot-selection
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+
+# Select screen layout - this is also the alternate on F8 on my XPS_9620
+bindsym $win+p exec ~/bin/set-display-layout
 
 # show the weather fullscreen
 bindsym $mod+Shift+w exec feh http://wttr.in/Gardner%20KS.png?2\&F2\&F  -F --auto-zoom
@@ -216,8 +220,8 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 bindsym --whole-window --border $mod+button4 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3% #increase sound volume
 bindsym --whole-window --border $mod+button5 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3% #decrease sound volume
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3% #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3% && notify-send "volume up" #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3% && notify-send "volume down" #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
 bindsym $mod+F7 exec toggle-touchpad

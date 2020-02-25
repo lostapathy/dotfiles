@@ -39,6 +39,8 @@
         - gcc-avr # for QMK
         - avr-libc # for QMK
         - dfu-programmer # for QMK
+        - apt-file
+        - arandr
 
   - name: Install slack
     apt:

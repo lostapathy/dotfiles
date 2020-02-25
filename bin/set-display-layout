@@ -1,0 +1,8 @@
+#!/bin/sh
+# Choose from layouts in ~/.screenlayout to adjust xrandr config
+
+# Generate these layouts with arandr.
+
+LAYOUT=`ls ~/.screenlayout/ | sed -e s/\.sh$// | rofi -dmenu`
+
+~/.screenlayout/${LAYOUT}.sh
