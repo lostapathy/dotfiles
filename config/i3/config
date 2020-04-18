@@ -40,7 +40,7 @@ assign [title="Gimp"] 3:Gimp
 for_window [title = "Open Image"] move position center
 
 #for_window [class="xfreerdp"] floating disable
-for_window [title="Fusion360"] floating disable, move to workspace 5 Fusion360, workspace number 5
+for_window [title="Fusion360"] floating disable, move to workspace 5 Fusion360
 # [class='xfreerdp'] → 5 Fusion360
 
 bindsym $mod+o exec compton-trans -o 100 -c
@@ -74,6 +74,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 # Select screen layout - this is also the alternate on F8 on my XPS_9620
 bindsym $win+p exec ~/bin/set-display-layout
+bindsym $win+s exec ~/bin/quick-launch-menu
+bindsym $win+t exec ~/bin/texpander
 
 # show the weather fullscreen
 bindsym $mod+Shift+w exec feh http://wttr.in/Gardner%20KS.png?2\&F2\&F  -F --auto-zoom
@@ -242,3 +244,4 @@ exec --no-startup-id ibus-daemon --xim # this gives you unicode input for urxvt
 exec --no-startup-id compton
 exec --no-startup-id ~/.xsetwacom
 exec --no-startup-id dropbox start
+exec --no-startup-id pasystray

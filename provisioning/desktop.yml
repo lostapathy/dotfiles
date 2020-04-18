@@ -5,8 +5,24 @@
   connection: local
 
   tasks:
+  - name: install keepassxc repo
+    apt_repository:
+      repo: ppa:phoerious/keepassxc
+      state: present
+
+  - name: install key for openscad ppa
+    apt_key:
+      url: https://files.openscad.org/OBS-Repository-Key.pub
+      state: present
+
+  - name: Install openscad nightly ppa
+    apt_repository:
+      repo: deb https://download.opensuse.org/repositories/home:/t-paul/xUbuntu_18.04/ ./
+      state: present
+
   - name: Install packages
     apt:
+      state: latest
       name:
         - feh
         - xautolock
@@ -42,33 +58,35 @@
         - apt-file
         - arandr
         - nmap
+        - openscad-nightly
+        - pasystray
+        - rclone
+        - awscli
+        - filezilla
+
+  - name: Install snaps
+    snap:
+      name:
+        - doctl # digital ocean
 
   - name: Install slack
     apt:
-      deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-4.3.2-amd64.deb
+      deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-4.4.2-amd64.deb
 
   - name: Install Dropbox
     apt:
-      deb: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2019.02.14_amd64.deb
-
-  - name: install key for openscad ppa
-    apt_key:
-      url: https://files.openscad.org/OBS-Repository-Key.pub
-      state: present
-
-  - name: Install openscad nightly ppa
-    apt_repository:
-      repo: deb https://download.opensuse.org/repositories/home:/t-paul/xUbuntu_18.04/ ./
-      state: present
-
-  - name: Install openscad-nightly
-    apt:
-      name:
-        - openscad-nightly
+      deb: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2020.03.04_amd64.deb
 
   - name: Custom xorg config
     copy:
       dest: /usr/share/X11/xorg.conf.d/99-joe-custom.conf
       src: 99-joe-custom.conf
+      owner: root
+      group: root
+
+  - name: udev rules
+    copy:
+      dest: /etc/udev/rules.d/59-sdreader.rules
+      src: 59-sdreader.rules
       owner: root
       group: root

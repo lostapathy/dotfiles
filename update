@@ -8,8 +8,8 @@ for cmd in "${commands[@]}"; do
   which $cmd > /dev/null || { echo "ERROR: command not found: ${cmd}" ; exit 1; }
 done
 
-# TODO: we should check to make sure git, rcm, ansible are setup and bail here if they aren't
-
+# Install ansible roles we depend on
+ansible-galaxy install -r provisioning/requirements.yml
 
 if [ -f ~/.dotfilesrc ]; then
   . ~/.dotfilesrc
@@ -37,15 +37,15 @@ rcup -v
 
 update_vim
 
-sudo ansible-playbook provisioning/core.yml
+sudo ansible-playbook -v provisioning/core.yml
 
 if [ "${DOTFILES_GUI}" == "y" ]; then
-  sudo ansible-playbook provisioning/desktop.yml
-  sudo ansible-playbook provisioning/graphic-design.yml
+  sudo ansible-playbook -v provisioning/desktop.yml
+  sudo ansible-playbook -v provisioning/graphic-design.yml
 fi
 
 if [ "${DOTFILES_DEV}" == "y"  ]; then
-  sudo ansible-playbook provisioning/development.yml
+  sudo ansible-playbook -v provisioning/development.yml
 fi
 
 

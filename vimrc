@@ -557,7 +557,7 @@ set shiftround
 
 set showcmd
 
-" leave selctions selected while adjusting indentation
+" leave selections selected while adjusting indentation
 vnoremap < <gv
 vnoremap > >gv
 
@@ -568,6 +568,8 @@ match ErrorMsg '\%>120v.\+'
 highlight ExtraWhitespace ctermbg=darkblue guibg=darkblue
 match ExtraWhitespace /\s\+$/
 
+highlight clear SpellBad
+highlight SpellBad cterm=underline,bold ctermbg=DarkBlue
 
 
 "Navigate vim splits with CTRL + h/j/k/l

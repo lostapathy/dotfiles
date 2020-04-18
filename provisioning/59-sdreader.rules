@@ -1,0 +1,6 @@
+# http://shallowsky.com/blog/linux/udev-cardreaders-update.html
+# Get udev info for devices
+# udevadm info -n /dev/sdd -a
+
+#KERNEL=="sd[a-g]", SUBSYSTEMS=="scsi", ATTRS{vendor}=="Generic ", ATTRS{model}=="STORAGE DEVICE  ", ACTION=="add", SYMLINK+="sdcard%n"
+KERNEL=="sd[a-g]1", SUBSYSTEMS=="scsi", ATTRS{vendor}=="Generic ", ATTRS{model}=="STORAGE DEVICE  ", ACTION=="add", SYMLINK+="sdcard%n"
