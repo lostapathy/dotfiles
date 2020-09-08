@@ -15,17 +15,24 @@
       url: https://files.openscad.org/OBS-Repository-Key.pub
       state: present
 
-  - name: Install openscad nightly ppa
-    apt_repository:
-      repo: deb https://download.opensuse.org/repositories/home:/t-paul/xUbuntu_18.04/ ./
-      state: present
+  #- name: Install openscad nightly ppa
+  #  apt_repository:
+  #    repo: deb https://download.opensuse.org/repositories/home:/t-paul/xUbuntu_18.04/ ./
+  #    state: present
+
+  - name: Remove unwanted packages
+    apt:
+      name:
+        - notify-osd
+        - xautolock
+      state: absent
 
   - name: Install packages
     apt:
       state: latest
       name:
         - feh
-        - xautolock
+        - xss-lock
         - i3-wm
         - i3lock
         - maim
@@ -63,6 +70,8 @@
         - rclone
         - awscli
         - filezilla
+        - dunst
+        - powertop
 
   - name: Install snaps
     snap:

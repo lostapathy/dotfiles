@@ -6,5 +6,6 @@ source ~/.xprofile.local
 xrdb /home/joe/.Xresources
 dbus-update-activation-environment DISPLAY XAUTHORITY
 xrandr --output DisplayPort-0 --set TearFree on # Enable tearfree on amd gpu
+xset s 300
 setxkbmap -option caps:escape
 exec i3
