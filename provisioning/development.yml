@@ -44,6 +44,9 @@
       dest: /home/joe/.asdf
       update: yes
 
+  - name: run ansible galaxy
+    local_action: command ansible-galaxy install -r requirements.yml --ignore-errors
+
   roles:
   - role: ansible-role-asdf
     asdf_user: joe
@@ -51,9 +54,9 @@
       - name: 'ruby'
         versions: ['2.4.9', '2.5.7', '2.6.5', '2.7.0']
         global: '2.7.0'
-      - name: 'python'
-        versions: ['3.8.2']
-        global: '3.8.2'
+      #- name: 'python'
+      #  versions: ['3.8.2']
+      #  global: '3.8.2'
       - name: 'yarn'
         versions: ['1.22.0']
         global: '1.22.0'
@@ -69,3 +72,9 @@
       - name: 'ripgrep'
         versions: ['11.0.2']
         global: '11.0.2'
+      #- name: 'docker-slim'
+      #  versions: ['1.24']
+      #  global: '1.24'
+      # - name: 'R'
+      #  versions: ['3.6.3']
+      #  global: '3.6.3'
