@@ -1,3 +1,4 @@
+" vim: foldlevel=99
 " ============================================================================
 "
 " Britt Gresham's 'Perfect' Vimrc
@@ -129,7 +130,7 @@ call plug#end()
     augroup end
 
     augroup MarkdownFiles " Instead of this Modulo file bullshit
-        autocmd! BufEnter *.md set filetype=markdown
+        autocmd! BufEnter *.md set filetype=markdown foldlevel=99
     augroup end
 
     au BufWritePost ~/.bashrc !source %

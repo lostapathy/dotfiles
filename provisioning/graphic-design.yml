@@ -10,10 +10,10 @@
       name:
         - gimp
         - darktable
-        - scribus
+        # - scribus
         - inkscape
-        - texlive-full
+        # - texlive-full
         - exif
         - libmediainfo0v5
-        - rapid-photo-downloader
+        # - rapid-photo-downloader
         - font-manager
