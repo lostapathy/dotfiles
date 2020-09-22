@@ -1,0 +1,37 @@
+#!/bin/bash
+set +e
+
+# Get window id, pass to getwindow pid to output the pid of current window
+PID=$(xdotool getwindowfocus getwindowpid)
+
+# Store text name of process based on pid of current window
+#PROC_NAME=$(cat /proc/$PID/comm)
+
+#TEMPLATES=$(realpath "${HOME}/.texpander")
+
+
+# Set globstar shell option (turn on) ** for filename matching glob patterns on subdirectories of ~/.texpander
+shopt -s globstar
+
+
+CHOICE=`ls ~/.texpander/ | rofi -dmenu`
+
+CLIPBOARD=$(xclip -selection clipboard -o)
+PRIMARY=$(xclip -selection primary -o)
+PRIMARY=$(xclip -selection secondary -o)
+
+SNIPPET=$(cat ~/.texpander/${CHOICE})
+
+echo -n $SNIPPET | xclip -selection clipboard
+echo -n $SNIPPET | xclip -selection primary
+echo -n $SNIPPET | xclip -selection secondary
+
+echo "Snippet is: `cat ~/.texpander/${CHOICE}`"
+
+sleep 0.3
+xdotool key shift+Insert
+#xdotool ctrl+v
+
+echo -n $CLIPBOARD | xclip -selection clipboard
+echo -n $PRIMARY | xclip -selection primary
+echo -n $SECONDARY | xclip -selection secondary

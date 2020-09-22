@@ -1,0 +1,6 @@
+#!/bin/sh
+
+LAUNCH=`ls ~/bin/quick-launch/ | rofi -dmenu`
+
+~/bin/quick-launch/${LAUNCH}
+

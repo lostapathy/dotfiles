@@ -1,0 +1,3 @@
+#!/bin/bash
+gimp "`ls -dt ~/Dropbox/Photo_to_Edit/* | head -n1`"
+i3-msg workspace number 3
