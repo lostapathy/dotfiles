@@ -70,6 +70,7 @@
         - dunst
         - powertop
         - evince # PDF reader, look at atril as well
+        - libglu1-mesa # Needed by prusa-slicer
 
   - name: Install snaps
     snap:
@@ -78,7 +79,7 @@
 
   - name: Install slack
     apt:
-      deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-4.8.0-amd64.deb
+      deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-4.11.1-amd64.deb
 
   - name: Install Dropbox
     apt:
