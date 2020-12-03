@@ -26,6 +26,7 @@ hide_edge_borders smart
 
 
 # Thunderbird compose window
+for_window [title=".* File Manager"] floating enable
 for_window [title="Write: .*"] floating enable
 for_window [title="Thunderbird Preferences"] floating enable
 for_window [title=".*LibreOffice"] floating enable
@@ -260,4 +261,5 @@ exec --no-startup-id ~/.xsetwacom
 exec --no-startup-id dropbox start
 exec --no-startup-id pasystray
 exec --no-startup-id dunst
+exec --no-startup-id shairport-sync -c .config/shareport-sync.conf
 # exec --no-startup-id blueman-applet
