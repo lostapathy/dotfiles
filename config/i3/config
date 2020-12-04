@@ -26,7 +26,6 @@ hide_edge_borders smart
 
 
 # Thunderbird compose window
-for_window [title=".* File Manager"] floating enable
 for_window [title="Write: .*"] floating enable
 for_window [title="Thunderbird Preferences"] floating enable
 for_window [title=".*LibreOffice"] floating enable
@@ -36,6 +35,11 @@ for_window [title=".*LibreOffice"] floating enable
 for_window [title=".*Private Browsing.*"] floating enable resize set 1280 1024
 for_window [title=".*Private Browsing.*"] move position center
 for_window [title=".*Private Browsing.*"] move down 200px
+
+# Thunar file manager
+for_window [title=".* File Manager"] floating enable resize set 1024 800
+for_window [title=".* File Manager"] move position center
+
 
 focus_on_window_activation none
 focus_follows_mouse no
@@ -90,6 +94,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $win+p exec ~/bin/set-display-layout
 bindsym $win+s exec ~/bin/quick-launch-menu
 bindsym $win+t exec ~/bin/texpander
+bindsym $win+f exec thunar
 
 # show the weather fullscreen
 bindsym $mod+Shift+w exec feh http://wttr.in/Gardner%20KS.png?2\&F2\&F  -F --auto-zoom
