@@ -74,6 +74,7 @@
         - libglu1-mesa # Needed by prusa-slicer
         - thunar
         - wireguard-tools
+        - solaar # Logitech mouse
 
   - name: Install snaps
     snap:

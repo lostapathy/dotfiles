@@ -607,6 +607,7 @@ nnoremap ; :
 
 " Typo
 nnoremap :Bd :bd
+nnoremap Q q
 
 " make // in visual mode seach for the currently selected words
 "vnoremap // y/<C-R>"<CR>"
