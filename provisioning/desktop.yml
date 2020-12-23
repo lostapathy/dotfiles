@@ -81,13 +81,19 @@
       name:
         - doctl # digital ocean
 
+  - name: "Populate list of installed packages"
+    package_facts:
+      manager: "auto"
+
   - name: Install slack
     apt:
       deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-4.12.0-amd64.deb
+    when: "'slack-desktop' not in ansible_facts.packages"
 
   - name: Install Dropbox
     apt:
       deb: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2020.03.04_amd64.deb
+    when: "'dropbox' not in ansible_facts.packages"
 
   - name: Custom xorg config
     copy:
