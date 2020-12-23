@@ -31,6 +31,9 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# Personal bash completions
+. ~/.bash_completion
+
 if [[ -f "~/.ssh/config" ]]; then
   function _ssh_completion() {
     perl -ne 'print "$1 " if /^[Hh]ost (.+)$/' ~/.ssh/config

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Auto-complete for my own RDP script
+_rdp_completions()
+{
+  HOSTS="`~/bin/rdp --targets`"
+
+  COMPREPLY=($(compgen -W "${HOSTS}" "${COMP_WORDS[1]}"))
+}
+
+complete -F _rdp_completions rdp
