@@ -274,6 +274,7 @@ exec --no-startup-id compton
 exec --no-startup-id ~/.xsetwacom
 exec --no-startup-id pasystray
 exec --no-startup-id dunst
-exec --no-startup-id shairport-sync -c .config/shareport-sync.conf
+exec --no-startup-id sleep 10 && shairport-sync -c .config/shareport-sync.conf
 exec --no-startup-id nm-applet
+exec --no-startup-id solaar
 exec --no-startup-id sleep 10 && dropbox start # start dropbox last or sometimes it clobbers other applets
