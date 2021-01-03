@@ -45,6 +45,7 @@
 "============================================================================
 call plug#begin('~/.vim/plugged')
 
+Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-haml'
 " Plug 'tpope/vim-bundler'
@@ -64,6 +65,8 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 " theme
 Plug 'nanotech/jellybeans.vim'
 
@@ -73,22 +76,17 @@ Plug 'plasticboy/vim-markdown'
 Plug 'markcornick/vim-terraform'
 Plug 'ElmCast/elm-vim'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'tpope/vim-dispatch'
-Plug 'skalnik/vim-vroom'
-Plug 'MarcWeber/vim-addon-mw-utils'
-"Plug 'tomtom/tlib_vim'
+"Plug 'skalnik/vim-vroom'
+"Plug 'MarcWeber/vim-addon-mw-utils'
 
-" Text completion/snippets
-" Plug 'rstacruz/sparkup'
-" Ultisnips is not currently working for me but leaving it here for now
-" Plug 'SirVer/ultisnips'
+" Snippet Support
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Plug 'johngrib/vim-game-code-break'
 
 " Hard mode
 Plug 'takac/vim-hardtime'
-
 
 " Syntax highlighting
 Plug 'scrooloose/syntastic'
@@ -415,7 +413,7 @@ call plug#end()
         " Clear matches
         noremap <silent> <leader><space> :noh<cr>:call clearmatches()<cr>
         " Clean trailing whitespace
-        nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z"
+        nnoremap <leader>fw mz:%s/\s\+$//<cr>:let @/=''<cr>`z"
         " Redraw screen. Sometimes shit happens.
         nnoremap <leader>r :syntax sync fromstart<cr>:redraw!<cr>
         " Focus current fold
@@ -619,10 +617,6 @@ set secure
 let g:hardtime_default_on = 0
 let g:hardtime_showmsg = 1
 
-" method body when defining method
-autocmd FileType ruby iabbrev def def<cr>end<up>
-autocmd FileType ruby iabbrev class class<cr>end<esc>kA
-" autocmd FileType ruby iabbrev test test '' do<cr><cr>end<esc>kk$3hi<esc>i
 autocmd FileType haml iabbrev sff semantic_form_for
 
 :nnoremap <leader>ns :set nospell <cr>
@@ -630,3 +624,4 @@ autocmd FileType haml iabbrev sff semantic_form_for
 :nnoremap <leader>p :set paste <cr>
 :nnoremap <leader>t <cr> :! docker-compose exec app rake test test:system <cr>
 
+nnoremap <leader>l :ls<CR>:b<space>
