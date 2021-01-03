@@ -8,3 +8,5 @@ ripgrep 12.1.1
 docker-slim 1.24
 fzf 0.25.0
 doctl 1.54.0
+github-cli 1.4.0
+hadolint v1.19.0

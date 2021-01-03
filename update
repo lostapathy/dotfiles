@@ -9,7 +9,7 @@ for cmd in "${commands[@]}"; do
 done
 
 # Install ansible roles we depend on
-ansible-galaxy install -r provisioning/requirements.yml
+sudo ansible-galaxy install -r provisioning/requirements.yml
 
 if [ -f ~/.dotfilesrc ]; then
   . ~/.dotfilesrc
@@ -17,8 +17,6 @@ else
   echo "ERROR: no ~/.dotfilesrc, run ./setup first"
   exit
 fi
-
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 function update_vim() {
   echo "Updating vim..."
@@ -48,4 +46,4 @@ if [ "${DOTFILES_DEV}" == "y"  ]; then
   sudo ansible-playbook -v provisioning/development.yml
 fi
 
-
+asdf install
