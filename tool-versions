@@ -1,0 +1,10 @@
+ruby 2.7.0
+terraform 0.12.21
+python 3.8.6
+yarn 1.22.0
+nodejs 10.19.0
+golang 1.14
+ripgrep 12.1.1
+docker-slim 1.24
+fzf 0.25.0
+doctl 1.54.0

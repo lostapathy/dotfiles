@@ -75,11 +75,9 @@
         - thunar
         - wireguard-tools
         - solaar # Logitech mouse
-
-  - name: Install snaps
-    snap:
-      name:
-        - doctl # digital ocean
+        - fd-find
+        - bat # https://github.com/sharkdp/bat
+        - jq
 
   - name: "Populate list of installed packages"
     package_facts:
