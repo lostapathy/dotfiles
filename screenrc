@@ -3,8 +3,12 @@ startup_message off
 vbell off
 
 #go big or go home
-defscrollback 100000
+defscrollback 500000
+scrollback 500000
 
 hardstatus alwayslastline
 hardstatus string '%{= KW}%-w%{= gW}%50> %n %t %{= KW}%+w%< %{= kG}%-=%{-}'
 caption always "%{= kc}%H (system load: %l)%-21=%{= .m}%D %d.%m.%Y %0c"
+
+# makes mouse scroll wheel scroll screen instead of up/down through bash history
+termcapinfo xterm* ti@:te@

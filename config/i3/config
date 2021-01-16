@@ -1,9 +1,7 @@
 # vim: set nospell:
-
-
-
-# This is the mx-master thumb button.
-bindsym Mod1+Control+Tab workspace next
+#
+# This is the mx-master mouse thumb button.
+bindsym Mod1+Control+Tab workspace back_and_forth
 
 # Macro keypad keys.
 # Control+Shift+Mod1+Mod4 == qmk HYPER key
@@ -48,6 +46,7 @@ for_window [title=".*Private Browsing.*"] move down 200px
 for_window [title=".* File Manager"] floating enable resize set 1024 800
 for_window [title=".* File Manager"] move position center
 
+for_window [title=".*CopyQ.*"] floating enable move position center
 
 focus_on_window_activation none
 focus_follows_mouse no
@@ -55,8 +54,8 @@ focus_follows_mouse no
 # automatically go back to prior workspace if you try to select the one you're on
 workspace_auto_back_and_forth yes
 
-
 assign [title="darktable"] $ws4
+assign [title="import film"] $ws4
 assign [title="GIMP Startup"] $ws3
 assign [title="GNU Image Manipulation Program"] $ws3
 assign [title="Gimp"] $ws3
@@ -66,12 +65,13 @@ assign [title="Open Image"] $ws3
 for_window [title = "Open Image"] move position center
 
 #for_window [class="xfreerdp"] floating disable
-for_window [title="Fusion360"] floating disable, move to workspace $ws5
+for_window [title="Fusion360"] floating disable, move --no-auto-back-and-forth to workspace $ws5
 # [class='xfreerdp'] → 5 Fusion360
 
 bindsym $mod+o exec compton-trans -o 100 -c
 
-bindsym $mod+Shift+Tab workspace next
+bindsym $mod+Tab workspace back_and_forth
+
 set $mod Mod1
 set $win Mod4
 
@@ -104,6 +104,8 @@ bindsym $win+p exec ~/bin/set-display-layout
 bindsym $win+s exec ~/bin/quick-launch-menu
 bindsym $win+t exec ~/bin/texpander
 bindsym $win+f exec thunar
+bindsym $win+c exec copyq menu
+bindsym $win+a exec ~/bin/switch_audio_sink
 
 bindsym $mod+shift+p exec thunar ~/Documents/Projects
 
@@ -117,7 +119,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Escape exec "~/bin/lock"
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -fn 'Terminus 32'
+bindsym $mod+d exec rofi -show run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -137,6 +139,12 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+
+# move entire workspace to another monitor
+bindsym $mod+Control+h move workspace to output left
+bindsym $mod+Control+j move workspace to output down
+bindsym $mod+Control+k move workspace to output up
+bindsym $mod+Control+l move workspace to output right
 
 # Move next/previous workspace
 bindsym $mod+Left workspace prev
@@ -253,8 +261,6 @@ bar {
 
 #exec --no-startup-id synclient VertScrollDelta=-65 PalmDetect=1 PalmMinWidth=5 PalmMinZ=25 EmulateTwoFingerMinW=40 EmulateTwoFingerMinZ=350
 
-exec --no-startup-id /home/joe/damnit;
-
 # https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
@@ -283,11 +289,12 @@ exec --no-startup-id xss-lock -l -- ~/bin/lock
 exec --no-startup-id feh --bg-scale ~/Pictures/background.png
 exec --no-startup-id xcalib -d :0 ~/.monitor-profile.icc
 exec --no-startup-id ibus-daemon --xim # this gives you unicode input for urxvt
-exec --no-startup-id compton
+exec --no-startup-id compton --backend glx
 exec --no-startup-id ~/.xsetwacom
 exec --no-startup-id pasystray
 exec --no-startup-id dunst
 exec --no-startup-id sleep 10 && shairport-sync -c .config/shareport-sync.conf
 exec --no-startup-id nm-applet
 exec --no-startup-id solaar
+exec --no-startup-id copyq
 exec --no-startup-id sleep 10 && dropbox start # start dropbox last or sometimes it clobbers other applets

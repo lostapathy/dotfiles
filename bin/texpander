@@ -28,7 +28,7 @@ echo -n $SNIPPET | xclip -selection secondary
 
 echo "Snippet is: `cat ~/.texpander/${CHOICE}`"
 
-sleep 0.3
+sleep 0.05
 xdotool key shift+Insert
 #xdotool ctrl+v
 
