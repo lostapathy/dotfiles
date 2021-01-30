@@ -20,7 +20,10 @@
       name:
         - notify-osd
         - xautolock
-        - xfonts-terminus
+        - xfonts-terminus # this clashes with fonts-terminus
+        - mplayer
+        - vlc # use mpv now
+        - parole # use mpv now
       state: absent
 
   - name: Install packages
@@ -70,7 +73,7 @@
         - filezilla
         - dunst
         - powertop
-        - evince # PDF reader, look at atril as well
+        - evince # PDF reader, have considered atrill and mupdf as well
         - libglu1-mesa # Needed by prusa-slicer
         - thunar
         - wireguard-tools
@@ -78,6 +81,15 @@
         - fd-find
         - bat # https://github.com/sharkdp/bat
         - jq
+        - sshpass # used by ansible
+        - gimp
+        - gimp-gmic
+        - mpv # video player
+        - sxiv # image viewer
+        - meshlab # STL viewer
+        - ssh-askpass
+        - task-spooler
+        - fonts-powerline
 
   - name: "Populate list of installed packages"
     package_facts:

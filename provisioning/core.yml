@@ -32,3 +32,4 @@
         - wakeonlan
         - curl
         - iftop
+        - libarchive-tools

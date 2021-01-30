@@ -44,7 +44,7 @@ fi
 
 # Override prompts if we're in a screen
 #if [[ "$TERM" == screen* ]]; then
-if [[ -v STY ]]; then
+if [[ -v STY || -v TMUX ]]; then
   . ~/.bashrc_screen
 else
   if [[ "$SSH_CLIENT"  == "" ]]; then
@@ -68,3 +68,4 @@ export VIM_USE_DOCKER='yes'
 
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+. $HOME/.asdf/installs/fzf/0.25.0/shell/key-bindings.bash

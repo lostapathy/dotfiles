@@ -1,4 +1,4 @@
 # vim: set nospell:
 DOTFILES_DIRS="$HOME/code/dotfiles $HOME/code/dotfiles-private"
-EXCLUDES="*.md *.base provisioning update setup deps_* xps_13_9620 gimp-plugins"
+EXCLUDES="TODO *.md *.base provisioning update setup deps_* xps_13_9620 gimp-plugins"
 UNDOTTED="bin"

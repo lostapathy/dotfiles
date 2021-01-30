@@ -5,6 +5,8 @@ These are my dotfiles, use at your own risk.
 ## Dependencies
 
 * [rcm](https://github.com/thoughtbot/rcm)
+* git
+* ansible
 
 ## Usage ##
 

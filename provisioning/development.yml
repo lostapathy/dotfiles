@@ -21,6 +21,7 @@
         - libsqlite3-dev
         - graphviz
         - mariadb-client
+        - dos2unix
 
   - name: enable docker
     service:
@@ -46,19 +47,3 @@
 
   - name: run ansible galaxy
     local_action: command ansible-galaxy install -r requirements.yml --ignore-errors
-
-  roles:
-  - role: ansible-role-asdf
-    asdf_user: joe
-    asdf_plugins:
-      - name: 'ruby'
-      - name: 'python'
-      - name: 'yarn'
-      - name: 'nodejs'
-      - name: 'terraform'
-      - name: 'golang'
-      - name: 'ripgrep'
-      - name: 'doctl'
-      - name: 'fzf'
-      - name: 'github-cli'
-      - name: 'hadolint'

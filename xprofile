@@ -1,4 +1,5 @@
 #!/bin/bash
+export BROWSER=/usr/bin/firefox
 
 source ~/.xprofile.local
 
@@ -8,4 +9,5 @@ dbus-update-activation-environment DISPLAY XAUTHORITY
 xrandr --output DisplayPort-0 --set TearFree on # Enable tearfree on amd gpu
 xset s 300
 setxkbmap -option caps:escape
+eval `ssh-agent | tee ~/.ssh/agent.env`
 exec i3

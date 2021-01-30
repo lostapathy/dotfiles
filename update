@@ -1,22 +1,5 @@
 #!/bin/bash
-set -e #fail fast
-
-# We need these commands to exist in order to proceed.
-# See README.md
-commands=(git ansible rcup)
-for cmd in "${commands[@]}"; do
-  which $cmd > /dev/null || { echo "ERROR: command not found: ${cmd}" ; exit 1; }
-done
-
-# Install ansible roles we depend on
-sudo ansible-galaxy install -r provisioning/requirements.yml
-
-if [ -f ~/.dotfilesrc ]; then
-  . ~/.dotfilesrc
-else
-  echo "ERROR: no ~/.dotfilesrc, run ./setup first"
-  exit
-fi
+set -e # fail fast
 
 function update_vim() {
   echo "Updating vim..."
@@ -30,20 +13,44 @@ function update_vim() {
   vim -i NONE -c PlugUpdate -c PlugClean -c qall!
 }
 
-# Update dotfiles with rcm
+# We need these commands to exist in order to proceed.
+# See README.md
+commands=(git ansible-playbook rcup)
+for cmd in "${commands[@]}"; do
+  command -v "$cmd" > /dev/null || { echo "ERROR: command not found: ${cmd}" ; exit 1; }
+done
+
+# Update dotfiles with rcm.
 rcup -v
 
-update_vim
+if [ -f ~/.dotfilesrc ]; then
+  # shellcheck disable=SC1090
+  . "${HOME}/.dotfilesrc"
+else
+  echo "ERROR: no ~/.dotfilesrc, run ./setup first"
+  exit
+fi
 
-sudo ansible-playbook -v provisioning/core.yml
-
+# Figure out what ansible playbooks, if any, to run
+playbooks=()
+# Need to add a flag for this
+playbooks+=("provisioning/core.yml")
 if [ "${DOTFILES_GUI}" == "y" ]; then
-  sudo ansible-playbook -v provisioning/desktop.yml
-  sudo ansible-playbook -v provisioning/graphic-design.yml
+  playbooks+=("provisioning/desktop.yml")
+  playbooks+=("provisioning/graphic-design.yml")
 fi
 
 if [ "${DOTFILES_DEV}" == "y"  ]; then
-  sudo ansible-playbook -v provisioning/development.yml
+  playbooks+=("provisioning/development.yml")
 fi
 
+if [ ${#playbooks[@]} -gt 0 ]; then
+  ansible-playbook --ask-become-pass -e ansible_python_interpreter=/usr/bin/python3 \
+    $(IFS=" " ;echo "${playbooks[*]}")
+fi
+
+# Install asdf plugins
+awk '{print $1}' ~/.tool-versions | xargs -L1 asdf plugin-add
 asdf install
+
+update_vim
