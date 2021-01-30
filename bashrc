@@ -57,9 +57,7 @@ fi
 set -o vi
 
 export EDITOR=vim
-export PATH=~/bin:/usr/local/bin:/usr/local/bin:$PATH:/usr/local/sbin:/home/joe/bin/packer:~/node_modules/elm/binwrappers:~/node_modules/elm-format/bin
-
-export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=~/bin:/usr/local/bin:/usr/local/bin:$PATH:/usr/local/sbin
 
 export OPENSCADPATH=~/code/scadlibs/MCAD/:~/code/scadlibs/missile/:~/code/scadlibs/alpha/:~/code/scadlibs/misc:~/code/scadlibs/Write:~/code/scadlibs/scad-utils:~/code/mechanical_parts/
 
