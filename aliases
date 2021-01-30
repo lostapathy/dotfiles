@@ -1,2 +1,7 @@
 alias rg="rg -i"
 alias Grep=grep
+alias bat=batcat
+alias fd=fdfind
+alias journal="vim -c VimwikiMakeDiaryNote"
+alias wiki="vim -c VimwikiIndex"
+alias jekyll="bundle exec jekyll"

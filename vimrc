@@ -62,9 +62,8 @@ Plug 'godlygeek/tabular'
 Plug 'sirtaj/vim-openscad'
 Plug 'vim-ruby/vim-ruby'
 " Plug 'ervandew/supertab'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " theme
@@ -73,9 +72,12 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdtree'
 
 Plug 'plasticboy/vim-markdown'
-Plug 'markcornick/vim-terraform'
+Plug 'hashivim/vim-terraform'
+Plug 'stephpy/vim-yaml'
 Plug 'ElmCast/elm-vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'fatih/vim-go'
+
 "Plug 'skalnik/vim-vroom'
 "Plug 'MarcWeber/vim-addon-mw-utils'
 
@@ -90,7 +92,7 @@ Plug 'takac/vim-hardtime'
 
 " Syntax highlighting
 Plug 'scrooloose/syntastic'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 " This might be uglier but look at snippet support?
 " Plug 'ekalinin/dockerfile.vim'
@@ -99,6 +101,8 @@ Plug 'tpope/vim-speeddating'
 " Plug 'wincent/terminus'
 " Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
+
+Plug 'ledger/vim-ledger'
 call plug#end()
 
 "Launch vim and run :PlugInstall
@@ -108,6 +112,10 @@ call plug#end()
 " ============================================================================
 
     au BufRead,BufNewFile *vimrc set foldmethod=marker
+
+    augroup Ledger
+      autocmd! BufRead,BufEnter *.journal set filetype=ledger
+    augroup end
 
     augroup Haml
       autocmd! BufRead,BufEnter *.haml set filetype=haml
@@ -143,6 +151,7 @@ call plug#end()
     augroup ClojureFiles
         autocmd! BufRead,BufEnter *.clj let b:AutoClosePairs = AutoClose#ParsePairs("{} [] \"\" `")
     augroup end
+
 
 " ========================================================================= }}}
 "  Look and Feel {{{1
@@ -412,8 +421,8 @@ call plug#end()
     " --------------------
         " Clear matches
         noremap <silent> <leader><space> :noh<cr>:call clearmatches()<cr>
-        " Clean trailing whitespace
-        nnoremap <leader>fw mz:%s/\s\+$//<cr>:let @/=''<cr>`z"
+        " Retab and clear trailing whitespace
+        nnoremap <leader>fw :retab<cr> mz:%s/\s\+$//<cr>:let @/=''<cr>`z"
         " Redraw screen. Sometimes shit happens.
         nnoremap <leader>r :syntax sync fromstart<cr>:redraw!<cr>
         " Focus current fold
@@ -493,6 +502,7 @@ filetype plugin indent on    " required
 
 let g:airline_theme='luna'
 let g:arline_powerline_fonts=1
+let g:airline#extensions#ale#enabled = 1 "show ALE errors
 set laststatus=2
 
 :set tabstop=2
@@ -619,9 +629,63 @@ let g:hardtime_showmsg = 1
 
 autocmd FileType haml iabbrev sff semantic_form_for
 
-:nnoremap <leader>ns :set nospell <cr>
-:nnoremap <leader>np :set nopaste <cr>
-:nnoremap <leader>p :set paste <cr>
+:nnoremap <leader>ns :set nospell<cr>
+:nnoremap <leader>p :set paste!<cr>
 :nnoremap <leader>t <cr> :! docker-compose exec app rake test test:system <cr>
 
 nnoremap <leader>l :ls<CR>:b<space>
+nnoremap <C-p> :GFiles<CR>
+nnoremap :Bw :bw<cr>
+
+" Clear search matches
+noremap <silent> <leader><space> :noh<cr>:call clearmatches()<cr>
+
+" This stops the scroll wheel from adjusting window height in normal mode, but
+" not sure I want to keep it.
+nnoremap <Up> <nop>
+nnoremap <Down> <nop>
+
+let g:vimwiki_list = [{
+  \ 'path':'~/Dropbox/vimwiki',
+  \ 'path_html':'~/Dropbox/vimwiki-html/',
+  \ 'diary_rel_path': 'journal/',
+  \ 'diary_index': 'index'}]
+
+" http://james-lemin.com/code/2020/05/29/keeping_a_journal_in_vim.html
+augroup journal
+  autocmd!
+
+  autocmd BufNewFile */journal/20* 0r ~/.vim/templates/journal.skeleton
+
+  autocmd BufNewFile */journal/20* :call JournalMode()
+
+  autocmd BufEnter */journal/** set tw=79
+
+  autocmd BufEnter */journal/** set complete=k~/Dropbox/journal/**/*
+
+  autocmd BufEnter */journal/index.wiki VimwikiDiaryGenerateLinks
+augroup end
+
+function! JournalMode()
+  execute 'normal gg'
+  execute 'normal O'
+  let filename = '= ' . strftime("%A %B %e, %Y") . ' ='
+  call setline(1, filename)
+  execute 'normal 2j'
+  "execute 'normal o'
+endfunction
+
+iabbrev <expr> NOW strftime('%Y-%m-%d')
+
+function LedgerSort()
+    :%! ledger -f - print --sort 'date, amount'
+    :%LedgerAlign
+endfunction
+command LedgerSort call LedgerSort()
+
+" Configure ALE
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+\  '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'ruby': ['rubocop'],
+\}
