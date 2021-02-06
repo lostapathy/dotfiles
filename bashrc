@@ -67,3 +67,5 @@ export VIM_USE_DOCKER='yes'
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 . $HOME/.asdf/installs/fzf/0.25.0/shell/key-bindings.bash
+
+. $HOME/code/dotfiles/lib/z.sh
