@@ -35,6 +35,7 @@ bindsym $mod+minus scratchpad show
 for_window [title="Write: .*"] floating enable
 for_window [title="Thunderbird Preferences"] floating enable
 for_window [title=".*LibreOffice"] floating enable
+for_window [title=".*G'MIC.*"] floating enable
 
 # This is less than elegant but gets firefox private windows to a sane size and just below center.
 # The move down may be a bad idea on the laptop and have to be removed or cut down.
@@ -47,6 +48,9 @@ for_window [title=".* File Manager"] floating enable resize set 1024 800
 for_window [title=".* File Manager"] move position center
 
 for_window [title=".*CopyQ.*"] floating enable move position center
+
+for_window [title=".*mpv$"] floating enable
+
 
 focus_on_window_activation none
 focus_follows_mouse no
