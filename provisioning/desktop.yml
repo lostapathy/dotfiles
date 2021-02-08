@@ -90,6 +90,7 @@
         - ssh-askpass
         - task-spooler
         - fonts-powerline
+        - libreoffice-impress
 
   - name: "Populate list of installed packages"
     package_facts:
