@@ -56,6 +56,7 @@ fi
 
 set -o vi
 
+export MANPATH=:~/code/dotfiles/lib/man
 export EDITOR=vim
 export PATH=~/bin:/usr/local/bin:/usr/local/bin:$PATH:/usr/local/sbin
 
