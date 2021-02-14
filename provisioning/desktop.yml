@@ -42,7 +42,7 @@
         - i3status
         - suckless-tools
         - chromium-browser
-        - compton
+        - picom
         - fonts-terminus
         - ibus
         - xclip

@@ -72,7 +72,7 @@ for_window [title = "Open Image"] move position center
 for_window [title="Fusion360"] floating disable, move --no-auto-back-and-forth to workspace $ws5
 # [class='xfreerdp'] → 5 Fusion360
 
-bindsym $mod+o exec compton-trans -o 100 -c
+bindsym $mod+o exec picom-trans -o 100 -c
 
 bindsym $mod+Tab workspace back_and_forth
 
@@ -293,7 +293,7 @@ exec --no-startup-id xss-lock -l -- ~/bin/lock
 exec --no-startup-id feh --bg-scale ~/Pictures/background.png
 exec --no-startup-id xcalib -d :0 ~/.monitor-profile.icc
 exec --no-startup-id ibus-daemon --xim # this gives you unicode input for urxvt
-exec --no-startup-id compton --backend glx
+exec --no-startup-id picom --backend glx
 exec --no-startup-id ~/.xsetwacom
 exec --no-startup-id pasystray
 exec --no-startup-id dunst
