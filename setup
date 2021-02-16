@@ -4,11 +4,16 @@ if [ -f ~/.dotfilesrc ]; then
   . ~/.dotfilesrc
 fi
 
+if [ ! -f ~/.rcrc  ]; then
+  DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+  ln -s $DOTFILES_DIR/rcrc ~/.rcrc
+fi
+
 DOTFILES_GUI="${DOTFILES_GUI:-n}"
 DOTFILES_DEV="${DOTFILES_DEV:-n}"
 
 read -n1 -e -p "Install GUI tools? (y/n)[${DOTFILES_GUI}] " DOTFILES_GUI
 read -n1 -e -p "Install full dev env? (y/n)[${DOTFILES_DEV}] " DOTFILES_DEV
 
-echo -e "DOTFILES_GUI=${DOTFILES_GUI,,}\n" > ~/.dotfilesrc
-echo -e "DOTFILES_DEV=${DOTFILES_DEV,,}\n" >> ~/.dotfilesrc
+echo "DOTFILES_GUI=${DOTFILES_GUI}" > ~/.dotfilesrc
+echo "DOTFILES_DEV=${DOTFILES_DEV}" >> ~/.dotfilesrc
