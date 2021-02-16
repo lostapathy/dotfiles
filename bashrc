@@ -65,8 +65,16 @@ export OPENSCADPATH=~/code/scadlibs/MCAD/:~/code/scadlibs/missile/:~/code/scadli
 # this tricks my binstubs into using docker compose
 export VIM_USE_DOCKER='yes'
 
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
-. $HOME/.asdf/installs/fzf/0.25.0/shell/key-bindings.bash
+if [ -f $HOME/.asdf/asdf.sh ]; then
+  . $HOME/.asdf/asdf.sh
+fi
+
+if [ -f $HOME/.asdf/completions/asdf.bash ]; then
+  . $HOME/.asdf/completions/asdf.bash
+fi
+
+if [ -f $HOME/.asdf/install/fzf/0.25.0/shell/key-bindings.bash ]; then
+  . $HOME/.asdf/installs/fzf/0.25.0/shell/key-bindings.bash
+fi
 
 . $HOME/code/dotfiles/lib/z.sh
