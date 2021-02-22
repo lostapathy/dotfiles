@@ -9,15 +9,18 @@
 general {
         colors = true
         interval = 1
+        output_format = i3bar
 }
 
 order += "disk /"
 order += "wireless _first_"
-order += "ethernet _first_" # not-host-lappy
+order += "ethernet _first_"
 order += "battery all"
 order += "cpu_usage"
 order += "load"
 order += "tztime local"
+order += "yubikey"
+order += "whatismyip"
 
 wireless _first_ {
         format_up = "W: (%quality at %essid) %ip"
@@ -25,7 +28,6 @@ wireless _first_ {
 }
 
 ethernet _first_ {
-        # if you use %speed, i3status requires root privileges
         format_up = "E: %ip (%speed)"
         format_down = "E: down"
 }
@@ -43,9 +45,9 @@ load {
 }
 
 disk "/" {
-        format = "%avail"
+        format = "Disk / %avail free"
 }
 
 cpu_usage {
-format = "%usage"
+        format = "CPU: %usage"
 }
