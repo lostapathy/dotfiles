@@ -1,5 +1,0 @@
-#!/bin/bash
-
-for f in ../*.base; do
-  cat $f | grep -v "# not-host-`hostname`" > ${f%.*}
-done

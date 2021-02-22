@@ -99,6 +99,11 @@ fi;
 
 # Set the terminal title to the current working directory.
 PS1="\\[\\033]0;\\w\\007\\]";
+
+if [[ "${DOCKER_HOST}" ]]; then
+  PS1+="$bold${orange}REMOTE_DOCKER"
+fi
+
 PS1+="\\[${bold}\\]\\n"; # newline
 PS1+="\\[${userStyle}\\]\\u"; # username
 PS1+="\\[${white}\\]@";

@@ -7,8 +7,9 @@
   editor = vim
 
 [alias]
-  stat = status
-  s = status -s
+  stat = status -u
+  s = status -u
+  # s = status -s # Short output
   amend = commit --amend --reuse-message=HEAD
   d = diff
   ds = diff --staged

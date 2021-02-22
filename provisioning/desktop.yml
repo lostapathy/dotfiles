@@ -24,6 +24,7 @@
         - mplayer
         - vlc # use mpv now
         - parole # use mpv now
+        - compton # use picom now
       state: absent
 
   - name: Install packages
@@ -91,6 +92,8 @@
         - task-spooler
         - fonts-powerline
         - libreoffice-impress
+        - linssid # wifi scanner
+        - network-manager-openvpn
 
   - name: "Populate list of installed packages"
     package_facts:

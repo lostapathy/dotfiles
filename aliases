@@ -5,7 +5,9 @@ alias fd=fdfind
 alias journal="vim -c VimwikiMakeDiaryNote"
 alias wiki="vim -c VimwikiIndex"
 alias jekyll="bundle exec jekyll"
-dirs="dirs -l -v"
+alias dirs="dirs -l -v" # show pushd/popd history
+alias less="less -r" # retain ansi colors
+
 
 # this connects via ssh with agent but without connection sharing, so once I disconnect agent is gone
 alias ssha="ssh -A -S none"

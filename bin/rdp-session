@@ -7,4 +7,4 @@
 # Just remove this so when we're working over port forwarding we don't have errors
 rm ~/.config/freerdp/known_hosts -f
 
-xfreerdp /admin /u:$2 /p:$3 /w:1500 /h:1200 /v:$1 /cert-ignore /jpeg-quality:95 /jpeg +compression /t:$4 +clipboard +fonts -grab-keyboard /fonts
+xfreerdp /admin /u:$2 /p:$3 /w:1500 /h:1200 /v:$1 /cert-ignore /jpeg-quality:95 /jpeg +compression /t:$4 +clipboard +fonts -grab-keyboard /fonts  /log-level:OFF

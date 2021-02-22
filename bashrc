@@ -77,4 +77,34 @@ if [ -f $HOME/.asdf/install/fzf/0.25.0/shell/key-bindings.bash ]; then
   . $HOME/.asdf/installs/fzf/0.25.0/shell/key-bindings.bash
 fi
 
+function man {
+  LESS_TERMCAP_md=$'\e[01;31m' \
+  LESS_TERMCAP_me=$'\e[0m' \
+  LESS_TERMCAP_us=$'\e[01;32m' \
+  LESS_TERMCAP_ue=$'\e[0m' \
+  LESS_TERMCAP_so=$'\e[45;93m' \
+  LESS_TERMCAP_se=$'\e[0m' \
+  command man $* || MANPATH=`find ~/.asdf/ -type d -name man -printf %p:` command man $*
+}
+
+function repeat() {
+  number=$1
+  shift
+  for i in `seq $number`; do
+    $@
+  done
+}
+
+function drg() {
+  rg $@ ~/Dropbox/vimwiki/ ~/Dropbox/Documents/task-notes/ ~/code/notes.lostapathy.com/ ~/code/docs.lostapathy.com/
+}
+
+function cheat() {
+  curl -s https://cht.sh/$1
+}
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+. $HOME/.asdf/installs/fzf/0.25.0/shell/key-bindings.bash
+
 . $HOME/code/dotfiles/lib/z.sh
