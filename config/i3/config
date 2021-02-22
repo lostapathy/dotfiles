@@ -23,7 +23,11 @@ bindsym --whole-window --border button7 exec xdotool type ']'
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-hide_edge_borders smart
+default_border pixel 2
+default_floating_border pixel 2
+hide_edge_borders none
+
+new_float none # No borders on new floating windows
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -36,6 +40,8 @@ for_window [title="Write: .*"] floating enable
 for_window [title="Thunderbird Preferences"] floating enable
 for_window [title=".*LibreOffice"] floating enable
 for_window [title=".*G'MIC.*"] floating enable
+for_window [title="Developer Tools.*"] floating enable # firefox developer tools
+for_window [title="Library"] floating enable # Firefox downloads window of all things
 
 # This is less than elegant but gets firefox private windows to a sane size and just below center.
 # The move down may be a bad idea on the laptop and have to be removed or cut down.
@@ -74,7 +80,7 @@ for_window [title="Fusion360"] floating disable, move --no-auto-back-and-forth t
 
 bindsym $mod+o exec picom-trans -o 100 -c
 
-bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Tab exec rofi -show window
 
 set $mod Mod1
 set $win Mod4
@@ -110,6 +116,8 @@ bindsym $win+t exec ~/bin/texpander
 bindsym $win+f exec thunar
 bindsym $win+c exec copyq menu
 bindsym $win+a exec ~/bin/switch_audio_sink
+bindsym $win+v exec ~/bin/vpn-launcher
+bindsym $win+b exec ~/bin/browser-profile
 
 bindsym $mod+shift+p exec thunar ~/Documents/Projects
 
@@ -255,7 +263,9 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        # status_command i3status
+        # status_command i3status | ~/bin/my-i3bar
+        status_command /home/joe/bin/my-i3bar
         #font pango:DejaVu Sans Mono 10
         font pango:Terminus 10
         separator_symbol " | "
@@ -299,7 +309,8 @@ exec --no-startup-id pasystray
 exec --no-startup-id dunst
 exec --no-startup-id sleep 10 && shairport-sync -c .config/shareport-sync.conf
 exec --no-startup-id nm-applet
-exec --no-startup-id solaar
+exec --no-startup-id solaar --window hide
+exec --no-startup-id ~/bin/watch-photos-to-edit
 # This crashes gimp
 # exec --no-startup-id copyq
 exec --no-startup-id sleep 10 && dropbox start # start dropbox last or sometimes it clobbers other applets
