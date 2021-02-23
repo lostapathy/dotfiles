@@ -13,8 +13,15 @@
 #7 - 12
 #8 - 13
 
-xsetwacom set "Wacom Intuos4 6x9 Pad pad" Button 2 "key +shift ="
-xsetwacom set "Wacom Intuos4 6x9 Pad pad" Button 9 "key -"
+xsetwacom set "Wacom Intuos4 6x9 Pad pad" Button 2 "key +shift =" # Zoom in
+# not assigned
+# not assigned
+xsetwacom set "Wacom Intuos4 6x9 Pad pad" Button 9 "key -" # Zoom out
 
-xsetwacom set "Wacom Intuos4 6x9 Pad pad" AbsWheelUp "key +shift +ctrl ="
-xsetwacom set "Wacom Intuos4 6x9 Pad pad" AbsWheelDown "key +shift +ctrl -"
+xsetwacom set "Wacom Intuos4 6x9 Pad pad" Button 10 "key p" # Paintbrush
+xsetwacom set "Wacom Intuos4 6x9 Pad pad" Button 11 "key +shift e -" # Eraser
+# not assigned
+# not assigned
+
+xsetwacom set "Wacom Intuos4 6x9 Pad pad" AbsWheelUp "key [" # Increase tool size
+xsetwacom set "Wacom Intuos4 6x9 Pad pad" AbsWheelDown "key ]" # Decrease tool size
