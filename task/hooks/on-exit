@@ -1,0 +1,23 @@
+#!/bin/bash
+# Companion to bin/tasknote.  This hook moves notes for completed tasks out of
+# the main task-note dir
+
+read INPUT
+
+if [ -z "$INPUT" ]; then
+  exit
+fi
+
+STATUS=`echo $INPUT |  jq -r ".status"`
+
+if [[ "$STATUS" == "completed" ]]; then
+  UUID=`echo $INPUT | jq -r ".uuid"`
+
+  NOTEFILE=`compgen -G "$HOME/Documents/task-notes/*-$UUID.md"`
+  if [[ ! -z $NOTEFILE ]] && [ -f $NOTEFILE ]; then
+    mv $NOTEFILE $HOME/Documents/task-notes/completed/
+  fi
+fi
+
+echo "$INPUT" > /tmp/s
+

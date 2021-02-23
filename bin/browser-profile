@@ -1,0 +1,11 @@
+#!/bin/bash
+# Extract list of firefox profiles and prompt user for which one to launch as
+# with rofi
+
+PROFILES=`cat ~/.mozilla/firefox/profiles.ini | grep Name | awk -F=  '{print $2}'`
+
+CHOICE=`echo "$PROFILES" | rofi -dmenu`
+
+if [ -n "$CHOICE" ]; then
+  firefox -P $CHOICE
+fi

@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+# FIXME: port this to bash
+# FIXME: only add the notes tag if editor exits successfully
+notes_dir="$HOME/Documents/task-notes"
+
+note_id=ARGV[0]
+note_uuid=`task _get #{note_id}.uuid`.strip
+note_desc=`task _get #{note_id}.description`.strip
+
+note_clean_desc = note_desc.downcase.gsub(/\W+/, '_').gsub(/_+$/, '')
+
+glob = File.join(Dir.home, 'Documents', 'task-notes', "*-#{note_uuid}.md")
+matches = Dir[glob]
+if matches.count == 0
+  new_file = File.join(Dir.home, 'Documents', 'task-notes', "#{note_clean_desc}-#{note_uuid}.md")
+  File.write(new_file, "# #{note_desc}\n\n\n")
+  system "task modify #{note_id} +notes"
+  exec("vim +3 #{new_file}")
+else
+  exec("vim #{matches[0]}")
+end

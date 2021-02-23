@@ -1,0 +1,38 @@
+#!/bin/bash
+# Get a list of vpn/wireguard connections from nmcli, prompt with rofi, and
+# connect/disconnect the selected connection
+
+CONNECTIONS=`nmcli -t con | grep "wireguard\|vpn"`
+
+# Should we loop over this and build up "pretty" connections list that shows what's up or down
+
+CHOICES=`echo "$CONNECTIONS" |  awk -F: '{status = "down" ;  if($4){status = "UP - " $4}; print $1, status}'`
+# echo "$CHOICES"
+
+# -format d will get us the 1-indexed row of the list we sent
+ID=`echo "$CHOICES" | rofi -dmenu -p "Select VPN" -markup -format d`
+
+if [ "$ID" == "" ]; then
+  echo "Nothing selected, aborting."
+  exit
+fi
+
+# echo "ID is: $ID"
+CHOICE=`echo -e "$CONNECTIONS" | sed "${ID}q;d"`
+
+CONN=`echo "$CHOICE" | awk -F: '{print $1}'`
+STATUS=`echo "$CHOICE" | awk -F: '{if($4){ print "UP" } else {print "DOWN" }}'`
+
+# echo "full choice: $CHOICE"
+# echo "CONN: $CONN"
+echo "status: $STATUS"
+
+if [[ "$STATUS" == "UP" ]]; then
+  echo "Connection is up, going down"
+  nmcli con down $CONN
+  notify-send "Halted VPN $CONN"
+else
+  echo "Connection is down, going up"
+  nmcli con up $CONN
+  notify-send "Started VPN $CONN"
+fi
