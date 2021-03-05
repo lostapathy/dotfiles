@@ -65,18 +65,6 @@ export OPENSCADPATH=~/code/scadlibs/MCAD/:~/code/scadlibs/missile/:~/code/scadli
 # this tricks my binstubs into using docker compose
 export VIM_USE_DOCKER='yes'
 
-if [ -f $HOME/.asdf/asdf.sh ]; then
-  . $HOME/.asdf/asdf.sh
-fi
-
-if [ -f $HOME/.asdf/completions/asdf.bash ]; then
-  . $HOME/.asdf/completions/asdf.bash
-fi
-
-if [ -f $HOME/.asdf/install/fzf/0.25.0/shell/key-bindings.bash ]; then
-  . $HOME/.asdf/installs/fzf/0.25.0/shell/key-bindings.bash
-fi
-
 function man {
   LESS_TERMCAP_md=$'\e[01;31m' \
   LESS_TERMCAP_me=$'\e[0m' \
@@ -103,6 +91,10 @@ function cheat() {
   curl -s https://cht.sh/$1
 }
 
+function pushz() {
+  pushd $(z -e $@)
+}
+
 if [ -f $HOME/.asdf/asdf.sh ]; then
   . $HOME/.asdf/asdf.sh
 fi
@@ -111,7 +103,7 @@ if [ -f $HOME/.asdf/completions/asdf.bash ]; then
   . $HOME/.asdf/completions/asdf.bash
 fi
 
-if [ -f $HOME/.asdf/install/fzf/0.25.0/shell/key-bindings.bash ]; then
+if [ -f $HOME/.asdf/installs/fzf/0.25.0/shell/key-bindings.bash ]; then
   . $HOME/.asdf/installs/fzf/0.25.0/shell/key-bindings.bash
 fi
 
