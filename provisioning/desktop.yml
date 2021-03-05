@@ -95,6 +95,7 @@
         - linssid # wifi scanner
         - network-manager-openvpn
         - ldap-utils
+        - mlocate
 
   - name: "Populate list of installed packages"
     package_facts:

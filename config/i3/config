@@ -313,6 +313,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id solaar --window hide
 exec --no-startup-id ~/bin/watch-photos-to-edit
 exec --no-startup-id unclutter # Hides cursor
+exec --no-startup-id syndaemon # Palm detection on laptop
 # This crashes gimp
 # exec --no-startup-id copyq
 exec --no-startup-id sleep 20 && dropbox start # start dropbox last or sometimes it clobbers other applets
