@@ -94,6 +94,7 @@
         - libreoffice-impress
         - linssid # wifi scanner
         - network-manager-openvpn
+        - ldap-utils
 
   - name: "Populate list of installed packages"
     package_facts:

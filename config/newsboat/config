@@ -1,6 +1,12 @@
 browser "~/bin/newsboat-browser %u"
 feed-sort-order lastupdated
 define-filter "unread" "(total_count > 0)"
+define-filter "TV" "(tags #\"TV\") and (total_count > 0)"
+define-filter "reddit" "(tags #\"Reddit\") and (total_count > 0)"
+
+ignore-article "https://www.youtube.com/feeds/videos.xml?channel_id=UC_7aK9PpYTqt08ERh1MewlQ" "title=~ \"fan mail friday\"" # 3d printing nerd
+ignore-article "*" "title =~ \"hiring\""
+ignore-mode "display"
 
 # From https://forums.freebsd.org/threads/newsboat-rss-reader-enable-vim-key-bindings.69448/
 
@@ -13,6 +19,8 @@ unbind-key K
 unbind-key Q
 unbind-key A
 unbind-key C
+unbind-key n
+unbind-key p
 
 # bind keys - vim style
 bind-key j down
@@ -21,16 +29,11 @@ bind-key l open
 bind-key h quit
 bind-key d delete-article
 
-# solarized
-color background         default   default
-color listnormal         default   default
-color listnormal_unread  default   default
-color listfocus          black     cyan
-color listfocus_unread   black     cyan
-color info               default   black
-color article            default   default
-
 # highlights
-highlight article "^(Title):.*$" blue default
+highlight article "^(Title):.*$" green default
 highlight article "https?://[^ ]+" red default
 highlight article "\\[image\\ [0-9]+\\]" green default
+
+feedlist-format "%?║%4i %n %8u (%T) %t" #" &╠═════════════════════════════════════════════════════%t?"
+
+highlight feedlist "\\(youtube.*" red default bold

@@ -42,6 +42,7 @@ for_window [title=".*LibreOffice"] floating enable
 for_window [title=".*G'MIC.*"] floating enable
 for_window [title="Developer Tools.*"] floating enable # firefox developer tools
 for_window [title="Library"] floating enable # Firefox downloads window of all things
+for_window [title="^YAD$"] floating enable
 
 # This is less than elegant but gets firefox private windows to a sane size and just below center.
 # The move down may be a bad idea on the laptop and have to be removed or cut down.
@@ -249,8 +250,8 @@ mode "resize" {
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
         bindsym h resize shrink width 10 px or 2 ppt
-        bindsym j resize grow height 10 px or 2 ppt
-        bindsym k resize shrink height 10 px or 2 ppt
+        bindsym j resize shrink height 10 px or 2 ppt
+        bindsym k resize grow height 10 px or 2 ppt
         bindsym l resize grow width 10 px or 2 ppt
 
         # back to normal: Enter or Escape
@@ -311,6 +312,7 @@ exec --no-startup-id sleep 10 && shairport-sync -c .config/shareport-sync.conf
 exec --no-startup-id nm-applet
 exec --no-startup-id solaar --window hide
 exec --no-startup-id ~/bin/watch-photos-to-edit
+exec --no-startup-id unclutter # Hides cursor
 # This crashes gimp
 # exec --no-startup-id copyq
-exec --no-startup-id sleep 10 && dropbox start # start dropbox last or sometimes it clobbers other applets
+exec --no-startup-id sleep 20 && dropbox start # start dropbox last or sometimes it clobbers other applets
