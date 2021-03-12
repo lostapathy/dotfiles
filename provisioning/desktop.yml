@@ -96,6 +96,7 @@
         - network-manager-openvpn
         - ldap-utils
         - mlocate
+        - mosh
 
   - name: "Populate list of installed packages"
     package_facts:
