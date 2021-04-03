@@ -3,7 +3,7 @@
 
 # ... or force ignoredups and ignorespace
 export HISTCONTROL=ignoreboth
-export HISTFILESIZE=5000
+export HISTFILESIZE=50000
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -59,6 +59,8 @@ set -o vi
 export MANPATH=:~/code/dotfiles/lib/man
 export EDITOR=vim
 export PATH=~/bin:/usr/local/bin:/usr/local/bin:$PATH:/usr/local/sbin
+export TS_MAXFINISHED=5 # limit how many finished tasks ts/tsp shows
+export TS_SAVELIST=$HOME/ts.savelist
 
 export OPENSCADPATH=~/code/scadlibs/MCAD/:~/code/scadlibs/missile/:~/code/scadlibs/alpha/:~/code/scadlibs/misc:~/code/scadlibs/Write:~/code/scadlibs/scad-utils:~/code/mechanical_parts/
 
@@ -91,6 +93,10 @@ function cheat() {
   curl -s https://cht.sh/$1
 }
 
+function m() {
+  rake test TEST=$@
+}
+
 function pushz() {
   pushd $(z -e $@)
 }
@@ -108,3 +114,6 @@ if [ -f $HOME/.asdf/installs/fzf/0.25.0/shell/key-bindings.bash ]; then
 fi
 
 . $HOME/code/dotfiles/lib/z.sh
+
+# Tell rg where it's config lives
+export RIPGREP_CONFIG_PATH=~/.ripgreprc

@@ -27,6 +27,9 @@
   set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
   mru = for-each-ref --sort=-committerdate --count=10 refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 
+  # Fuzzy add https://spin.atomicobject.com/2018/04/05/fuzzy-find-git-add/
+  fza = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add"
+
 [color]
   ui = true
 
@@ -52,3 +55,6 @@
 [rebase]
   autostash = true
   autosquash = true
+
+[push]
+  default = current
