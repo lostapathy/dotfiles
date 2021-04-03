@@ -97,6 +97,7 @@
         - ldap-utils
         - mlocate
         - mosh
+        - autorandr
 
   - name: "Populate list of installed packages"
     package_facts:

@@ -265,12 +265,12 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         # status_command i3status
-        # status_command i3status | ~/bin/my-i3bar
         status_command /home/joe/bin/my-i3bar
         #font pango:DejaVu Sans Mono 10
         font pango:Terminus 10
         separator_symbol " | "
         tray_padding 0
+        output primary
 }
 
 
@@ -300,11 +300,12 @@ bindsym $mod+F7 exec toggle-touchpad
 
 #exec i3-msg workspace number 3 ; i3-msg exec chromium-browser ;
 #exec xscreensaver &
+
 exec --no-startup-id xss-lock -l -- ~/bin/lock
 exec --no-startup-id feh --bg-scale ~/Pictures/background.png
 exec --no-startup-id xcalib -d :0 ~/.monitor-profile.icc
 exec --no-startup-id ibus-daemon --xim # this gives you unicode input for urxvt
-exec --no-startup-id picom --backend glx
+exec --no-startup-id picom
 exec --no-startup-id ~/.xsetwacom
 exec --no-startup-id pasystray
 exec --no-startup-id dunst
@@ -314,6 +315,7 @@ exec --no-startup-id solaar --window hide
 exec --no-startup-id ~/bin/watch-photos-to-edit
 exec --no-startup-id unclutter # Hides cursor
 exec --no-startup-id syndaemon # Palm detection on laptop
+
 # This crashes gimp
 # exec --no-startup-id copyq
 exec --no-startup-id sleep 20 && dropbox start # start dropbox last or sometimes it clobbers other applets
