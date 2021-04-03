@@ -5,6 +5,16 @@
   connection: local
 
   tasks:
+  - name: install key for gsuite utils
+    apt_key:
+      url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+      state: present
+
+  - name: google suite util ppa
+    apt_repository:
+      repo: deb https://packages.cloud.google.com/apt cloud-sdk main
+      state: present
+
   - name: install key for openscad ppa
     apt_key:
       url: https://files.openscad.org/OBS-Repository-Key.pub
@@ -88,6 +98,7 @@
         - mpv # video player
         - sxiv # image viewer
         - meshlab # STL viewer
+        - fstl # STL viewer
         - ssh-askpass
         - task-spooler
         - fonts-powerline
@@ -98,6 +109,12 @@
         - mlocate
         - mosh
         - autorandr
+        - hugin-tools # photography
+        - enfuse # photography
+        - imagej # photography
+        - xinput-calibrator
+        - google-cloud-sdk # Google suite util from ppa
+        - recollgui
 
   - name: "Populate list of installed packages"
     package_facts:

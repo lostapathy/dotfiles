@@ -27,8 +27,6 @@ default_border pixel 2
 default_floating_border pixel 2
 hide_edge_borders none
 
-new_float none # No borders on new floating windows
-
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
@@ -40,9 +38,12 @@ for_window [title="Write: .*"] floating enable
 for_window [title="Thunderbird Preferences"] floating enable
 for_window [title=".*LibreOffice"] floating enable
 for_window [title=".*G'MIC.*"] floating enable
-for_window [title="Developer Tools.*"] floating enable # firefox developer tools
+for_window [title="Developer Tools.*" instance="Devtools"] floating enable # firefox developer tools
 for_window [title="Library"] floating enable # Firefox downloads window of all things
 for_window [title="^YAD$"] floating enable
+
+# Some windows (like rdp) I want to show border and title bar
+for_window [class="xfreerdp"] border normal
 
 # This is less than elegant but gets firefox private windows to a sane size and just below center.
 # The move down may be a bad idea on the laptop and have to be removed or cut down.
@@ -315,7 +316,7 @@ exec --no-startup-id solaar --window hide
 exec --no-startup-id ~/bin/watch-photos-to-edit
 exec --no-startup-id unclutter # Hides cursor
 exec --no-startup-id syndaemon # Palm detection on laptop
-
+exec --no-startup-id autokey # keyboard expanstions
 # This crashes gimp
 # exec --no-startup-id copyq
 exec --no-startup-id sleep 20 && dropbox start # start dropbox last or sometimes it clobbers other applets
