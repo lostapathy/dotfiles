@@ -1,6 +1,0 @@
-#!/bin/bash
-set -e
-
-
-# For elasticsearch to work in docker
-sudo sysctl -w vm.max_map_count=262144

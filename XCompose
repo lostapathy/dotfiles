@@ -1,15 +1,15 @@
-#include "%L"
+##include "%L"
 
-<Multi_key> <s> <n> <o> <w>     : "❄"
-#   U2603
-<Multi_key> <p> <l> <a> <n> <e> : "✈"
-#   U2708
-#<Multi_key> <z> <a> <p>         : "⚡" 
-#  U26A1
+#<Multi_key> <s> <n> <o> <w>     : "❄"
+##   U2603
+#<Multi_key> <p> <l> <a> <n> <e> : "✈"
+##   U2708
+##<Multi_key> <z> <a> <p>         : "⚡"
+##  U26A1
 
 
-<Multi_key> <m> <d> : "Δ"
-<Multi_key> <m> <e> : "ϵ"
-<Multi_key> <m> <l> : "λ"
+#<Multi_key> <m> <d> : "Δ"
+#<Multi_key> <m> <e> : "ϵ"
+#<Multi_key> <m> <l> : "λ"
 
-<Multi_key> <p> <o> <o> : "💩 "   U1F4A9 # PILE OF  POOA
+#<Multi_key> <p> <o> <o> : "💩 "   U1F4A9 # PILE OF  POOA
