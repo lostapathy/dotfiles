@@ -115,11 +115,12 @@
         - imagej # photography
         - xinput-calibrator
         - google-cloud-sdk # Google suite util from ppa
-        - recollgui
         - ruby
         - python3-gpg # Dropbox dep
         - taskwarrior
         - net-tools
+        - recollgui # full text file search
+        - newsboat
 
   - name: "Populate list of installed packages"
     package_facts:
