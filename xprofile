@@ -9,6 +9,10 @@ dbus-update-activation-environment DISPLAY XAUTHORITY
 xrandr --output DisplayPort-0 --set TearFree on # Enable tearfree on amd gpu
 xset s 300
 setxkbmap -option caps:escape
+
+xrdb -merge ~/.Xresources
+xrdb -merge ~/.Xresources.local
+
 # Reverse scrolling on lappy
 xinput set-prop "DLL0704:01 06CB:76AE Touchpad" "Synaptics Scrolling Distance" -27, -27
 eval `ssh-agent | tee ~/.ssh/agent.env`
