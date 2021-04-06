@@ -105,6 +105,7 @@
         - libreoffice-impress
         - linssid # wifi scanner
         - network-manager-openvpn
+        - network-manager-openvpn-gnome # Needed to configure ovpn
         - ldap-utils
         - mlocate
         - mosh
@@ -115,6 +116,10 @@
         - xinput-calibrator
         - google-cloud-sdk # Google suite util from ppa
         - recollgui
+        - ruby
+        - python3-gpg # Dropbox dep
+        - taskwarrior
+        - net-tools
 
   - name: "Populate list of installed packages"
     package_facts:

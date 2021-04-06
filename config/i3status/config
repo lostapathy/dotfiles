@@ -23,7 +23,7 @@ order += "yubikey"
 order += "whatismyip"
 
 wireless _first_ {
-        format_up = "W: (%quality at %essid) %ip"
+        format_up = "W: (%quality on %essid) %ip"
         format_down = "W: down"
 }
 
