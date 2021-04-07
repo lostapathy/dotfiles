@@ -15,3 +15,5 @@ alias ssha="ssh -A -S none"
 
 # docker-compose reset
 alias dcr="docker-compose build --pull && docker-compose pull && docker-compose rm && docker-compose up"
+
+alias jitsi='/opt/Jitsi\ Meet/jitsi-meet'

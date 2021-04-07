@@ -131,6 +131,12 @@
       deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-4.12.0-amd64.deb
     when: "'slack-desktop' not in ansible_facts.packages"
 
+  # From https://github.com/jitsi/jitsi-meet-electron/releases
+  - name: Install jitsi app
+    apt:
+      deb: https://github.com/jitsi/jitsi-meet-electron/releases/download/v2.8.4/jitsi-meet-amd64.deb
+    when: "'jitsi-meet-electron' not in ansible_facts.packages"
+
   - name: Install Dropbox
     apt:
       deb: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2020.03.04_amd64.deb
