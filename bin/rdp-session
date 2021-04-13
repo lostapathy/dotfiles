@@ -7,4 +7,17 @@
 # Just remove this so when we're working over port forwarding we don't have errors
 rm ~/.config/freerdp/known_hosts -f
 
-xfreerdp /admin /u:$2 /p:$3 /w:1500 /h:1200 /v:$1 /cert-ignore /jpeg-quality:95 /jpeg +compression /t:$4 +clipboard +fonts -grab-keyboard /fonts  /log-level:OFF
+# Set size and scaling options based on where this is run
+case $HOSTNAME in
+  'lappy')
+    RDP_ARGS="/size:2000x1500 /scale:140"
+    ;;
+  'compy')
+    RDP_ARGS="/size:1500x1200"
+    ;;
+  *)
+    RDP_ARGS="/size:1280x1024"
+    ;;
+esac
+
+xfreerdp /admin /u:$2 /p:$3 /v:$1 /cert-ignore /jpeg-quality:95 /jpeg +compression /t:$4 +clipboard +fonts -grab-keyboard /fonts /log-level:OFF $RDP_ARGS
