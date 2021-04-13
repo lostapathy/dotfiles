@@ -121,6 +121,9 @@
         - net-tools
         - recollgui # full text file search
         - newsboat
+        - xbacklight
+        - x11vnc
+        - libimobiledevice-utils # for ios tethering
 
   - name: "Populate list of installed packages"
     package_facts:
