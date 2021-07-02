@@ -35,12 +35,14 @@
         - vlc # use mpv now
         - parole # use mpv now
         - compton # use picom now
+        - gnome-terminal
       state: absent
 
   - name: Install packages
     apt:
       state: latest
       name:
+        - xfce4-terminal
         - keepassxc
         - feh
         - xss-lock
@@ -124,10 +126,17 @@
         - xbacklight
         - x11vnc
         - libimobiledevice-utils # for ios tethering
+        - v4l-utils
+        - trickle
 
   - name: "Populate list of installed packages"
     package_facts:
       manager: "auto"
+
+  - name: Install qrcp
+    apt:
+      deb: https://github.com/claudiodangelis/qrcp/releases/download/0.8.1/qrcp_0.8.1_linux_x86_64.deb
+    when: "'qrcp' not in ansible_facts.packages"
 
   - name: Install slack
     apt:
