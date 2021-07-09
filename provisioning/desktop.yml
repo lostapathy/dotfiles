@@ -128,6 +128,8 @@
         - libimobiledevice-utils # for ios tethering
         - v4l-utils
         - trickle
+        - gscan2pdf
+        - konwert # can convert files between text encodings
 
   - name: "Populate list of installed packages"
     package_facts:
