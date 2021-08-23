@@ -113,6 +113,7 @@ bindsym $mod+p exec ~/bin/screenshot-selection
 bindsym $mod+Return exec i3-sensible-terminal
 
 # Select screen layout - this is also the alternate on F8 on my XPS_9620
+bindsym $win+e exec ~/bin/emoji-picker
 bindsym $win+p exec ~/bin/set-display-layout
 bindsym $win+s exec ~/bin/quick-launch-menu
 bindsym $win+t exec ~/bin/texpander

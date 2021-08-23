@@ -1,0 +1,7 @@
+#!/bin/bash
+
+SELECTION=`cat ~/.emoji  |grep -v "\^" |  rofi -dmenu -format p -p "emoji?"`
+
+EMOJI=`echo ${SELECTION} | cut -d\  -f 1`
+
+xdotool type ${EMOJI}
