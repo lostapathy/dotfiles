@@ -130,6 +130,8 @@
         - trickle
         - gscan2pdf
         - konwert # can convert files between text encodings
+        - peek # screen recording
+        - ppa-purge
 
   - name: "Populate list of installed packages"
     package_facts:

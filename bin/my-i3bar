@@ -11,7 +11,16 @@ def add_vpn(data)
   vpn_status = `nmcli -t con | grep "wireguard\\|vpn" | grep -v ":\$" |awk -F: '{print $1}'`
   if vpn_status.size > 0
     vpns = vpn_status.strip.split("\n").join(', ')
-    data.unshift( {"name" => "VPN Status","instance" => "#{vpns}","markup" => "none","full_text" => "VPN: #{vpns}", "color": "#00FF00"} )
+    data.unshift( {"name" => "VPN Status", "instance" => "#{vpns}", "markup" => "none", "full_text" => "VPN: #{vpns}", "color": "#00FF00"} )
+  end
+  data
+end
+
+def add_video_queue(data)
+  # FIXME: could probably only poll this every 10-15 seconds to save battery on lappy?
+  status = `tsp | grep queued | wc -l`.to_i
+  if status > 0
+    data.unshift( {"name" => "VPN Status","instance" => "#{status}", "markup" => "none", "full_text" => "Videos Queued: #{status}", "color": "#00FF00"} )
   end
   data
 end
@@ -49,6 +58,7 @@ Open3.popen3("/usr/bin/i3status") do |stdin, stdout, stderr, wait_thread|
     begin
       data = JSON.parse(line.sub(/^,/, ''))
       data = add_vpn(data)
+      data = add_video_queue(data)
       remove_battery(data)
       # FIXME: only remove wifi if we don't also have ethernet?
       remove_wifi(data)

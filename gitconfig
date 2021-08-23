@@ -11,6 +11,7 @@
   s = status -u
   # s = status -s # Short output
   amend = commit --amend --reuse-message=HEAD
+  co = checkout
   d = diff
   ds = diff --staged
   pf = push --force-with-lease

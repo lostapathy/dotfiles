@@ -72,6 +72,7 @@ assign [title="GIMP Startup"] $ws3
 assign [title="GNU Image Manipulation Program"] $ws3
 assign [title="Gimp"] $ws3
 assign [title="Open Image"] $ws3
+assign [title="Xournal"] $ws7
 
 # Center the gimp open image dialog - this doesn't seem to work but hoping it does after ubuntu upgrade
 for_window [title = "Open Image"] move position center
@@ -206,7 +207,7 @@ set $ws3 "3: GIMP"
 set $ws4 "4: DarkTable"
 set $ws5 "5: Windows"
 set $ws6 "6"
-set $ws7 "7"
+set $ws7 "7: xournal"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
@@ -265,13 +266,13 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        # status_command i3status
+        #status_command i3status
         status_command /home/joe/bin/my-i3bar
         #font pango:DejaVu Sans Mono 10
         font pango:Terminus 10
         separator_symbol " | "
         tray_padding 0
-        output primary
+        tray_output primary
 }
 
 
@@ -314,9 +315,12 @@ exec --no-startup-id sleep 10 && shairport-sync -c .config/shareport-sync.conf
 exec --no-startup-id nm-applet
 exec --no-startup-id solaar --window hide
 exec --no-startup-id ~/bin/watch-photos-to-edit
+exec --no-startup-id ~/bin/watch-voice-tasks
+exec --no-startup-id ~/bin/watch-ups-labels
 exec --no-startup-id unclutter # Hides cursor
 exec --no-startup-id syndaemon -i 1 # Palm detection on laptop
 exec --no-startup-id autokey # keyboard expanstions
+exec --no-startup-id streamdeck -n
 
 # This crashes gimp
 # exec --no-startup-id copyq
