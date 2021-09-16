@@ -1,0 +1,4 @@
+xrandr --dpi 201
+
+synclient PalmMinWidth=1 PalmMinZ=1
+

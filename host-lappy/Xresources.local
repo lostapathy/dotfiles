@@ -1,0 +1,4 @@
+Xcursor.size: 48
+
+! Set this to roughly half of native to get correct size on hidpi screen without needing to scale up with xrandr
+Xft.dpi: 100
