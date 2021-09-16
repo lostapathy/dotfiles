@@ -50,7 +50,7 @@
         - i3lock
         - maim
         - xcalib
-        # - dispcalgui
+        # - dispcalgui # This was removed from ubuntu, install seperately below
         - argyll
         - i3status
         - suckless-tools
@@ -135,6 +135,19 @@
         - synaptic
         - bluez-tools
         - blueman
+        - flatpak
+
+  - name: Install dipslyacal flatpak
+    community.general.flatpak:
+      name: https://dl.flathub.org/repo/appstream/net.displaycal.DisplayCAL.flatpakref
+      state: present
+      method: user
+
+  - name: Install nextcloud flatpak
+    community.general.flatpak:
+      name: https://dl.flathub.org/repo/appstream/com.nextcloud.desktopclient.nextcloud.flatpakref
+      state: present
+      method: user
 
   - name: "Populate list of installed packages"
     package_facts:
