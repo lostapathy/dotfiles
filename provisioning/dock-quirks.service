@@ -1,0 +1,11 @@
+[Unit]
+Description=Install quirks for DELL TypeC ethernet/VGA/ DA 200 adapter
+Documentation=https://askubuntu.com/questions/1081128/usb-3-0-ethernet-adapter-not-working-ubuntu-18-04
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/bash -c "echo 0bda:8153:k > /sys/module/usbcore/parameters/quirks"
+
+[Install]
+WantedBy=multi-user.target

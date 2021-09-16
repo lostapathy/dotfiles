@@ -132,6 +132,9 @@
         - konwert # can convert files between text encodings
         - peek # screen recording
         - ppa-purge
+        - synaptic
+        - bluez-tools
+        - blueman
 
   - name: "Populate list of installed packages"
     package_facts:
@@ -171,3 +174,17 @@
       src: 59-sdreader.rules
       owner: root
       group: root
+
+  - name: create USB-C dock quirks service
+    copy:
+      dest: /etc/systemd/system/dock-quirks.service
+      src: dock-quirks.service
+      owner: root
+      group: root
+
+  - name: start USB-C dock quirks
+    ansible.builtin.systemd:
+      name: dock-quirks
+      daemon_reload: yes
+      enabled: yes
+      state: started
