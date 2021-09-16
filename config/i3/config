@@ -314,6 +314,7 @@ exec --no-startup-id pasystray
 exec --no-startup-id dunst
 exec --no-startup-id sleep 10 && shairport-sync -c .config/shareport-sync.conf
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-tray
 exec --no-startup-id solaar --window hide
 exec --no-startup-id ~/bin/watch-photos-to-edit
 exec --no-startup-id ~/bin/watch-voice-tasks
