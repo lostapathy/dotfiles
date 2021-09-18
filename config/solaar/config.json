@@ -1,0 +1,30 @@
+{
+  "406A:3F6CB421": {
+    "_modelId": "B01A406A0000",
+    "_name": "Wireless Mobile Mouse MX Anywhere 2S",
+    "_sensitive": {
+      "hires-smooth-resolution": true
+    },
+    "_unitId": "3316A003",
+    "divert-keys": {
+      "82": 0,
+      "83": 0,
+      "86": 0,
+      "91": 0,
+      "93": 0
+    },
+    "dpi": "1000",
+    "hires-smooth-invert": false,
+    "hires-smooth-resolution": false,
+    "reprogrammable-keys": {
+      "80": 80,
+      "81": 81,
+      "82": 82,
+      "83": 83,
+      "86": 86,
+      "91": 91,
+      "93": 93
+    }
+  },
+  "_version": "1.0.6"
+}

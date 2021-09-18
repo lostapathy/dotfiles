@@ -20,6 +20,10 @@
       url: https://files.openscad.org/OBS-Repository-Key.pub
       state: present
 
+  - name: Add solaar ppa
+    ansible.builtin.apt_repository:
+      repo: ppa:solaar-unifying/stable
+
   #- name: Install openscad nightly ppa
   #  apt_repository:
   #    repo: deb https://download.opensuse.org/repositories/home:/t-paul/xUbuntu_20.04/ ./
