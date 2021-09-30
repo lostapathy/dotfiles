@@ -17,3 +17,5 @@ read -n1 -e -p "Install full dev env? (y/n)[${DOTFILES_DEV}] " DOTFILES_DEV
 
 echo "DOTFILES_GUI=${DOTFILES_GUI}" > ~/.dotfilesrc
 echo "DOTFILES_DEV=${DOTFILES_DEV}" >> ~/.dotfilesrc
+
+sudo apt-get install -y git rcm ansible curl
