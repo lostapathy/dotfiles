@@ -66,6 +66,7 @@
         - chromium-browser
         - picom
         - fonts-terminus
+        - fonts-font-awesome
         - ibus
         - xclip
         - freeglut3
