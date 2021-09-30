@@ -38,8 +38,10 @@ for_window [title="Write: .*"] floating enable
 for_window [title="Thunderbird Preferences"] floating enable
 for_window [title=".*LibreOffice"] floating enable
 for_window [title=".*G'MIC.*"] floating enable
+for_window [class=".*Nextcloud.*"] floating enable
+for_window [class=".*zoom.*"] floating enable
 for_window [title="Developer Tools.*" instance="Devtools"] floating enable # firefox developer tools
-for_window [title="Library"] floating enable # Firefox downloads window of all things
+for_window [title="^Library$" class="Firefox" instance="Places"] floating enable # Firefox downloads window
 for_window [title="^YAD$"] floating enable
 
 # Some windows (like rdp) I want to show border and title bar
@@ -273,7 +275,6 @@ bar {
         tray_padding 0
         tray_output primary
 }
-
 
 #exec --no-startup-id synclient VertScrollDelta=-65 PalmDetect=1 PalmMinWidth=5 PalmMinZ=25 EmulateTwoFingerMinW=40 EmulateTwoFingerMinZ=350
 
