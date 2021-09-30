@@ -1,0 +1,3 @@
+#!/bin/sh
+# This wrapper just lets py3status check dropbox status
+dropbox $@
