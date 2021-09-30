@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+if [ -d "$HOME/code/dotfiles-private"  ] ; then
+  echo "pulling ~/code/dotfiles-private"
+  cd ~/code/dotfiles-private
+  git pull
+fi
+
+echo "pulling ~/code/dotfiles"
+cd ~/code/dotfiles
+git pull
+
+./provision
+
