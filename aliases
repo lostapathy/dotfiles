@@ -19,3 +19,6 @@ alias dcr="docker-compose build --pull && docker-compose pull && docker-compose 
 alias jitsi='/opt/Jitsi\ Meet/jitsi-meet'
 alias ts=tsp
 alias displaycal="flatpak run net.displaycal.DisplayCAL"
+alias pdfarranger='flatpak run com.github.jeromerobert.pdfarranger'
+alias gitgit=git
+alias cal='ncal -bS'
