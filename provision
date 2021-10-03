@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e # fail fast
 
+# This may not actually be a great idea with servers?
+UBUNTU_VERSION=`lsb_release -r | awk '{print $2}'`
+if [ "$UBUNTU_VERSION" != "21.04" ] ; then
+  echo "Not on correct ubuntu version for this script, exiting"
+  exit
+fi
+
 # We need these commands to exist in order to proceed.
 # See README.md
 commands=(git ansible-playbook rcup)
