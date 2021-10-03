@@ -1,0 +1,32 @@
+{
+  "1E40:204BD859": {
+    "_name": "Wireless Mouse MX Master 2S",
+    "dpi": 1000,
+    "hires-smooth-invert": false,
+    "hires-smooth-resolution": true,
+    "smart-shift": 16
+  },
+  "4069:204BD859": {
+    "_modelId": "B01940690000",
+    "_name": "Wireless Mouse MX Master 2S",
+    "_unitId": "47A1972F",
+    "dpi": 1000,
+    "gesture2-gestures": {
+      "45": true,
+      "46": true
+    },
+    "hires-smooth-invert": false,
+    "hires-smooth-resolution": true,
+    "reprogrammable-keys": {
+      "195": 195,
+      "196": 196,
+      "80": 80,
+      "81": 81,
+      "82": 82,
+      "83": 83,
+      "86": 86
+    },
+    "smart-shift": 16
+  },
+  "_version": "1.0.4"
+}
