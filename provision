@@ -38,8 +38,11 @@ if [ ${#playbooks[@]} -gt 0 ]; then
 fi
 
 # Install asdf plugins
-set +e # This is a bad hack to get around this command failing when all plugins are installed
+set +e # Disabling errors is a hack to get around this command failing when all plugins are installed
+# make sure plugin is installed
 awk '{print $1}' ~/.tool-versions | xargs -L1 asdf plugin-add
+# Make sure it's got latest defs
+awk '{print $1}' ~/.tool-versions | xargs -L1 asdf plugin-update
 set -e
 
 asdf install
