@@ -160,6 +160,11 @@
     community.general.flatpak:
       name: https://dl.flathub.org/repo/appstream/com.nextcloud.desktopclient.nextcloud.flatpakref
       state: present
+  - name: update flatpaks
+    shell:
+      cmd: flatpak update --noninteractive
+    become: true
+
 
   - name: "Populate list of installed packages"
     package_facts:
@@ -174,6 +179,11 @@
     apt:
       deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-4.12.0-amd64.deb
     when: "'slack-desktop' not in ansible_facts.packages"
+
+  - name: Install discrod
+    apt:
+      deb: https://dl.discordapp.net/apps/linux/0.0.16/discord-0.0.16.deb
+    when: "'discord' not in ansible_facts.packages"
 
   - set_fact:
       zoom_version: "{{ ansible_facts.packages['zoom'] | json_query('[].version') }}"
