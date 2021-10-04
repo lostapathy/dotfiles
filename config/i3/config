@@ -269,7 +269,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command py3status
+        status_command py3status --dbus-notify # --debug
         font pango:Terminus 10
         separator_symbol " | "
         tray_padding 0
