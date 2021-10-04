@@ -47,16 +47,28 @@
         - gnome-terminal
       state: absent
 
+  - name: Install pi packages
+    when: ansible_architecture == "aarch64"
+    apt:
+      state: latest
+      name:
+        - raspi-config
+
   - name: Install packages
     apt:
       state: latest
       name:
+        - hwinfo
+        - lightdm
+        - firefox
+        - xinit
         - xfce4-terminal
         - keepassxc
         - feh
         - xss-lock
         - i3-wm
         - i3lock
+        - py3status
         - maim
         - xcalib
         # - dispcalgui # This was removed from ubuntu, install seperately below
@@ -173,17 +185,20 @@
   - name: Install qrcp
     apt:
       deb: https://github.com/claudiodangelis/qrcp/releases/download/0.8.1/qrcp_0.8.1_linux_x86_64.deb
-    when: "'qrcp' not in ansible_facts.packages"
+    when: ('qrcp' not in ansible_facts.packages) and
+          (ansible_architecture == "amd64")
 
   - name: Install slack
     apt:
       deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-4.12.0-amd64.deb
-    when: "'slack-desktop' not in ansible_facts.packages"
+    when: ( 'slack-desktop' not in ansible_facts.packages ) and
+          (ansible_architecture == "amd64")
 
-  - name: Install discrod
+  - name: Install discord
     apt:
       deb: https://dl.discordapp.net/apps/linux/0.0.16/discord-0.0.16.deb
-    when: "'discord' not in ansible_facts.packages"
+    when: ( 'discord' not in ansible_facts.packages ) and
+          (ansible_architecture == "amd64")
 
   - set_fact:
       zoom_version: "{{ ansible_facts.packages['zoom'] | json_query('[].version') }}"
@@ -197,19 +212,22 @@
     apt:
       deb: https://cdn.zoom.us/prod/5.8.0.16/zoom_amd64.deb
     # the zoom_version.0 seems to unpack this from an array (ansible n00b)
-    when: "zoom_version is not defined or zoom_version.0 is version_compare('5.8.0.16', '<')"
+    when: ( zoom_version is not defined or zoom_version.0 is version_compare('5.8.0.16', '<') ) and
+          (ansible_architecture == "amd64")
     # when: "zoom_version is not defined or zoom_version | version_compare('5.8.0.16', '<')"
 
   # From https://github.com/jitsi/jitsi-meet-electron/releases
   - name: Install jitsi app
     apt:
       deb: https://github.com/jitsi/jitsi-meet-electron/releases/download/v2.8.4/jitsi-meet-amd64.deb
-    when: "'jitsi-meet-electron' not in ansible_facts.packages"
+    when: ( 'jitsi-meet-electron' not in ansible_facts.packages ) and
+          (ansible_architecture == "amd64")
 
   - name: Install Dropbox
     apt:
       deb: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2020.03.04_amd64.deb
-    when: "'dropbox' not in ansible_facts.packages"
+    when: ( 'dropbox' not in ansible_facts.packages ) and
+          (ansible_architecture == "amd64")
 
   - name: Custom xorg config
     copy:
