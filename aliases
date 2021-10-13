@@ -22,3 +22,4 @@ alias displaycal="flatpak run net.displaycal.DisplayCAL"
 alias pdfarranger='flatpak run com.github.jeromerobert.pdfarranger'
 alias gitgit=git
 alias cal='ncal -bS'
+alias dmesg='sudo dmesg -T'
