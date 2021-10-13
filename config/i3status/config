@@ -12,24 +12,80 @@ general {
         output_format = i3bar
 }
 
+order += "external_script 0"
+order += "external_script 1"
+order += "external_script 2"
 order += "disk /"
 order += "wireless _first_"
 order += "ethernet _first_"
-order += "battery all"
+# order += "net_iplist" # this breaks on my desktop
+order += "net_rate"
+order += "wifi"
+order += "battery_level"
 order += "cpu_usage"
 order += "load"
-order += "tztime local"
-order += "yubikey"
+# order += "yubikey"
+# order += "taskwarrior"
 order += "whatismyip"
+order += "dropboxd_status"
+order += "tztime local"
+
+external_script 0 {
+    format = "Video Queue: {output}"
+    script_path = "tsp | grep queued |wc -l"
+    cache_timeout = 30
+}
+
+external_script 1 {
+    format = "VPN: {output}"
+    script_path = "~/bin/vpn-status"
+    cache_timeout = 10
+
+    on_click 1 = "exec ~/bin/vpn-launcher"
+}
+
+external_script 2 {
+    format = "CI: {output}"
+    script_path = "~/bin/ci-status"
+    cache_timeout = 10
+
+    on_click 1 = "exec xdg-open https://app.circleci.com/"
+}
 
 wireless _first_ {
         format_up = "W: (%quality on %essid) %ip"
-        format_down = "W: down"
+        format_down = ""
 }
 
 ethernet _first_ {
         format_up = "E: %ip (%speed)"
-        format_down = "E: down"
+        format_down = ""
+}
+
+battery_level {
+    battery_id = "all"
+    hide_seconds = true
+    format = "{percent}% {time_remaining}"
+    # notification = true
+}
+
+
+wifi {
+        # blocks = “_▁▂▃▄▅▆▇█”
+}
+
+net_iplist {
+        format = '{format_iface}'
+        format_iface = "\[{iface} {ip4}\]"
+}
+
+net_rate {
+        # interfaces_blacklist = "docker*, lo, br*, veth*"
+        all_interfaces = false
+        interfaces = "enp7s0,wlan0"
+        format = "{interface}: {down}🠗 {up}🠕"
+        si_units = true
+        hide_if_zero = true
 }
 
 battery all {
