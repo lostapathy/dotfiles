@@ -317,6 +317,7 @@ exec --no-startup-id blueman-tray
 exec --no-startup-id solaar --window hide
 exec --no-startup-id ~/bin/watch-photos-to-edit
 exec --no-startup-id ~/bin/watch-voice-tasks
+exec --no-startup-id ~/bin/watch-darktable-output
 exec --no-startup-id ~/bin/watch-ups-labels
 exec --no-startup-id unclutter # Hides cursor
 exec --no-startup-id syndaemon -i 1 # Palm detection on laptop
