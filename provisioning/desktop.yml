@@ -88,6 +88,7 @@
         - xbindkeys
         - sshfs
         - hplip
+        - hplip-gui
         - xdotool
         - openvpn
         - nvme-cli
@@ -162,6 +163,23 @@
         - blueman
         - flatpak
         - fonts-symbola # Unicode symbols - emoji, checkboxes, etc
+        - nethogs
+        - restic
+        - pavucontrol
+        - ubuntu-restricted-extras
+        - libgles2-mesa # Raspberry pi video needs this?
+        - gparted
+        - exfatprogs
+
+  - name: Install shotcut flatpak
+    community.general.flatpak:
+      name: https://dl.flathub.org/repo/appstream/org.shotcut.Shotcut.flatpakref
+      state: present
+
+  - name: Install kdenlive flatpak
+    community.general.flatpak:
+      name: https://dl.flathub.org/repo/appstream/org.kde.kdenlive.flatpakref
+      state: present
 
   - name: Install displayacal flatpak
     community.general.flatpak:
@@ -172,6 +190,7 @@
     community.general.flatpak:
       name: https://dl.flathub.org/repo/appstream/com.nextcloud.desktopclient.nextcloud.flatpakref
       state: present
+
   - name: update flatpaks
     shell:
       cmd: flatpak update --noninteractive
@@ -240,6 +259,13 @@
     copy:
       dest: /etc/udev/rules.d/59-sdreader.rules
       src: 59-sdreader.rules
+      owner: root
+      group: root
+
+  - name: udev rules for spyder
+    copy:
+      dest: /etc/udev/rules.d/90-spyder.rules
+      src: 90-spyder.rules
       owner: root
       group: root
 
