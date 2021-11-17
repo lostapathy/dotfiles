@@ -3,7 +3,7 @@ set -e # fail fast
 
 # This may not actually be a great idea with servers?
 UBUNTU_VERSION=`lsb_release -r | awk '{print $2}'`
-if [ "$UBUNTU_VERSION" != "21.04" ] ; then
+if [ "$UBUNTU_VERSION" != "21.10" ] ; then
   echo "Not on correct ubuntu version for this script, exiting"
   exit
 fi
@@ -43,6 +43,9 @@ if [ ${#playbooks[@]} -gt 0 ]; then
   PATH=/usr/bin:/bin ansible-playbook --ask-become-pass -e ansible_python_interpreter=/usr/bin/python3 \
     $(IFS=" " ;echo "${playbooks[*]}")
 fi
+
+
+# git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
 
 # Install asdf plugins
 set +e # Disabling errors is a hack to get around this command failing when all plugins are installed

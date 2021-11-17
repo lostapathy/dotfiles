@@ -5,6 +5,20 @@
   connection: local
 
   tasks:
+  - name: install key for vbox
+    apt_key:
+      url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+      state: present
+
+  - name: install key 2 for vbox
+    apt_key:
+      url: https://www.virtualbox.org/download/oracle_vbox.asc
+      state: present
+
+  - name: vbox util ppa
+    apt_repository:
+      repo: deb  https://download.virtualbox.org/virtualbox/debian hirsute contrib
+      state: present
   - name: install key for gsuite utils
     apt_key:
       url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
@@ -45,6 +59,7 @@
         - parole # use mpv now
         - compton # use picom now
         - gnome-terminal
+        - snapd
       state: absent
 
   - name: Install pi packages
@@ -75,7 +90,7 @@
         - argyll
         - i3status
         - suckless-tools
-        - chromium-browser
+        # - chromium-browser
         - picom
         - fonts-terminus
         - fonts-font-awesome
