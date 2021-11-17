@@ -14,8 +14,10 @@
       "93": 0
     },
     "dpi": "1000",
+    "dpi-sliding": 0,
     "hires-smooth-invert": false,
     "hires-smooth-resolution": false,
+    "mouse-gestures": 0,
     "reprogrammable-keys": {
       "80": 80,
       "81": 81,
@@ -26,5 +28,5 @@
       "93": 93
     }
   },
-  "_version": "1.0.6"
+  "_version": "1.0.7"
 }
