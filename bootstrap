@@ -1,0 +1,4 @@
+#!/bin/bash
+# Run this to install minimum deps to run the rest of the dotfiles
+
+sudo apt-get install -y git rcm ansible curl
