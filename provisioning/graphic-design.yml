@@ -5,10 +5,11 @@
   connection: local
 
   tasks:
-  - name: Install gimp PPA
-    apt_repository:
-      repo: ppa:ubuntuhandbook1/gimp
-      state: present
+    # This PPA doesn't support ubuntu 22.04
+    # - name: Install gimp PPA
+    #   apt_repository:
+    #     repo: ppa:ubuntuhandbook1/gimp
+    #     state: present
 
   - name: Install packages
     apt:

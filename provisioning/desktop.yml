@@ -151,8 +151,8 @@
         - mlocate
         - mosh
         - autorandr
-        - hugin-tools # photography
-        - enfuse # photography
+        # - hugin-tools # photography - no longer available in ubuntu 22.04
+        # - enfuse # photography
         - imagej # photography
         - xinput-calibrator
         - google-cloud-sdk # Google suite util from ppa
