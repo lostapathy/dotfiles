@@ -1,0 +1,2 @@
+export RDP_SIZE="2000x1500"
+export RDP_SCALE="140"
