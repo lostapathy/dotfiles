@@ -58,7 +58,6 @@ set -o vi
 
 export MANPATH=:~/code/dotfiles/lib/man
 export EDITOR=vim
-export PATH=~/bin:/usr/local/bin:/usr/local/bin:$PATH:/usr/local/sbin
 export TS_MAXFINISHED=5 # limit how many finished tasks ts/tsp shows
 export TS_SAVELIST=$HOME/ts.savelist
 
@@ -109,11 +108,15 @@ if [ -f $HOME/.asdf/completions/asdf.bash ]; then
   . $HOME/.asdf/completions/asdf.bash
 fi
 
-if [ -f $HOME/.asdf/installs/fzf/0.25.0/shell/key-bindings.bash ]; then
-  . $HOME/.asdf/installs/fzf/0.25.0/shell/key-bindings.bash
+# Find the most recent fzf version installed and use it's key bindings
+LATEST_FZF=`ls -d ~/.asdf/installs/fzf/* | sort -r | head -n 1`
+if [ -f $LATEST_FZF/shell/key-bindings.bash ]; then
+  . $LATEST_FZF/shell/key-bindings.bash
 fi
 
 . $HOME/code/dotfiles/lib/z.sh
 
 # Tell rg where it's config lives
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
+
+eval $(thefuck --alias)
