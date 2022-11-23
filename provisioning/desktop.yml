@@ -159,6 +159,7 @@
         - ruby
         - python3-gpg # Dropbox dep
         - taskwarrior
+        - tasksh
         - net-tools
         - recollgui # full text file search
         - newsboat
@@ -185,6 +186,18 @@
         - libgles2-mesa # Raspberry pi video needs this?
         - gparted
         - exfatprogs
+        - dialog
+        - texlive-latex-base # Used to generate pdf manuals for volquartsen
+        - texlive-fonts-recommended # Used to generate pdf manuals for volquartsen
+        - texlive-latex-extra # Used to generate pdf manuals for volquartsen
+        - mosquitto-clients
+        - yt-dlp # youtube-dl replacement
+        - gfortran # for R
+        - libbz2-dev # for R
+        - libclang-dev # for rstudio
+        - libffi7 # streamdeck-ui wants this
+        - pulseaudio-equalizer
+        - httpie
 
   - name: Install shotcut flatpak
     community.general.flatpak:
@@ -244,7 +257,7 @@
 
   - name: Install zoom
     apt:
-      deb: https://cdn.zoom.us/prod/5.8.0.16/zoom_amd64.deb
+      deb: https://cdn.zoom.us/prod/5.12.6/zoom_amd64.deb
     # the zoom_version.0 seems to unpack this from an array (ansible n00b)
     when: ( zoom_version is not defined or zoom_version.0 is version_compare('5.8.0.16', '<') ) and
           (ansible_architecture == "amd64")

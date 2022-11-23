@@ -31,6 +31,8 @@
   # Fuzzy add https://spin.atomicobject.com/2018/04/05/fuzzy-find-git-add/
   fza = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add"
 
+  yolo = "reset --hard @{u}"
+
 [color]
   ui = true
 
@@ -46,6 +48,7 @@
 
 [pull]
   rebase = true
+  ff = only
 
 [diff]
   colorMoved = zebra
@@ -59,3 +62,6 @@
 
 [push]
   default = current
+
+[help]
+  autocorrect = 50

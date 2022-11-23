@@ -1,0 +1,2 @@
+#!/bin/bash
+file=`mktemp` ; qrcode -s 1000 "$(xclip -out)" > $file ; feh -F $file ; rm $file

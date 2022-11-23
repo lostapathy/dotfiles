@@ -4,7 +4,7 @@
 
 PROFILES=`cat ~/.mozilla/firefox/profiles.ini | grep Name | awk -F=  '{print $2}'`
 
-CHOICE=`echo "$PROFILES" | rofi -dmenu`
+CHOICE=`echo "$PROFILES" | rofi -i -dmenu`
 
 if [ -n "$CHOICE" ]; then
   firefox -P $CHOICE

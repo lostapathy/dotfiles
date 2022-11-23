@@ -1,5 +1,8 @@
 #!/bin/bash
 killall picom
+notify-send 'Click around to stabilize display'
+sleep 3
+notify-send 'Take screenshot now!'
 OUTPUT="screenshot-`date '+%Y%m%d-%H%M%S'`.png"
 mkdir -p ~/Desktop/Screenshots
 maim -s > ~/Desktop/Screenshots/${OUTPUT}

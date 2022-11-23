@@ -14,7 +14,7 @@ alias mbsync="mbsync -a"
 alias ssha="ssh -A -S none"
 
 # docker-compose reset
-alias dcr="docker-compose build --pull && docker-compose pull && docker-compose rm && docker-compose up"
+alias dcr="docker-compose build --pull && docker-compose pull && docker-compose stop && docker-compose rm && docker-compose up"
 
 alias jitsi='/opt/Jitsi\ Meet/jitsi-meet'
 alias ts=tsp
@@ -23,3 +23,10 @@ alias pdfarranger='flatpak run com.github.jeromerobert.pdfarranger'
 alias gitgit=git
 alias cal='ncal -bS'
 alias dmesg='sudo dmesg -T'
+alias dispcalgui="flatpak run net.displaycal.DisplayCAL"
+
+# This has permissions problems setting aliases with the config mapped, for now just don't rm the container
+#alias mc="docker run --rm -it  -e LOCAL_USER_ID=`id -u` --mount type=bind,source=${HOME}/.mc/config.json,target=/root/.mc/config.json minio/mc"
+# alias mc="docker run -it minio/mc"
+# This sets up the config
+# mc alias set local http://192.168.99.101:9000/ minio minio123

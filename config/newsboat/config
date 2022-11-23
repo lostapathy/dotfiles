@@ -8,6 +8,11 @@ ignore-article "https://www.youtube.com/feeds/videos.xml?channel_id=UC_7aK9PpYTq
 ignore-article "*" "title =~ \"hiring\""
 ignore-mode "display"
 
+# This broke the shit out of TV shows
+# keep-articles-days 90
+
+max-items 1000
+
 # From https://forums.freebsd.org/threads/newsboat-rss-reader-enable-vim-key-bindings.69448/
 
 # unbind keys

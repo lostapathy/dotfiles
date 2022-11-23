@@ -48,6 +48,20 @@ OPENSCAD_IMGSIZE=${RNGR_OPENSCAD_IMGSIZE:-1000,1000}
 OPENSCAD_COLORSCHEME=${RNGR_OPENSCAD_COLORSCHEME:-Tomorrow Night}
 
 handle_extension() {
+    openscad_image() {
+        TMPPNG="$(mktemp -t XXXXXX.png)"
+        openscad --colorscheme="${OPENSCAD_COLORSCHEME}" \
+            --imgsize="${OPENSCAD_IMGSIZE/x/,}" \
+            -o "${TMPPNG}" "${1}"
+        mv "${TMPPNG}" "${IMAGE_CACHE_PATH}"
+    }
+
+    dia_image() {
+        TMPPNG="$(mktemp -t XXXXXX.png)"
+        dia "${FILE_PATH}" -e "${TMPPNG}"
+        mv "${TMPPNG}" "${IMAGE_CACHE_PATH}"
+    }
+
     case "${FILE_EXTENSION_LOWER}" in
         ## Archive
         a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|\
@@ -115,6 +129,22 @@ handle_extension() {
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             ;; # Continue with next handler on failure
+
+        ## 3D models
+        ## OpenSCAD only supports png image output, and ${IMAGE_CACHE_PATH}
+        ## is hardcoded as jpeg. So we make a tempfile.png and just
+        ## move/rename it to jpg. This works because image libraries are
+        ## smart enough to handle it.
+        csg|scad)
+            openscad_image "${FILE_PATH}" && exit 6
+            ;;
+        3mf|amf|off|stl)
+            openscad_image <(echo "import(\"${FILE_PATH}\");") && exit 6
+            ;;
+        dxf)
+            dia_image "${FILE_PATH}" && exit 6
+            ;;
+
     esac
 }
 
@@ -146,6 +176,10 @@ handle_image() {
         image/x-panasonic-rw2)
           exiftool -b -W "${IMAGE_CACHE_PATH}" -preview:JpgFromRaw "${FILE_PATH}" && exit 6
           exit 1;;
+
+        image/vnd.dxf)
+          return
+          ;;
 
         ## Image
         image/*)
@@ -247,28 +281,6 @@ handle_image() {
         #     [ "$rar" ] || [ "$zip" ] && rm -- "${IMAGE_CACHE_PATH}"
         #     ;;
     esac
-
-    openscad_image() {
-        TMPPNG="$(mktemp -t XXXXXX.png)"
-        openscad --colorscheme="${OPENSCAD_COLORSCHEME}" \
-            --imgsize="${OPENSCAD_IMGSIZE/x/,}" \
-            -o "${TMPPNG}" "${1}"
-        mv "${TMPPNG}" "${IMAGE_CACHE_PATH}"
-    }
-
-    case "${FILE_EXTENSION_LOWER}" in
-        ## 3D models
-        ## OpenSCAD only supports png image output, and ${IMAGE_CACHE_PATH}
-        ## is hardcoded as jpeg. So we make a tempfile.png and just
-        ## move/rename it to jpg. This works because image libraries are
-        ## smart enough to handle it.
-        csg|scad)
-            openscad_image "${FILE_PATH}" && exit 6
-            ;;
-        3mf|amf|dxf|off|stl)
-            openscad_image <(echo "import(\"${FILE_PATH}\");") && exit 6
-            ;;
-    esac
 }
 
 handle_mime() {
@@ -328,11 +340,11 @@ handle_mime() {
             exit 1;;
 
         ## Image
-        image/*)
-            ## Preview as text conversion
-            # img2txt --gamma=0.6 --width="${PV_WIDTH}" -- "${FILE_PATH}" && exit 4
-            exiftool "${FILE_PATH}" && exit 5
-            exit 1;;
+        # image/*)
+        #     ## Preview as text conversion
+        #     # img2txt --gamma=0.6 --width="${PV_WIDTH}" -- "${FILE_PATH}" && exit 4
+        #     exiftool "${FILE_PATH}" && exit 5
+        #     exit 1;;
 
         ## Video and audio
         video/* | audio/*)

@@ -36,13 +36,16 @@ bindsym $mod+minus scratchpad show
 # Thunderbird compose window
 for_window [title="Write: .*"] floating enable
 for_window [title="Thunderbird Preferences"] floating enable
-for_window [title=".*LibreOffice"] floating enable
+for_window [title=".*LibreOffice"] floating enable border normal
 for_window [title=".*G'MIC.*"] floating enable
 for_window [class=".*Nextcloud.*"] floating enable
+for_window [class=".*Streamdeck.*"] floating enable
 for_window [class=".*zoom.*"] floating enable
 for_window [title="Developer Tools.*" instance="Devtools"] floating enable # firefox developer tools
 for_window [title="^Library$" class="Firefox" instance="Places"] floating enable # Firefox downloads window
 for_window [title="^YAD$"] floating enable
+for_window [class="^KeePassXC$"] floating enable
+for_window [class="Display-im6.q16"] floating enable move position center
 
 # Some windows (like rdp) I want to show border and title bar
 for_window [class="xfreerdp"] border normal
@@ -54,13 +57,14 @@ for_window [title=".*Private Browsing.*"] move position center
 for_window [title=".*Private Browsing.*"] move down 200px
 
 # Thunar file manager
-for_window [title=".* File Manager"] floating enable resize set 1024 800
-for_window [title=".* File Manager"] move position center
+for_window [class="Thunar"] floating enable, resize set 1024 800, move position center
 
-for_window [title=".*CopyQ.*"] floating enable move position center
+for_window [title=".*CopyQ.*"] floating enable, move position center
 
 for_window [title=".*mpv$"] floating enable
 
+for_window [class="Zathura"] floating enable, resize set 1024 800, move position 50 ppt 0 px, move left 512 px
+no_focus [class="Zathura"]
 
 focus_on_window_activation none
 focus_follows_mouse no
@@ -124,6 +128,7 @@ bindsym $win+c exec copyq menu
 bindsym $win+a exec ~/bin/switch_audio_sink
 bindsym $win+v exec ~/bin/vpn-launcher
 bindsym $win+b exec ~/bin/browser-profile
+bindsym $win+q exec ~/bin/clipboard-to-qr
 
 bindsym $mod+shift+p exec thunar ~/Documents/Projects
 
@@ -273,7 +278,7 @@ bar {
         font pango:Terminus 10
         separator_symbol " | "
         tray_padding 0
-        tray_output primary
+        # tray_output primary
 }
 
 #exec --no-startup-id synclient VertScrollDelta=-65 PalmDetect=1 PalmMinWidth=5 PalmMinZ=25 EmulateTwoFingerMinW=40 EmulateTwoFingerMinZ=350
@@ -313,7 +318,7 @@ exec --no-startup-id pasystray
 exec --no-startup-id dunst
 exec --no-startup-id sleep 10 && shairport-sync -c .config/shareport-sync.conf
 exec --no-startup-id nm-applet
-exec --no-startup-id blueman-tray
+exec --no-startup-id blueman-applet
 exec --no-startup-id solaar --window hide
 exec --no-startup-id ~/bin/watch-photos-to-edit
 exec --no-startup-id ~/bin/watch-voice-tasks
