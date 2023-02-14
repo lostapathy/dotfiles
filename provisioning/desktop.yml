@@ -59,7 +59,7 @@
         - parole # use mpv now
         - compton # use picom now
         - gnome-terminal
-        - snapd
+        # - snapd
       state: absent
 
   - name: Install pi packages
@@ -134,7 +134,7 @@
         - jq
         - sshpass # used by ansible
         - gimp
-        - gimp-gmic
+        # - gimp-gmic
         - mpv # video player
         - sxiv # image viewer
         - meshlab # STL viewer
@@ -198,6 +198,11 @@
         - libffi7 # streamdeck-ui wants this
         - pulseaudio-equalizer
         - httpie
+        - mpg321
+        - ntpdate
+        - apache2-utils
+        - xserver-xorg
+        - autokey-gtk
 
   - name: Install shotcut flatpak
     community.general.flatpak:
@@ -224,6 +229,10 @@
       cmd: flatpak update --noninteractive
     become: true
 
+  - name: install nativefier snap
+    community.general.snap:
+      name:
+        - nativefier
 
   - name: "Populate list of installed packages"
     package_facts:

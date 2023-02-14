@@ -7,6 +7,28 @@
     "smart-shift": 16
   },
   "4069:204BD859": {
+    "_absent": [
+      "hi-res-scroll",
+      "lowres-smooth-scroll",
+      "thumb-scroll-mode",
+      "thumb-scroll-invert",
+      "onboard_profiles",
+      "report_rate",
+      "pointer_speed",
+      "speed-change",
+      "backlight",
+      "backlight-timed",
+      "fn-swap",
+      "persistent-remappable-keys",
+      "disable-keyboard-keys",
+      "divert-crown",
+      "crown-smooth",
+      "divert-gkeys",
+      "m-key-leds",
+      "mr-key-led",
+      "multiplatform",
+      "gesture2-params"
+    ],
     "_modelId": "B01940690000",
     "_name": "Wireless Mouse MX Master 2S",
     "_serial": "204BD859",
@@ -20,6 +42,9 @@
     },
     "dpi": 1000,
     "dpi-sliding": 0,
+    "gesture2-divert": {
+      "46": false
+    },
     "gesture2-gestures": {
       "45": true,
       "46": true
@@ -38,5 +63,5 @@
     },
     "smart-shift": 16
   },
-  "_version": "1.0.7"
+  "_version": "1.1.2"
 }
