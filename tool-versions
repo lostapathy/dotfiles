@@ -10,6 +10,6 @@ ripgrep 12.1.1
 ruby 3.2.1
 terraform 1.2.6
 # terraform 0.13.7
-vagrant 2.2.14
+# vagrant 2.2.14
 yarn 1.22.10
 R 4.2.0

@@ -50,9 +50,9 @@ fi
 # Install asdf plugins
 set +e # Disabling errors is a hack to get around this command failing when all plugins are installed
 # make sure plugin is installed
-awk '{print $1}' ~/.tool-versions | xargs -L1 asdf plugin-add
+awk '{print $1}' ~/.tool-versions | grep -v ^# | xargs -L1 asdf plugin-add
 # Make sure it's got latest defs
-awk '{print $1}' ~/.tool-versions | xargs -L1 asdf plugin-update
+awk '{print $1}' ~/.tool-versions | grep -v ^# | xargs -L1 asdf plugin-update
 set -e
 
 asdf install

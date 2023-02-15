@@ -194,8 +194,13 @@
         - yt-dlp # youtube-dl replacement
         - gfortran # for R
         - libbz2-dev # for R
+        - xorg-dev # asdf needs this to build R
+        - liblzma-dev # asdf needs this to build R
+        - libpcre2-dev # asdf needs this to build R
+        - libcurl4-openssl-dev # asdf needs this to build R
         - libclang-dev # for rstudio
         - libffi7 # streamdeck-ui wants this
+        - libyaml-dev # asdf needs this to build newer rubies
         - pulseaudio-equalizer
         - httpie
         - mpg321
