@@ -1,5 +1,57 @@
 {
+  "4051:44ED8203": {
+    "_modelId": "405100000000",
+    "_name": "Wireless Mouse M510",
+    "_serial": "44ED8203",
+    "_unitId": "44ED8203",
+    "divert-keys": {
+      "80": 0,
+      "81": 0,
+      "82": 0,
+      "83": 0,
+      "86": 0,
+      "91": 0,
+      "93": 0
+    },
+    "lowres-smooth-scroll": false,
+    "mouse-gestures": 0,
+    "pointer_speed": 256,
+    "reprogrammable-keys": {
+      "80": 80,
+      "81": 81,
+      "82": 82,
+      "83": 83,
+      "86": 86,
+      "91": 91,
+      "93": 93
+    }
+  },
   "406A:3F6CB421": {
+    "_absent": [
+      "hi-res-scroll",
+      "lowres-smooth-scroll",
+      "smart-shift",
+      "thumb-scroll-mode",
+      "thumb-scroll-invert",
+      "onboard_profiles",
+      "report_rate",
+      "pointer_speed",
+      "speed-change",
+      "backlight",
+      "backlight-timed",
+      "fn-swap",
+      "persistent-remappable-keys",
+      "disable-keyboard-keys",
+      "divert-crown",
+      "crown-smooth",
+      "divert-gkeys",
+      "m-key-leds",
+      "mr-key-led",
+      "multiplatform",
+      "gesture2-gestures",
+      "gesture2-divert",
+      "gesture2-params"
+    ],
     "_modelId": "B01A406A0000",
     "_name": "Wireless Mobile Mouse MX Anywhere 2S",
     "_sensitive": {
@@ -28,5 +80,5 @@
       "93": 93
     }
   },
-  "_version": "1.0.7"
+  "_version": "1.1.2"
 }
