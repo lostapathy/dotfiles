@@ -76,7 +76,7 @@ ethernet _first_ {
 battery_level {
     battery_id = "all"
     hide_seconds = true
-    format = "{percent}% {time_remaining}"
+    format = "{icon} {percent}% {time_remaining}"
     # notification = true
 }
 

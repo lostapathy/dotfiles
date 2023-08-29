@@ -107,6 +107,9 @@ Plug 'junegunn/vim-easy-align'
 " work motions work on snake and camelcase - not 100% right
 " Plug 'chaoren/vim-wordmotion'
 
+" work motions work on snake and camelcase - not 100% right
+" Plug 'chaoren/vim-wordmotion'
+
 Plug 'ledger/vim-ledger'
 Plug 'djoshea/vim-autoread'
 call plug#end()
@@ -697,11 +700,11 @@ endfunction
 
 iabbrev <expr> NOW strftime('%Y-%m-%d')
 
-function LedgerSort()
-    :%! ledger -f - print --sort 'date, amount'
-    :%LedgerAlign
-endfunction
-command LedgerSort call LedgerSort()
+" function LedgerSort()
+"     :%! ledger -f - print --sort 'date, amount'
+"     :%LedgerAlign
+" endfunction
+" command LedgerSort call LedgerSort()
 
 " Configure ALE
 " let g:ale_fix_on_save = 1
