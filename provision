@@ -60,5 +60,9 @@ bundle install
 
 if [ "${DOTFILES_GUI}" == "y"  ]; then
   npm install -g nativefier
-  nativefier --upgrade ~/software/glowing-bear
+  if [ -f ~/software/glowing-bear-linux-x64 ]; then
+    nativefier --upgrade ~/software/glowing-bear-linux-x64
+  else
+    nativefier https://glowing-bear.org/ ~/software/ -n glowing-bear
+  fi
 fi
