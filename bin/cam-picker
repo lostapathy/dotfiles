@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require 'yaml'
+
+cam_data = YAML.load_file("/home/joe/.cams.yml")
+
+choice = `echo "#{cam_data.keys.join("\n")}" | rofi -dmenu`.strip
+
+exec "cam-viewer #{choice}"

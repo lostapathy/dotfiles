@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+require 'yaml'
+
+camera = ARGV[0].strip
+# FIXME: add error handling for missing ARGV or
+
+running_procs = `pgrep -f "cam-viewer #{camera}"`.strip.split
+
+if running_procs.size > 2 # something in this script is one, the other camera script would be the other.  FIXME: clean this up to make more sense
+  system "notify-send 'Already watching this camera'"
+  exit
+end
+
+cam_data = YAML.load_file("#{Dir.home}/.cams.yml")
+
+url = cam_data[camera]['url']
+
+system "mpv --speed=1.0 #{url} --title='mpv livecam'"
