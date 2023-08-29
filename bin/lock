@@ -2,10 +2,22 @@
 ssh-add -D
 
 revert() {
+  ~/bin/workstation-wake
   xset dpms 0 0 0
 }
 
 trap revert HUP INT TERM
+
+# pause any mpv window that's playing
+xdotool windowactivate $(xdotool search --class mpv) && xdotool key p
+
+~/bin/workstation-sleep
 xset +dpms dpms 10 10 10
-i3lock -n -i ~/Pictures/background.png -f
+# maim --format=jpg --hidecursor --quality 1 --quiet /tmp/lock.jpg && convert /tmp/lock.jpg -scale 25% -quality 50 -blur 0x50 /tmp/lock.png
+if [ ! -f /tmp/lock.png ]; then
+  size=`xdpyinfo | grep dimensions | awk '{print $2}'`
+  convert ~/Pictures/background.png -resize $size -background black -gravity center -extent $size /tmp/lock.png
+fi
+
+i3lock -n -i /tmp/lock.png -f
 revert
