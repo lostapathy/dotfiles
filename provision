@@ -56,3 +56,4 @@ awk '{print $1}' ~/.tool-versions | grep -v ^# | xargs -L1 asdf plugin-update
 set -e
 
 asdf install
+bundle install
