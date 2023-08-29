@@ -4,9 +4,9 @@ fzf 0.34.0
 github-cli 1.4.0
 golang 1.19.3
 hadolint v1.19.0
-nodejs 18.2.0
+nodejs 20.5.1
 python 3.8.6
-ripgrep 12.1.1
+ripgrep 13.0.0
 ruby 3.2.2
 terraform 1.2.6
 # terraform 0.13.7

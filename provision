@@ -57,3 +57,8 @@ set -e
 
 asdf install
 bundle install
+
+if [ "${DOTFILES_GUI}" == "y"  ]; then
+  npm install -g nativefier
+  nativefier --upgrade ~/software/glowing-bear
+fi
