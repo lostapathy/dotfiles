@@ -1,0 +1,4 @@
+#!/bin/bash
+# Grabs title of video playing via ts queue and opens the url in browser
+URL=`tsp -l | grep running | awk '{print $NF}'`
+xdg-open $URL

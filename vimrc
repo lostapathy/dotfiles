@@ -45,6 +45,7 @@
 "============================================================================
 call plug#begin('~/.vim/plugged')
 
+Plug 'vim-autoformat/vim-autoformat'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-haml'
@@ -71,7 +72,7 @@ Plug 'nanotech/jellybeans.vim'
 
 Plug 'scrooloose/nerdtree'
 
-Plug 'plasticboy/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
 Plug 'hashivim/vim-terraform'
 Plug 'stephpy/vim-yaml'
 Plug 'ElmCast/elm-vim'
@@ -101,8 +102,13 @@ Plug 'tpope/vim-speeddating'
 " Plug 'wincent/terminus'
 " Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/vim-easy-align'
+
+" work motions work on snake and camelcase - not 100% right
+" Plug 'chaoren/vim-wordmotion'
 
 Plug 'ledger/vim-ledger'
+Plug 'djoshea/vim-autoread'
 call plug#end()
 
 "Launch vim and run :PlugInstall
@@ -136,8 +142,10 @@ call plug#end()
     augroup end
 
     augroup MarkdownFiles " Instead of this Modulo file bullshit
-        autocmd! BufEnter *.md set filetype=markdown foldlevel=99
+      autocmd! BufEnter *.md set filetype=markdown foldlevel=99
+      autocmd BufEnter *.md set tw=119
     augroup end
+    au FileType markdown vmap <Leader>m :EasyAlign*<Bar><Enter>
 
     au BufWritePost ~/.bashrc !source %
 
@@ -337,6 +345,10 @@ call plug#end()
         " Why the hell isn't this the normal behavior?
         nnoremap Y y$
     " }}}
+
+    " show marks
+    nnoremap <silent> <leader>m <cmd>Marks<cr>
+
     " Easy Window Switching {{{2
     " ---------------------
         map <C-h> <C-w>h
@@ -633,7 +645,8 @@ autocmd FileType haml iabbrev sff semantic_form_for
 :nnoremap <leader>p :set paste!<cr>
 :nnoremap <leader>t <cr> :! docker-compose exec app rake test test:system <cr>
 
-nnoremap <leader>l :ls<CR>:b<space>
+" nnoremap <leader>l :ls<CR>:b<space>
+nnoremap <leader>l :Buffers<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap :Bw :bw<cr>
 
@@ -666,6 +679,13 @@ augroup journal
   autocmd BufEnter */journal/index.wiki VimwikiDiaryGenerateLinks
 augroup end
 
+" augroup todo
+"   autocmd!
+"   autocmd BufEnter */Dropbox/todo.md set autoread
+"   autocmd BufEnter */Dropbox/todo.md au CursorHold * checktime
+
+" augroup end
+
 function! JournalMode()
   execute 'normal gg'
   execute 'normal O'
@@ -684,8 +704,48 @@ endfunction
 command LedgerSort call LedgerSort()
 
 " Configure ALE
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-\  '*': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'ruby': ['rubocop'],
-\}
+" let g:ale_fix_on_save = 1
+" let g:ale_fixers = {
+" \  '*': ['remove_trailing_lines', 'trim_whitespace'],
+" \ 'ruby': ['rubocop'],
+" \}
+let g:ale_linters_ignore = {
+    \ 'ruby': ['rails_best_practices', 'brakeman'],
+    \ }
+
+" This makes <leader><enter> let you select buffers
+" https://github.com/junegunn/fzf/wiki/Examples-(vim)#basic-tutorial
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+nnoremap <silent> <Leader><Enter> :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>
+
+
+
+" This prompts with a list of my checklists then inserts it into the buffer
+function! s:read_template_into_buffer(template)
+    " has to be a function to avoid the extra space fzf#run inserts otherwise
+      execute 'r ~/code/personal-templates/checklists/'.a:template
+    endfunction
+
+command! -bang -nargs=* Checklist call fzf#run({
+      \   'source': 'ls -1 ~/code/personal-templates/checklists/',
+      \   'down': 20,
+      \   'sink': function('<sid>read_template_into_buffer')
+      \   })
+
+let g:markdown_folding = 1
+let g:vim_markdown_folding_level = 3

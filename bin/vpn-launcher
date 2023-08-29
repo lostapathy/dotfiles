@@ -33,6 +33,6 @@ if [[ "$STATUS" == "UP" ]]; then
   notify-send "Halted VPN $CONN"
 else
   echo "Connection is down, going up"
-  nmcli con up $CONN
+  nmcli con up $CONN --ask
   notify-send "Started VPN $CONN"
 fi

@@ -51,6 +51,7 @@
   - name: Remove unwanted packages
     apt:
       name:
+        - yt-dlp # ubuntu doesn't stay up to date enough
         - notify-osd
         - xautolock
         - xfonts-terminus # this clashes with fonts-terminus
@@ -191,7 +192,7 @@
         - texlive-fonts-recommended # Used to generate pdf manuals for volquartsen
         - texlive-latex-extra # Used to generate pdf manuals for volquartsen
         - mosquitto-clients
-        - yt-dlp # youtube-dl replacement
+        # - yt-dlp # youtube-dl replacement
         - gfortran # for R
         - libbz2-dev # for R
         - xorg-dev # asdf needs this to build R
@@ -208,6 +209,7 @@
         - apache2-utils
         - xserver-xorg
         - autokey-gtk
+        - rpi-imager
 
   - name: Install shotcut flatpak
     community.general.flatpak:

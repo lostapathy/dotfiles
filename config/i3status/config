@@ -35,6 +35,7 @@ external_script 0 {
     format = "Video Queue: {output}"
     script_path = "tsp | grep queued |wc -l"
     cache_timeout = 30
+    on_click 1 = "exec ~/bin/open-playing-video"
 }
 
 external_script 1 {

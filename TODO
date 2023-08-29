@@ -1,0 +1,5 @@
+* Setup dotfiles vars for whether to run ansible for "core packages" at all
+* Setup a dotfiles var for whether to install asdf or not, and possibly install that from a script rather than with ansible
+* Figure out my Xcompose file and document how to use it (or remove it)
+* Look at this for bash_prompt https://stromberg.dnsalias.org/~strombrg/PS0-prompt/
+* Check before sourcing fzf and other asdf stuff in bashrc
