@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'yaml'
 
-cam_data = YAML.load_file("/home/joe/.cams.yml")
+cam_data = YAML.load_file("#{Dir.home}/.cams.yml")
 
 choice = `echo "#{cam_data.keys.join("\n")}" | rofi -dmenu`.strip
 
