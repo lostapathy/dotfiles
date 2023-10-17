@@ -6,3 +6,4 @@ gem 'jekyll'
 gem 'circleci'
 gem 'httparty'
 gem 'mqtt'
+gem 'scss-lint' # Vim plugins want this
