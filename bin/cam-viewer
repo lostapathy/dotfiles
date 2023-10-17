@@ -15,4 +15,4 @@ cam_data = YAML.load_file("#{Dir.home}/.cams.yml")
 
 url = cam_data[camera]['url']
 
-system "mpv --speed=1.0 #{url} --title='mpv livecam'"
+system "mpv --speed=1.0 #{url} --title='mpv livecam' --mute=yes"
