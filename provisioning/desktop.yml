@@ -223,6 +223,7 @@
         - rpi-imager
         - go-qrcode
         - resolvconf # wg-quick wants this
+        - btop
 
   - name: Install shotcut flatpak
     community.general.flatpak:

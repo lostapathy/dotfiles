@@ -1,0 +1,18 @@
+#!/bin/bash
+
+notify-send "Switching Audio Sink"
+# Basic algorithm:
+# 1) List all the sinks with their status twice.
+# 2) grep for the one running plus one after it
+# 3) throw away the one that was running
+# 4) the first match is now the next one in the list.  We ran the list twice so if the last sink is running, it rolls over.
+NEW_SINK=`(pactl list short sinks; pactl list short sinks)|awk '{print $7 " " $1}'|grep -A1 RUNNING | grep -v RUNNING | head -n1 | awk '{print $2}'`
+# echo "New sink: $NEW_SINK"
+
+SINKS=`pactl list sink-inputs|egrep "^Sink"|awk -F\# '{print $2}' `
+
+for p in  ${SINKS}
+do
+  pactl move-sink-input $p $NEW_SINK
+  pactl set-default-sink $NEW_SINK
+done
