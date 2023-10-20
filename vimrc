@@ -45,6 +45,7 @@
 "============================================================================
 call plug#begin('~/.vim/plugged')
 
+Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-autoformat/vim-autoformat'
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-rails'

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+PLAYING=`playerctl --all-players status | grep Playing | wc -l`
+
+if [ "$PLAYING" = "0" ]; then
+  playerctl play-pause
+else
+  playerctl --all-players pause
+fi

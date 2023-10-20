@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# if mpv is playing, call next track.
+# If nothing is playing, assume mpv is paused and run it ahead.
+# otherwise, something else is that might handle next right.
+MPVSTATUS=`playerctl --player=mpv status`
+
+ALLSTATUS=`playerctl --all-players status |grep Playing | wc -l`
+
+if [ "$MPVSTATUS" = "Playing" ] || [ "$ALLSTATUS" = "0" ]; then
+  ~/bin/skip-video
+else
+  playerctl next
+fi

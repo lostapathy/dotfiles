@@ -43,6 +43,11 @@
       repo: ppa:yubico/stable
       state: present
 
+  # Experimenting with this but not ready to use it for real
+  # - name: Add ulauncher ppa
+  #   ansible.builtin.apt_repository:
+  #     repo: ppa:agornostal/ulauncher
+
   #- name: Install openscad nightly ppa
   #  apt_repository:
   #    repo: deb https://download.opensuse.org/repositories/home:/t-paul/xUbuntu_20.04/ ./
@@ -74,6 +79,10 @@
     apt:
       state: latest
       name:
+        - dict
+        # - ulauncher
+        - xpra
+        - grabc
         - hwinfo
         - lightdm
         - firefox
@@ -137,6 +146,8 @@
         - gimp
         # - gimp-gmic
         - mpv # video player
+        - mpv-mpris
+        - playerctl
         - sxiv # image viewer
         - meshlab # STL viewer
         - fstl # STL viewer

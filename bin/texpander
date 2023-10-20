@@ -18,7 +18,7 @@ CHOICE=`ls ~/.texpander/ | rofi -dmenu`
 
 CLIPBOARD=$(xclip -selection clipboard -o)
 PRIMARY=$(xclip -selection primary -o)
-PRIMARY=$(xclip -selection secondary -o)
+SECONDARY=$(xclip -selection secondary -o)
 
 SNIPPET=$(cat ~/.texpander/${CHOICE})
 

@@ -11,6 +11,10 @@ bindsym Control+Shift+Mod1+Mod4+F1 workspace prev
 bindsym Control+Shift+Mod1+Mod4+F2 workspace next
 bindsym Control+Shift+Mod1+Mod4+F3 exec ~/bin/quick-launch/windows-box
 
+bindsym XF86AudioPlay exec ~/bin/play-pause
+bindsym XF86AudioPause exec ~/bin/play-pause
+bindsym XF86AudioNext exec ~/bin/next-track
+
 # side scrolling buttons
 bindsym --whole-window --border button6 exec xdotool type '['
 bindsym --whole-window --border button7 exec xdotool type ']'
@@ -62,7 +66,7 @@ for_window [title=".*Private Browsing.*"] move down 200px
 # Thunar file manager
 for_window [class="Thunar"] floating enable, resize set 1024 800, move position center
 
-# for_window [title=".*CopyQ.*"] floating enable, move position center
+for_window [title=".*CopyQ.*"] floating enable, move position center
 
 for_window [title=".*mpv$"] floating enable
 for_window [title=".*mpv livecam$"] floating enable, move position 0 px 0 px
@@ -129,7 +133,7 @@ bindsym $win+e exec ~/bin/emoji-picker
 bindsym $win+s exec ~/bin/quick-launch-menu
 bindsym $win+t exec ~/bin/texpander
 bindsym $win+f exec thunar
-# bindsym $win+c exec copyq menu
+bindsym $mod+q exec copyq menu
 bindsym $win+a exec ~/bin/switch_audio_sink
 bindsym $win+v exec ~/bin/vpn-launcher
 bindsym $win+b exec ~/bin/browser-profile
@@ -334,6 +338,7 @@ exec --no-startup-id syndaemon -i 1 # Palm detection on laptop
 exec --no-startup-id autokey # keyboard expanstions
 exec --no-startup-id streamdeck -n
 
-# This crashes gimp
+# This doesn't seem to crash gimp anymore, but not sure I want to run it.
 # exec --no-startup-id copyq
 exec --no-startup-id sleep 20 && dropbox start # start dropbox last or sometimes it clobbers other applets
+exec --no-startup-id playerctld daemon
