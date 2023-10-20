@@ -1,18 +1,21 @@
 #!/usr/bin/env ruby
 require 'yaml'
 
-camera = ARGV[0].strip
-# FIXME: add error handling for missing ARGV or
-
-running_procs = `pgrep -f "cam-viewer #{camera}"`.strip.split
-
-if running_procs.size > 2 # something in this script is one, the other camera script would be the other.  FIXME: clean this up to make more sense
-  system "notify-send 'Already watching this camera'"
-  exit
+if ARGV.empty?
+  system 'notify-send: "Error: Missing camera argument"'
+  exit 1
 end
 
-cam_data = YAML.load_file("#{Dir.home}/.cams.yml")
+camera = ARGV[0].strip
 
+cam_data = YAML.load_file("#{Dir.home}/.cams.yml")
 url = cam_data[camera]['url']
 
-system "mpv --speed=1.0 #{url} --title='mpv livecam' --mute=yes"
+running_procs = `pgrep --full --count "^mpv.*#{camera}"`.to_i
+
+if running_procs > 0
+  system "notify-send 'Already watching this camera'"
+  exit 2
+end
+
+Process.exec "mpv --speed=1.0 #{url} --title='mpv livecam #{camera}' --mute=yes"
