@@ -1,5 +1,6 @@
 #!/bin/bash
 export BROWSER=/usr/bin/firefox
+export GVFS_DISABLE_FUSE=1
 
 source ~/.xprofile.local
 
@@ -8,6 +9,7 @@ xrdb /home/joe/.Xresources
 dbus-update-activation-environment DISPLAY XAUTHORITY
 xrandr --output DisplayPort-0 --set TearFree on # Enable tearfree on amd gpu
 xset s 300
+
 setxkbmap -option caps:hyper
 xmodmap ~/.Xmodmap # this sets up hyper as the mod switch and configures the third layer
 xcape -e 'Mode_switch=Escape' # this makes tapping caps trigger escape

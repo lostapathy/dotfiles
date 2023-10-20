@@ -9,7 +9,7 @@ revert() {
 trap revert HUP INT TERM
 
 # pause any mpv window that's playing
-xdotool windowactivate $(xdotool search --class mpv) && xdotool key p
+playerctl -a pause
 
 ~/bin/workstation-sleep
 xset +dpms dpms 10 10 10
