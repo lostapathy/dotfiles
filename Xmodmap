@@ -1,0 +1,6 @@
+! !https://github.com/sblask/dotfiles/commit/605db73cc1acbdbc718e242d24d08c353e998dee
+keycode 66 = Mode_switch
+keycode 43 = h H Left Left Left
+keycode 44 = j J Down Down Down
+keycode 45 = k K Up Up Up
+keycode 46 = l L Right Right Right
