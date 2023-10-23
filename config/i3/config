@@ -301,6 +301,11 @@ bindsym XF86MonBrightnessDown exec ~/bin/brightness-down # decrease screen brigh
 bindsym --whole-window --border $mod+button4 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3% #increase sound volume
 bindsym --whole-window --border $mod+button5 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3% #decrease sound volume
 
+# This binds on normal keyboards that I've remapped capslock to mode_switch
+bindsym Mode_switch+plus exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3% && notify-send "volume up" #increase sound volume
+bindsym Mode_switch+minus exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3% && notify-send "volume down" #decrease sound volume
+
+# This makes media keys work
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3% && notify-send "volume up" #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3% && notify-send "volume down" #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
