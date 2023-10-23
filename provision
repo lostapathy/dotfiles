@@ -8,7 +8,7 @@ if [ "$UBUNTU_VERSION" != "23.10" ] && [ "$UBUNTU_VERSION" != "22.04" ] ; then
   exit
 fi
 
-ansible-galaxy install -r requirements.yml
+ansible-galaxy install -r requirements.yml --force
 
 # We need these commands to exist in order to proceed.
 # See README.md

@@ -1,7 +1,7 @@
 ---
 roles:
-  - name: asdf
-    src: https://github.com/cimon-io/ansible-role-asdf.git
+  - name: ansible-role-asdf
+    src: https://github.com/lostapathy/ansible-role-asdf.git
     version: master
     scm: git
 
