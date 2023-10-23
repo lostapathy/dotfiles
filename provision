@@ -46,7 +46,8 @@ if [ ${#playbooks[@]} -gt 0 ]; then
     $(IFS=" " ;echo "${playbooks[*]}")
 fi
 
-bundle install
+# Install global gems.  Had errors on first attempt of moving this into core.yml
+bundle update
 
 # if [ "${DOTFILES_GUI}" == "y"  ]; then
 #   npm install -g nativefier
