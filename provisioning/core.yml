@@ -40,3 +40,17 @@
         - atool
         - dstat
         - ripgrep
+  roles:
+  - role: ansible-role-asdf
+    asdf_user: joe
+    asdf_version: v0.13.1
+    asdf_plugins:
+    - name: "ruby"
+      versions: ["3.2.2"]
+      global: "3.2.2"
+    - name: "terraform"
+      versions: ["1.2.6"]
+      global: "1.2.6"
+    - name: "fzf"
+      versions: ["0.43.0"]
+      global: "0.43.0"

@@ -8,9 +8,11 @@ if [ "$UBUNTU_VERSION" != "23.10" ] && [ "$UBUNTU_VERSION" != "22.04" ] ; then
   exit
 fi
 
+ansible-galaxy install -r requirements.yml
+
 # We need these commands to exist in order to proceed.
 # See README.md
-commands=(git ansible-playbook rcup)
+commands=(git ansible-playbook ansible-galaxy rcup)
 for cmd in "${commands[@]}"; do
   command -v "$cmd" > /dev/null || { echo "ERROR: command not found: ${cmd}" ; exit 1; }
 done
@@ -44,25 +46,13 @@ if [ ${#playbooks[@]} -gt 0 ]; then
     $(IFS=" " ;echo "${playbooks[*]}")
 fi
 
-
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
-
-# Install asdf plugins
-set +e # Disabling errors is a hack to get around this command failing when all plugins are installed
-# make sure plugin is installed
-awk '{print $1}' ~/.tool-versions | grep -v ^# | xargs -L1 asdf plugin-add
-# Make sure it's got latest defs
-awk '{print $1}' ~/.tool-versions | grep -v ^# | xargs -L1 asdf plugin-update
-set -e
-
-asdf install
 bundle install
 
-if [ "${DOTFILES_GUI}" == "y"  ]; then
-  npm install -g nativefier
-  if [ -f ~/software/glowing-bear-linux-x64 ]; then
-    nativefier --upgrade ~/software/glowing-bear-linux-x64
-  else
-    nativefier https://glowing-bear.org/ ~/software/ -n glowing-bear
-  fi
-fi
+# if [ "${DOTFILES_GUI}" == "y"  ]; then
+#   npm install -g nativefier
+#   if [ -f ~/software/glowing-bear-linux-x64 ]; then
+#     nativefier --upgrade ~/software/glowing-bear-linux-x64
+#   else
+#     nativefier https://glowing-bear.org/ ~/software/ -n glowing-bear
+#   fi
+# fi
