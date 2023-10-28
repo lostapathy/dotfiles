@@ -224,6 +224,8 @@
         - go-qrcode
         - resolvconf # wg-quick wants this
         - btop
+        - thefuck
+        - xcape
 
   - name: Install shotcut flatpak
     community.general.flatpak:

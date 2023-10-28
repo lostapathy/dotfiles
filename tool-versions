@@ -8,7 +8,7 @@ nodejs 20.5.1
 python 3.8.6
 ripgrep 13.0.0
 ruby 3.2.2
-terraform 1.2.6
+terraform 1.6.2
 # terraform 0.13.7
 # vagrant 2.2.14
 yarn 1.22.10

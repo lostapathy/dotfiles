@@ -1,4 +1,8 @@
 ---
+collections:
+  - name: community.general
+    version: 7.5.0
+
 roles:
   - name: ansible-role-asdf
     src: https://github.com/lostapathy/ansible-role-asdf.git
