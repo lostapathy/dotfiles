@@ -24,6 +24,7 @@ alias gitgit=git
 alias cal='ncal -bS'
 alias dmesg='sudo dmesg -T'
 alias dispcalgui="flatpak run net.displaycal.DisplayCAL"
+alias free="free -h --si"
 
 # This has permissions problems setting aliases with the config mapped, for now just don't rm the container
 #alias mc="docker run --rm -it  -e LOCAL_USER_ID=`id -u` --mount type=bind,source=${HOME}/.mc/config.json,target=/root/.mc/config.json minio/mc"
