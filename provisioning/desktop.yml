@@ -91,6 +91,7 @@
         - keepassxc
         - feh
         - xss-lock
+        - xautolock
         - i3-wm
         - i3lock
         - py3status
@@ -226,6 +227,7 @@
         - btop
         - thefuck
         - xcape
+        - pm-utils
 
   - name: Install shotcut flatpak
     community.general.flatpak:
@@ -342,3 +344,9 @@
       daemon_reload: yes
       enabled: yes
       state: started
+  - name: allow joe to sudo pm-suspend
+    community.general.sudoers:
+      name: allow-pm-suspend
+      state: present
+      user: joe
+      commands: /usr/sbin/pm-suspend

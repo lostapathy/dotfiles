@@ -1,0 +1,5 @@
+#!/bin/bash
+~/bin/lock &
+echo "fuck you" >> /tmp/suspendlog
+sudo pm-suspend
+
