@@ -5,6 +5,11 @@
 [core]
   excludesfile = ~/.gitignore-global
   editor = vim
+  ; pager = diff-so-fancy | less -RFX
+  pager = "f() { pre=$(which diff-so-fancy); ${pre:-cat} | less --tabs=4 -RFX;  }; f"
+
+[interactive]
+  ; diffFilter = diffr
 
 [alias]
   stat = status -u
@@ -13,7 +18,7 @@
   amend = commit --amend --reuse-message=HEAD
   co = checkout
   d = diff
-  ds = diff --staged
+  ds = diff --staged --shortstat --patch
   pf = push --force-with-lease
 
   # https://thoughtbot.com/blog/dumpster-diving-through-dotfiles-better-git-logging

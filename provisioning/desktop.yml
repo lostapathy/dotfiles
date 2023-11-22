@@ -259,6 +259,11 @@
       name:
         - nativefier
 
+  - name: install snaps
+    community.general.snap:
+      name:
+        - diff-so-fancy
+
   - name: "Populate list of installed packages"
     package_facts:
       manager: "auto"
