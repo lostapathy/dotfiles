@@ -15,10 +15,10 @@
       url: https://www.virtualbox.org/download/oracle_vbox.asc
       state: present
 
-  - name: vbox util ppa
-    apt_repository:
-      repo: deb  https://download.virtualbox.org/virtualbox/debian hirsute contrib
-      state: present
+        # - name: vbox util ppa
+        #   apt_repository:
+        #     repo: deb  https://download.virtualbox.org/virtualbox/debian hirsute contrib
+        #     state: present
   - name: install key for gsuite utils
     apt_key:
       url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
@@ -34,14 +34,14 @@
       url: https://files.openscad.org/OBS-Repository-Key.pub
       state: present
 
-  - name: Add solaar ppa
-    ansible.builtin.apt_repository:
-      repo: ppa:solaar-unifying/stable
+        # - name: Add solaar ppa
+        #   ansible.builtin.apt_repository:
+        #     repo: ppa:solaar-unifying/stable
 
-  - name: yubico ppa
-    apt_repository:
-      repo: ppa:yubico/stable
-      state: present
+        # - name: yubico ppa
+        #   apt_repository:
+        #     repo: ppa:yubico/stable
+        #     state: present
 
   # Experimenting with this but not ready to use it for real
   # - name: Add ulauncher ppa
@@ -65,6 +65,8 @@
         - parole # use mpv now
         - compton # use picom now
         - gnome-terminal
+        - gdm3
+        - xfce4-screensaver
         # - snapd
       state: absent
 
@@ -107,7 +109,7 @@
         - fonts-font-awesome
         - ibus
         - xclip
-        - freeglut3
+        # - freeglut3
         - trash-cli
         # At one time we also used freerdp-x11
         - freerdp2-x11
@@ -131,7 +133,7 @@
         # - openscad-nightly
         - pasystray
         - rclone
-        - awscli
+        # - awscli # ubuntu 24.04 drops this
         - filezilla
         - dunst
         - powertop
@@ -161,7 +163,7 @@
         - network-manager-openvpn
         - network-manager-openvpn-gnome # Needed to configure ovpn
         - ldap-utils
-        - mlocate
+        # - mlocate
         - mosh
         - autorandr
         # - hugin-tools # photography - no longer available in ubuntu 22.04
@@ -175,18 +177,18 @@
         - tasksh
         - net-tools
         - recollgui # full text file search
-        - newsboat
+        # - newsboat # became snap in ubuntu 24.04
         - xbacklight
         - x11vnc
         - libimobiledevice-utils # for ios tethering
         - v4l-utils
-        - trickle
+        # - trickle # gone in ubuntu 24.04
         - gscan2pdf
         - konwert # can convert files between text encodings
         - peek # screen recording
         - ppa-purge
         - yubikey-manager
-        - yubikey-personalization-gui
+        # - yubikey-personalization-gui
         - synaptic
         - bluez-tools
         - blueman
@@ -196,7 +198,7 @@
         - restic
         - pavucontrol
         - ubuntu-restricted-extras
-        - libgles2-mesa # Raspberry pi video needs this?
+        # - libgles2-mesa # Raspberry pi video needs this?
         - gparted
         - exfatprogs
         - dialog
@@ -212,9 +214,9 @@
         - libpcre2-dev # asdf needs this to build R
         - libcurl4-openssl-dev # asdf needs this to build R
         - libclang-dev # for rstudio
-        - libffi7 # streamdeck-ui wants this
+        # - libffi7 # streamdeck-ui wants this
         - libyaml-dev # asdf needs this to build newer rubies
-        - pulseaudio-equalizer
+        # - pulseaudio-equalizer
         - httpie
         - mpg321
         - ntpdate
@@ -226,6 +228,7 @@
         - resolvconf # wg-quick wants this
         - btop
         - thefuck
+        - python3-zombie-imp
         - xcape
         - pm-utils
 
@@ -258,6 +261,11 @@
     community.general.snap:
       name:
         - nativefier
+
+  - name: install newsboat snap
+    community.general.snap:
+      name:
+        - newsboat
 
   - name: install snaps
     community.general.snap:
@@ -294,26 +302,26 @@
     ansible.builtin.debug:
       var: zoom_version
 
-  - name: Install zoom
-    apt:
-      deb: https://cdn.zoom.us/prod/5.12.6/zoom_amd64.deb
-    # the zoom_version.0 seems to unpack this from an array (ansible n00b)
-    when: ( zoom_version is not defined or zoom_version.0 is version_compare('5.8.0.16', '<') ) and
-          (ansible_architecture == "amd64")
-    # when: "zoom_version is not defined or zoom_version | version_compare('5.8.0.16', '<')"
+  # - name: Install zoom
+  #   apt:
+  #     deb: https://cdn.zoom.us/prod/5.12.6/zoom_amd64.deb
+  #   # the zoom_version.0 seems to unpack this from an array (ansible n00b)
+  #   when: ( zoom_version is not defined or zoom_version.0 is version_compare('5.8.0.16', '<') ) and
+  #         (ansible_architecture == "x86_64")
+  #   # when: "zoom_version is not defined or zoom_version | version_compare('5.8.0.16', '<')"
 
-  # From https://github.com/jitsi/jitsi-meet-electron/releases
-  - name: Install jitsi app
-    apt:
-      deb: https://github.com/jitsi/jitsi-meet-electron/releases/download/v2.8.4/jitsi-meet-amd64.deb
-    when: ( 'jitsi-meet-electron' not in ansible_facts.packages ) and
-          (ansible_architecture == "amd64")
+  # # From https://github.com/jitsi/jitsi-meet-electron/releases
+  # - name: Install jitsi app
+  #   apt:
+  #     deb: https://github.com/jitsi/jitsi-meet-electron/releases/download/v2.8.4/jitsi-meet-amd64.deb
+  #   when: ( 'jitsi-meet-electron' not in ansible_facts.packages ) and
+  #         (ansible_architecture == "x86_64")
 
   - name: Install Dropbox
     apt:
-      deb: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2020.03.04_amd64.deb
+      deb: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2023.09.06_amd64.deb
     when: ( 'dropbox' not in ansible_facts.packages ) and
-          (ansible_architecture == "amd64")
+          (ansible_architecture == "x86_64")
 
   - name: Custom xorg config
     copy:
@@ -355,3 +363,7 @@
       state: present
       user: joe
       commands: /usr/sbin/pm-suspend
+  # - name: autofs for cnc share
+  #   ansible.builtin.lineinfile:
+  #     path: /etc/auto.direct
+  #     line: SELINUX=enforcingkk
