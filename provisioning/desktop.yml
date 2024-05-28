@@ -202,6 +202,7 @@
         - gparted
         - exfatprogs
         - dialog
+        - pdfarranger # 
         - texlive-latex-base # Used to generate pdf manuals for volquartsen
         - texlive-fonts-recommended # Used to generate pdf manuals for volquartsen
         - texlive-latex-extra # Used to generate pdf manuals for volquartsen
@@ -225,7 +226,7 @@
         - autokey-gtk
         - rpi-imager
         - go-qrcode
-        - resolvconf # wg-quick wants this
+        #- resolvconf # wg-quick wants this # ubuntu 24.04 kills it
         - btop
         - thefuck
         - python3-zombie-imp

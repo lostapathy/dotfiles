@@ -22,11 +22,11 @@ SECONDARY=$(xclip -selection secondary -o)
 
 SNIPPET=$(cat ~/.texpander/${CHOICE})
 
+echo "Snippet is: `cat ~/.texpander/${CHOICE}`"
+
 echo -n $SNIPPET | xclip -selection clipboard
 echo -n $SNIPPET | xclip -selection primary
 echo -n $SNIPPET | xclip -selection secondary
-
-echo "Snippet is: `cat ~/.texpander/${CHOICE}`"
 
 sleep 0.05
 xdotool key shift+Insert

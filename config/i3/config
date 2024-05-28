@@ -344,6 +344,7 @@ exec --no-startup-id unclutter # Hides cursor
 exec --no-startup-id syndaemon -i 1 # Palm detection on laptop
 exec --no-startup-id autokey # keyboard expanstions
 exec --no-startup-id streamdeck -n
+exec --no-startup-id xfce4-power-manager
 
 # This doesn't seem to crash gimp anymore, but not sure I want to run it.
 # exec --no-startup-id copyq

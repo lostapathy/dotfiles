@@ -16,12 +16,20 @@
         - exuberant-ctags
         - golang-go
         - docker.io
+        - docker-compose-v2
+        - docker-buildx
         - libmysqlclient-dev
         - libpq-dev
         - libsqlite3-dev
         - graphviz
         - mariadb-client
         - dos2unix
+
+  - name: Remove unwanted packages
+    apt:
+      name:
+        - docker-compose # old docker-compose command, not the "docker compose" plugin
+      state: absent
 
   - name: enable docker
     service:

@@ -14,7 +14,7 @@ alias mbsync="mbsync -a"
 alias ssha="ssh -A -S none"
 
 # docker-compose reset
-alias dcr="docker-compose build --pull && docker-compose pull && docker-compose stop && docker-compose rm && docker-compose up"
+alias dcr="docker compose build --pull && docker compose pull && docker compose stop && docker compose rm && docker compose up"
 
 alias jitsi='/opt/Jitsi\ Meet/jitsi-meet'
 alias ts=tsp
