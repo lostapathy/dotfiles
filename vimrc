@@ -753,3 +753,5 @@ command! -bang -nargs=* Checklist call fzf#run({
 
 let g:markdown_folding = 1
 let g:vim_markdown_folding_level = 3
+
+highlight Normal guibg=NONE ctermbg=NONE
