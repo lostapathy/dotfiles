@@ -48,10 +48,10 @@
   #   ansible.builtin.apt_repository:
   #     repo: ppa:agornostal/ulauncher
 
-  #- name: Install openscad nightly ppa
-  #  apt_repository:
-  #    repo: deb https://download.opensuse.org/repositories/home:/t-paul/xUbuntu_20.04/ ./
-  #    state: present
+  - name: Install openscad nightly ppa
+    apt_repository:
+      repo: deb https://download.opensuse.org/repositories/home:/t-paul/xUbuntu_24.04/ ./
+      state: present
 
   - name: Remove unwanted packages
     apt:
@@ -130,7 +130,7 @@
         - apt-file
         - arandr
         - nmap
-        # - openscad-nightly
+        - openscad-nightly
         - pasystray
         - rclone
         # - awscli # ubuntu 24.04 drops this
