@@ -67,10 +67,10 @@
       versions: ["1.2.6", "1.6.2"]
       global: "1.6.2"
     - name: "fzf"
-      versions: ["0.43.0"]
+      versions: ["v0.56.3"]
     - name: "ripgrep"
-      versions: ["13.0.0"]
-      global: "13.0.0"
+      versions: ["14.1.1"]
+      global: "14.1.1"
 
 
   # For some reason this is giving me a "no such file or directory" error
