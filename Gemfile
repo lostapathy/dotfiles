@@ -11,3 +11,4 @@ gem 'mechanize' # Water utility scraper
 gem 'fugit' # Temporal mail filters
 gem 'tilt' # daily-brief cronjob
 gem 'kamal'
+gem 'maid'

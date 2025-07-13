@@ -1,15 +1,15 @@
-docker-slim 1.24
+# docker-slim 1.24
 doctl 1.54.0
 fzf 0.63.0
 github-cli 1.4.0
 golang 1.19.3
-hadolint v1.19.0
+# hadolint v1.19.0
 nodejs 20.5.1
 python 3.8.6
-ripgrep 14.1.1
-ruby 3.2.2
+# ripgrep 14.1.1
+ruby 3.4.2
 terraform 1.6.2
 # terraform 0.13.7
 # vagrant 2.2.14
-yarn 1.22.10
-R 4.2.0
+# yarn 1.22.10
+# R 4.2.0
