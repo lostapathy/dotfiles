@@ -32,4 +32,5 @@ alias free="free -h --si"
 # This sets up the config
 # mc alias set local http://192.168.99.101:9000/ minio minio123
 
-alias todo-work="cd /home/joe/code/docs.lostapathy.com/volquartsen-todo && vim index.md"
+alias todo-work="cd $HOME/code/docs.lostapathy.com/volquartsen-todo && vim index.md"
+alias todo-personal="cd $HOME/code/docs.lostapathy.com/personal-todo && vim index.md"
