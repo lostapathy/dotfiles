@@ -55,22 +55,22 @@
     community.general.cargo:
       name: diffr
 
-  roles:
-  - role: ansible-role-asdf
-    asdf_user: joe
-    asdf_version: v0.13.1
-    asdf_plugins:
-    - name: "ruby"
-      versions: ["3.2.2"]
-      global: "3.2.2"
-    - name: "terraform"
-      versions: ["1.2.6", "1.6.2"]
-      global: "1.6.2"
-    - name: "fzf"
-      versions: ["v0.56.3"]
-    - name: "ripgrep"
-      versions: ["14.1.1"]
-      global: "14.1.1"
+  # roles:
+  # - role: ansible-role-asdf
+  #   asdf_user: joe
+  #   asdf_version: v0.16.5
+  #   asdf_plugins:
+  #   - name: "ruby"
+  #     versions: ["3.4.2"]
+  #     global: "3.4.2"
+  #   - name: "terraform"
+  #     versions: ["1.2.6", "1.6.2"]
+  #     global: "1.6.2"
+  #   - name: "fzf"
+  #     versions: ["v0.56.3"]
+  #   - name: "ripgrep"
+  #     versions: ["14.1.1"]
+  #     global: "14.1.1"
 
 
   # For some reason this is giving me a "no such file or directory" error

@@ -34,3 +34,4 @@ alias free="free -h --si"
 
 alias todo-work="cd $HOME/code/docs.lostapathy.com/volquartsen-todo && vim index.md"
 alias todo-personal="cd $HOME/code/docs.lostapathy.com/personal-todo && vim index.md"
+alias todo-shop="cd $HOME/code/docs.lostapathy.com/shop-todo && vim index.md"

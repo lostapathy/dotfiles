@@ -1,0 +1,14 @@
+[Unit]
+Description=Jekyll Documentation Site
+After=graphical-session.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/code/docs.lostapathy.com
+ExecStart=%h/.asdf/shims/bundle exec jekyll serve --livereload
+Restart=on-failure
+RestartSec=5
+Environment=PATH=%h/bin:/usr/local/bin:/usr/bin:/bin
+
+[Install]
+WantedBy=default.target

@@ -67,6 +67,9 @@ export TS_SAVELIST=$HOME/ts.savelist
 
 export OPENSCADPATH=~/code/scadlibs/MCAD/:~/code/scadlibs/missile/:~/code/scadlibs/alpha/:~/code/scadlibs/misc:~/code/scadlibs/Write:~/code/scadlibs/scad-utils:~/code/mechanical_parts/
 
+export ASDF_DATA_DIR=/home/joe/.asdf
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
+
 # this tricks my binstubs into using docker compose
 export VIM_USE_DOCKER='yes'
 
@@ -113,10 +116,12 @@ if [ -f $HOME/.asdf/completions/asdf.bash ]; then
 fi
 
 # Find the most recent fzf version installed and use it's key bindings
-LATEST_FZF=`ls -d ~/.asdf/installs/fzf/* | sort -r | head -n 1`
-if [ -f $LATEST_FZF/shell/key-bindings.bash ]; then
-  . $LATEST_FZF/shell/key-bindings.bash
-fi
+# LATEST_FZF=`ls -d ~/.asdf/installs/fzf/* | sort -r | head -n 1`
+# if [ -f $LATEST_FZF/shell/key-bindings.bash ]; then
+#   . $LATEST_FZF/shell/key-bindings.bash
+# fi
+. /usr/share/doc/fzf/examples/key-bindings.bash
+
 
 . $HOME/code/dotfiles/lib/z.sh
 

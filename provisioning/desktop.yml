@@ -81,6 +81,7 @@
     apt:
       state: latest
       name:
+        - tlp
         - dict
         # - ulauncher
         - xpra

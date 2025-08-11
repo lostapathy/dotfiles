@@ -4,7 +4,7 @@ fzf 0.63.0
 github-cli 1.4.0
 golang 1.19.3
 # hadolint v1.19.0
-nodejs 20.5.1
+nodejs 24.4.1
 python 3.8.6
 # ripgrep 14.1.1
 ruby 3.4.2

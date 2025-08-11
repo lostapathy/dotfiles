@@ -15,16 +15,18 @@ shopt -s globstar
 
 
 CHOICE=`ls ~/.texpander/ | rofi -dmenu`
+echo "Got choice"
 
-CLIPBOARD=$(xclip -selection clipboard -o)
+# CLIPBOARD=$(xclip -selection clipboard -o)
 PRIMARY=$(xclip -selection primary -o)
 SECONDARY=$(xclip -selection secondary -o)
 
+echo "Got clipboards"
 SNIPPET=$(cat ~/.texpander/${CHOICE})
 
 echo "Snippet is: `cat ~/.texpander/${CHOICE}`"
 
-echo -n $SNIPPET | xclip -selection clipboard
+# echo -n $SNIPPET | xclip -selection clipboard
 echo -n $SNIPPET | xclip -selection primary
 echo -n $SNIPPET | xclip -selection secondary
 
@@ -32,6 +34,6 @@ sleep 0.05
 xdotool key shift+Insert
 #xdotool ctrl+v
 
-echo -n $CLIPBOARD | xclip -selection clipboard
+# echo -n $CLIPBOARD | xclip -selection clipboard
 echo -n $PRIMARY | xclip -selection primary
 echo -n $SECONDARY | xclip -selection secondary
