@@ -59,29 +59,40 @@
   become: false
   connection: local
 
-  roles:
-  - role: ansible-role-asdf
-    asdf_user: joe
-    asdf_version: v0.16.5
-    asdf_plugins:
-    - name: "ruby"
-      versions: ["3.4.2"]
-      global: "3.4.2"
-    - name: "terraform"
-      versions: ["1.6.2"]
-      global: "1.6.2"
-    - name: "fzf"
-      versions: ["0.63.0"]
-      global: "0.63.0"
-    - name: "ripgrep"
-      versions: ["14.1.1"]
-      global: "14.1.1"
+  tasks:
+  - name: Create ~/.local/bin directory
+    ansible.builtin.file:
+      path: ~/.local/bin
+      state: directory
+      mode: '0755'
 
+  - name: Download asdf binary
+    ansible.builtin.unarchive:
+      src: https://github.com/asdf-vm/asdf/releases/download/v0.18.0/asdf-v0.18.0-linux-amd64.tar.gz
+      dest: ~/.local/bin
+      remote_src: yes
+      creates: ~/.local/bin/asdf
 
-  # For some reason this is giving me a "no such file or directory" error
-  # tasks:
-  #   - name: install global gems
-  #     become: false
-  #     ansible.builtin.command:
-  #       chdir: ~/code/dotfiles/
-  #       cmd: ~/.asdf/shims/bundle update
+  - name: Install asdf plugins
+    ansible.builtin.shell: |
+      asdf plugin add {{ item }} || true
+    args:
+      executable: /bin/bash
+    loop:
+      - ruby
+      - terraform
+      - fzf
+      - ripgrep
+    changed_when: false
+
+  - name: Install tool versions
+    ansible.builtin.shell: |
+      asdf install {{ item.name }} {{ item.version }}
+    args:
+      executable: /bin/bash
+    loop:
+      - { name: ruby, version: "3.4.2" }
+      - { name: terraform, version: "1.6.2" }
+      - { name: fzf, version: "0.63.0" }
+      - { name: ripgrep, version: "14.1.1" }
+    changed_when: false
