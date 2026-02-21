@@ -75,7 +75,7 @@
 
   - name: Install asdf plugins
     ansible.builtin.shell: |
-      asdf plugin add {{ item }} || true
+      ~/.local/bin/asdf plugin add {{ item }} || true
     args:
       executable: /bin/bash
     loop:
@@ -87,7 +87,7 @@
 
   - name: Install tool versions
     ansible.builtin.shell: |
-      asdf install {{ item.name }} {{ item.version }}
+      ~/.local/bin/asdf install {{ item.name }} {{ item.version }}
     args:
       executable: /bin/bash
     loop:
