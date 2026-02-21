@@ -57,7 +57,7 @@ external_script 2 {
 external_script 3 {
     format = "Toggl: {output}"
     script_path = "~/bin/toggl-status"
-    cache_timeout = 30
+    cache_timeout = 180
 
     on_click 1 = "exec xdg-open https://track.toggl.com/timer"
 }
