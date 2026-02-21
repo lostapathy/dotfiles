@@ -13,3 +13,5 @@ terraform 1.6.2
 # vagrant 2.2.14
 # yarn 1.22.10
 # R 4.2.0
+restic 0.18.0
+uv 0.10.4
