@@ -64,4 +64,4 @@ sudo apt-get install -y git rcm ansible curl
 echo "==> Running provision..."
 ./provision
 
-echo "==> Done! You may want to re-run ./setup and ./provision for GUI/dev tools."
+echo -e "\n\n==> Done! You may want to re-run ./setup and ./provision for GUI/dev tools."
