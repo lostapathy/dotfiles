@@ -61,6 +61,9 @@ echo "DOTFILES_DEV=${DOTFILES_DEV}" >> ~/.dotfilesrc
 # Install dependencies
 sudo apt-get install -y git rcm ansible curl
 
+# Create SSH control socket directory (referenced by ssh config)
+mkdir -p ~/.ssh/cm_socket
+
 echo "==> Running provision..."
 ./provision
 
