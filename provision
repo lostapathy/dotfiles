@@ -1,12 +1,37 @@
 #!/bin/bash
 set -e # fail fast
 
-# This may not actually be a great idea with servers?
-UBUNTU_VERSION=`lsb_release -r | awk '{print $2}'`
-if [ "$UBUNTU_VERSION" != "24.04" ] && [ "$UBUNTU_VERSION" != "22.04" ] ; then
-  echo "Not on correct ubuntu version for this script, exiting"
-  exit
+# Detect distro
+if [ -f /etc/os-release ]; then
+  . /etc/os-release
+  DISTRO="$ID"
+else
+  echo "ERROR: Cannot detect distribution"
+  exit 1
 fi
+
+# Validate supported distro/version
+case "$DISTRO" in
+  ubuntu)
+    if [ "$VERSION_ID" != "24.04" ] && [ "$VERSION_ID" != "22.04" ]; then
+      echo "ERROR: Unsupported Ubuntu version: $VERSION_ID (need 22.04 or 24.04)"
+      exit 1
+    fi
+    ;;
+  fedora)
+    if [ "$VERSION_ID" -lt 43 ]; then
+      echo "ERROR: Unsupported Fedora version: $VERSION_ID (need 43 or newer)"
+      exit 1
+    fi
+    ;;
+  debian)
+    # Accept any Debian version for now
+    ;;
+  *)
+    echo "ERROR: Unsupported distro: $DISTRO"
+    exit 1
+    ;;
+esac
 
 # We need these commands to exist in order to proceed.
 # See README.md

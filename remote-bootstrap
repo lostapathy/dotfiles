@@ -33,4 +33,4 @@ ENV_VARS=""
 [ -n "$DOTFILES_DEV" ] && ENV_VARS+="DOTFILES_DEV=$DOTFILES_DEV "
 
 # Execute with TTY and agent forwarding, then clean up
-ssh -A -t "$HOST" "${ENV_VARS}bash /tmp/dotfiles-bootstrap; rm /tmp/dotfiles-bootstrap"
+ssh -A -t -o ControlPath=none "$HOST" "${ENV_VARS}bash /tmp/dotfiles-bootstrap; rm /tmp/dotfiles-bootstrap"

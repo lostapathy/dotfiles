@@ -5,41 +5,74 @@
   connection: local
 
   tasks:
-  - name: Update apt cache if it's more than an hour old
+  # Update package cache (distro-specific, no generic module for this)
+  - name: Update apt cache
     apt:
       update_cache: yes
       cache_valid_time: 3600
+    when: ansible_pkg_mgr == "apt"
 
-  - name: Update all packages to latest
+  # Upgrade all packages (distro-specific)
+  - name: Update all packages to latest (apt)
     apt:
       upgrade: dist
+    when: ansible_pkg_mgr == "apt"
 
-  - name: Remove dependencies that are no longer required
+  - name: Update all packages to latest (dnf)
+    dnf:
+      name: "*"
+      state: latest
+    when: ansible_pkg_mgr == "dnf"
+
+  # Autoremove (distro-specific)
+  - name: Remove dependencies that are no longer required (apt)
     apt:
       autoremove: yes
+    when: ansible_pkg_mgr == "apt"
 
-  - name: Install packages
-    apt:
+  - name: Remove dependencies that are no longer required (dnf)
+    dnf:
+      autoremove: yes
+    when: ansible_pkg_mgr == "dnf"
+
+  # Common packages (same name on all distros)
+  - name: Install common packages
+    package:
       name:
         - git
         - htop
         - screen
-        - vim
         - ncdu
         - whois
         - openssh-server
         - lzop
-        - wakeonlan
         - curl
         - iftop
-        - libarchive-tools
         - fdupes
         - ranger
         - multitail
-        - iotop-c
         - atool
         - dstat
         - ripgrep
+
+  # Distro-specific packages (different names)
+  - name: Install distro-specific packages (apt)
+    apt:
+      name:
+        - vim
+        - wakeonlan
+        - libarchive-tools
+        - iotop-c
+    when: ansible_pkg_mgr == "apt"
+
+  - name: Install distro-specific packages (dnf)
+    dnf:
+      name:
+        - vim-enhanced
+        - wol
+        - bsdtar
+        - iotop
+    when: ansible_pkg_mgr == "dnf"
 
   - name: check if rust/cargo is installed
     become: false
