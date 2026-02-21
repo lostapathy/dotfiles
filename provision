@@ -47,6 +47,8 @@ if [ ${#playbooks[@]} -gt 0 ]; then
 fi
 
 # Install global gems.  Had errors on first attempt of moving this into core.yml
+# Source asdf to get shims in PATH (ruby/bundle may have just been installed)
+source ~/.asdf/asdf.sh
 bundle install
 
 # if [ "${DOTFILES_GUI}" == "y"  ]; then

@@ -1,0 +1,36 @@
+#!/bin/bash
+# Bootstrap a remote machine with dotfiles over SSH
+# Usage: ./remote-bootstrap hostname
+#        ./remote-bootstrap user@hostname
+#        DOTFILES_GUI=y DOTFILES_DEV=y ./remote-bootstrap hostname
+
+set -e
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <hostname>"
+  echo "       $0 user@hostname"
+  echo ""
+  echo "Options via environment:"
+  echo "  DOTFILES_GUI=y  - Install GUI tools"
+  echo "  DOTFILES_DEV=y  - Install dev environment"
+  exit 1
+fi
+
+HOST="$1"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Ensure SSH agent has keys loaded for forwarding
+ssh-add
+
+echo "==> Bootstrapping $HOST..."
+
+# Copy bootstrap script to remote machine (stdin piping breaks TTY for sudo)
+scp "$SCRIPT_DIR/bootstrap" "$HOST:/tmp/dotfiles-bootstrap"
+
+# Pass through env vars if set
+ENV_VARS=""
+[ -n "$DOTFILES_GUI" ] && ENV_VARS+="DOTFILES_GUI=$DOTFILES_GUI "
+[ -n "$DOTFILES_DEV" ] && ENV_VARS+="DOTFILES_DEV=$DOTFILES_DEV "
+
+# Execute with TTY and agent forwarding, then clean up
+ssh -A -t "$HOST" "${ENV_VARS}bash /tmp/dotfiles-bootstrap; rm /tmp/dotfiles-bootstrap"

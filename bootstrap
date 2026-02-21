@@ -1,4 +1,67 @@
 #!/bin/bash
-# Run this to install minimum deps to run the rest of the dotfiles
+# Remote bootstrap script for setting up a new machine via SSH
+# Usage: ssh -A -t newmachine 'bash -s' < ~/code/dotfiles/remote-bootstrap
+#
+# -A enables agent forwarding for git SSH auth
+# -t allocates TTY for ansible become password prompt
 
+set -e
+
+# Safety check - don't run on already-configured machines
+if [ -f ~/.dotfilesrc ]; then
+  echo "ERROR: ~/.dotfilesrc already exists - this machine appears to be already set up."
+  echo "If you want to update, run ./setup and ./provision directly."
+  exit 1
+fi
+
+DOTFILES_REPO="git@github.com:lostapathy/dotfiles.git"
+DOTFILES_PRIVATE_REPO="git@github.com:lostapathy/dotfiles-private.git"
+DOTFILES_DIR="$HOME/code/dotfiles"
+DOTFILES_PRIVATE_DIR="$HOME/code/dotfiles-private"
+
+# Default to minimal install - can re-run setup/provision later for GUI/dev
+export DOTFILES_GUI="${DOTFILES_GUI:-n}"
+export DOTFILES_DEV="${DOTFILES_DEV:-n}"
+
+echo "==> Installing git..."
+sudo apt-get update
+sudo apt-get install -y git
+
+echo "==> Creating ~/code..."
+mkdir -p "$HOME/code"
+
+echo "==> Cloning dotfiles..."
+if [ -d "$DOTFILES_DIR" ]; then
+  echo "    $DOTFILES_DIR already exists, pulling..."
+  git -C "$DOTFILES_DIR" pull
+else
+  git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
+fi
+
+echo "==> Cloning dotfiles-private..."
+if [ -d "$DOTFILES_PRIVATE_DIR" ]; then
+  echo "    $DOTFILES_PRIVATE_DIR already exists, pulling..."
+  git -C "$DOTFILES_PRIVATE_DIR" pull
+else
+  git clone "$DOTFILES_PRIVATE_REPO" "$DOTFILES_PRIVATE_DIR" || echo "    (skipped - repo not accessible)"
+fi
+
+cd "$DOTFILES_DIR"
+
+echo "==> Running setup..."
+# Link rcrc first
+if [ ! -f ~/.rcrc ]; then
+  ln -s "$DOTFILES_DIR/rcrc" ~/.rcrc
+fi
+
+# Write dotfilesrc with defaults (skip interactive prompts)
+echo "DOTFILES_GUI=${DOTFILES_GUI}" > ~/.dotfilesrc
+echo "DOTFILES_DEV=${DOTFILES_DEV}" >> ~/.dotfilesrc
+
+# Install dependencies
 sudo apt-get install -y git rcm ansible curl
+
+echo "==> Running provision..."
+./provision
+
+echo "==> Done! You may want to re-run ./setup and ./provision for GUI/dev tools."
