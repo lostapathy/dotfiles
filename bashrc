@@ -129,3 +129,7 @@ fi
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 eval $(thefuck --alias)
+export HF_HUB_ENABLE_HF_TRANSFER=1
+
+# opencode
+export PATH=/home/joe/.opencode/bin:$PATH

@@ -36,3 +36,4 @@ alias todo-work="cd $HOME/code/docs.lostapathy.com/volquartsen-todo && vim index
 alias todo-personal="cd $HOME/code/docs.lostapathy.com/personal-todo && vim index.md"
 alias todo-shop="cd $HOME/code/docs.lostapathy.com/shop-todo && vim index.md"
 alias todo-moveit="cd $HOME/code/docs.lostapathy.com/moveit-todo && vim index.md"
+alias todo-kuemper="cd $HOME/code/docs.lostapathy.com/kuemper-todo && vim index.md"
