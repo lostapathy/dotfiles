@@ -283,13 +283,13 @@
     when: ( 'discord' not in ansible_facts.packages ) and
           (ansible_architecture == "amd64")
 
-  - set_fact:
-      zoom_version: "{{ ansible_facts.packages['zoom'] | json_query('[].version') }}"
-    when: "'zoom' in ansible_facts.packages"
+  # - set_fact:
+  #     zoom_version: "{{ ansible_facts.packages['zoom'] | json_query('[].version') }}"
+  #   when: "'zoom' in ansible_facts.packages"
 
-  - name: Print all available facts
-    ansible.builtin.debug:
-      var: zoom_version
+  # - name: Print all available facts
+  #   ansible.builtin.debug:
+  #     var: zoom_version
 
   # - name: Install zoom
   #   apt:
@@ -306,11 +306,11 @@
   #   when: ( 'jitsi-meet-electron' not in ansible_facts.packages ) and
   #         (ansible_architecture == "x86_64")
 
-  - name: Install Dropbox
-    apt:
-      deb: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2023.09.06_amd64.deb
-    when: ( 'dropbox' not in ansible_facts.packages ) and
-          (ansible_architecture == "x86_64")
+  # - name: Install Dropbox
+  #   apt:
+  #     deb: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2023.09.06_amd64.deb
+  #   when: ( 'dropbox' not in ansible_facts.packages ) and
+  #         (ansible_architecture == "x86_64")
 
   - name: Custom xorg config
     copy:
@@ -319,12 +319,12 @@
       owner: root
       group: root
 
-  - name: udev rules
-    copy:
-      dest: /etc/udev/rules.d/59-sdreader.rules
-      src: 59-sdreader.rules
-      owner: root
-      group: root
+  # - name: udev rules
+  #   copy:
+  #     dest: /etc/udev/rules.d/59-sdreader.rules
+  #     src: 59-sdreader.rules
+  #     owner: root
+  #     group: root
 
   - name: udev rules for spyder
     copy:

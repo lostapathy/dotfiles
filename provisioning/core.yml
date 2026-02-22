@@ -40,6 +40,7 @@
     package:
       name:
         - thefuck
+        - ripgrep
         - git
         - htop
         - screen
@@ -54,7 +55,6 @@
         - multitail
         - atool
         - dstat
-        - ripgrep
 
   # Distro-specific packages (different names)
   - name: Install distro-specific packages (apt)
@@ -125,7 +125,6 @@
       - ruby
       - terraform
       - fzf
-      - ripgrep
     changed_when: false
 
   - name: Install tool versions

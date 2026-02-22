@@ -53,5 +53,5 @@
   #     dest: /home/joe/.asdf
   #     update: yes
 
-  - name: run ansible galaxy
-    local_action: command ansible-galaxy install -r requirements.yml --ignore-errors
+  # - name: run ansible galaxy
+  #   local_action: command ansible-galaxy install -r requirements.yml --ignore-errors
