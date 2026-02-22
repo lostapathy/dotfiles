@@ -39,6 +39,7 @@
   - name: Install common packages
     package:
       name:
+        - thefuck
         - git
         - htop
         - screen
