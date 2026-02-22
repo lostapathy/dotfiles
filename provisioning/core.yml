@@ -137,5 +137,4 @@
       - { name: ruby, version: "3.4.2" }
       - { name: terraform, version: "1.6.2" }
       - { name: fzf, version: "0.63.0" }
-      - { name: ripgrep, version: "14.1.1" }
     changed_when: false

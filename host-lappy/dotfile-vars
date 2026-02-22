@@ -1,3 +1,2 @@
 export RDP_SIZE="1280x1024"
-export RDP_SIZE_FULLSCREEN="2256x1460"
 # export RDP_SCALE="140"
