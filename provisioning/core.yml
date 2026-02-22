@@ -22,7 +22,7 @@
     dnf:
       name: "*"
       state: latest
-    when: ansible_pkg_mgr == "dnf"
+    when: ansible_pkg_mgr in ["dnf", "dnf5"]
 
   # Autoremove (distro-specific)
   - name: Remove dependencies that are no longer required (apt)
@@ -33,7 +33,7 @@
   - name: Remove dependencies that are no longer required (dnf)
     dnf:
       autoremove: yes
-    when: ansible_pkg_mgr == "dnf"
+    when: ansible_pkg_mgr in ["dnf", "dnf5"]
 
   # Common packages (same name on all distros)
   - name: Install common packages
@@ -72,7 +72,16 @@
         - wol
         - bsdtar
         - iotop
-    when: ansible_pkg_mgr == "dnf"
+        # Ruby build dependencies
+        - perl-FindBin
+        - perl-IPC-Cmd
+        - perl-File-Compare
+        - openssl-devel
+        - readline-devel
+        - zlib-devel
+        - libyaml-devel
+        - libffi-devel
+    when: ansible_pkg_mgr in ["dnf", "dnf5"]
 
   - name: check if rust/cargo is installed
     become: false

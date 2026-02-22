@@ -44,12 +44,14 @@ export DOTFILES_GUI="${DOTFILES_GUI:-n}"
 export DOTFILES_DEV="${DOTFILES_DEV:-n}"
 
 echo "==> Installing git..."
-if [ "$DISTRO" = "ubuntu" ] || [ "$DISTRO" = "debian" ]; then
-  sudo apt-get update
-elif [ "$DISTRO" = "fedora" ]; then
-  sudo dnf check-update || true  # returns non-zero if updates available
+if ! command -v git &> /dev/null; then
+  if [ "$DISTRO" = "ubuntu" ] || [ "$DISTRO" = "debian" ]; then
+    sudo apt-get update
+  elif [ "$DISTRO" = "fedora" ]; then
+    sudo dnf check-update || true  # returns non-zero if updates available
+  fi
+  pkg_install git
 fi
-pkg_install git
 
 echo "==> Creating ~/code..."
 mkdir -p "$HOME/code"
