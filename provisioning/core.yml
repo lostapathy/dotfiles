@@ -127,13 +127,20 @@
       - fzf
     changed_when: false
 
-  - name: Install tool versions
-    ansible.builtin.shell: |
-      ~/.local/bin/asdf install {{ item.name }} {{ item.version }}
+  - name: Update all asdf plugins
+    ansible.builtin.shell: ~/.local/bin/asdf plugin update --all
     args:
       executable: /bin/bash
+    changed_when: false
+
+  - name: Install tool versions
+    ansible.builtin.shell: |
+      ~/.local/bin/asdf install {{ item }}
+    args:
+      executable: /bin/bash
+      chdir: "{{ ansible_env.HOME }}"
     loop:
-      - { name: ruby, version: "3.4.2" }
-      - { name: terraform, version: "1.6.2" }
-      - { name: fzf, version: "0.63.0" }
+      - ruby
+      - terraform
+      - fzf
     changed_when: false
