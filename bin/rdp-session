@@ -9,4 +9,11 @@ PASS=`less <&0`
 # Just remove this so when we're working over port forwarding we don't have errors
 rm ~/.config/freerdp/known_hosts -f
 
-xfreerdp /audio-mode:0 /sec:tls /admin /u:$2 /p:$PASS /d:vc-mfg /v:$1 /cert-ignore /jpeg-quality:95 /jpeg +compression /t:$3 +clipboard +fonts -grab-keyboard /fonts /log-level:off /size:${RDP_SIZE:=1280x1024} /scale:${RDP_SCALE:=100} ${EXTRA_XFREERDP_ARGS}
+set -o xtrace
+
+xfreerdp /audio-mode:0 /sec:tls /admin /u:$2 /p:$PASS /d:vc-mfg /v:$1 /cert-ignore \
+  /gfx /jpeg-quality:70 /jpeg +compression /network:lan \
+  +async-update +async-input +async-channels \
+  -themes -wallpaper -menu-anims -aero -window-drag \
+  /t:$3 +clipboard -grab-keyboard /log-level:off \
+  /size:${RDP_SIZE:=1280x1024} /scale:${RDP_SCALE:=100} ${EXTRA_XFREERDP_ARGS}
