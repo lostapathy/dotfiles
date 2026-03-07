@@ -55,6 +55,10 @@
         - multitail
         - atool
         - dstat
+        - build-essential
+        - zlib1g-dev
+        - libffi-dev
+        - libyaml-dev
 
   # Distro-specific packages (different names)
   - name: Install distro-specific packages (apt)
