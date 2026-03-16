@@ -68,6 +68,8 @@
     apt:
       state: latest
       name:
+        - mbsync
+        - libreoffice
         - tlp
         - dict
         # - ulauncher

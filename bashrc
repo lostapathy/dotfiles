@@ -48,15 +48,15 @@ fi
 
 # Override prompts if we're in a screen
 #if [[ "$TERM" == screen* ]]; then
-if [[ -v STY || -v TMUX ]]; then
-  . ~/.bashrc_screen
-else
-  if [[ "$SSH_CLIENT"  == "" ]]; then
-    screen
-    stty -ixon
-    echo ""
-  fi
-fi
+# if [[ -v STY || -v TMUX ]]; then
+#   . ~/.bashrc_screen
+# else
+#   if [[ "$SSH_CLIENT"  == "" ]]; then
+#     screen
+#     stty -ixon
+#     echo ""
+#   fi
+# fi
 
 set -o vi
 
@@ -120,7 +120,7 @@ fi
 # if [ -f $LATEST_FZF/shell/key-bindings.bash ]; then
 #   . $LATEST_FZF/shell/key-bindings.bash
 # fi
-. /usr/share/doc/fzf/examples/key-bindings.bash
+. $HOME/.vim/plugged/fzf/shell/key-bindings.bash
 
 
 . $HOME/code/dotfiles/lib/z.sh
@@ -133,3 +133,5 @@ export HF_HUB_ENABLE_HF_TRANSFER=1
 
 # opencode
 export PATH=/home/joe/.opencode/bin:$PATH
+export HF_HUB_ENABLE_HF_TRANSFER=1
+export HF_HUB_ENABLE_HF_TRANSFER=1
