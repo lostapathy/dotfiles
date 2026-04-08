@@ -128,7 +128,7 @@ fi
 # Tell rg where it's config lives
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
-eval $(thefuck --alias)
+command -v thefuck &>/dev/null && eval $(thefuck --alias)
 export HF_HUB_ENABLE_HF_TRANSFER=1
 
 # opencode
