@@ -43,6 +43,7 @@
         - thefuck
         - ripgrep
         - git
+        - git-delta
         - htop
         - screen
         - ncdu

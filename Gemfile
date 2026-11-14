@@ -12,3 +12,7 @@ gem 'fugit' # Temporal mail filters
 gem 'tilt' # daily-brief cronjob
 gem 'kamal'
 gem 'maid'
+gem 'nokogiri'
+gem 'did_you_mean'
+gem 'bundler'
+gem 'ruby-dbus'

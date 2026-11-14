@@ -4,7 +4,6 @@ ssh-add -D
 # pause any mpv window that's playing
 playerctl -a pause
 
-~/bin/workstation-sleep
 xset +dpms dpms 10 10 10
 maim --format=jpg --hidecursor --quality 1 --quiet /tmp/lock.jpg && convert /tmp/lock.jpg -quality 50 -blur 0x25 /tmp/lock.png
 # if [ ! -f /tmp/lock.png ]; then
@@ -15,5 +14,4 @@ maim --format=jpg --hidecursor --quality 1 --quiet /tmp/lock.jpg && convert /tmp
 i3lock -n -i /tmp/lock.png -f
 
 # this runs after i3lock terminates
-~/bin/workstation-wake
 xset dpms 0 0 0

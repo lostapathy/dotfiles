@@ -45,6 +45,7 @@
 "============================================================================
 call plug#begin('~/.vim/plugged')
 
+Plug 'nathangrigg/vim-beancount'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-autoformat/vim-autoformat'
 Plug 'vimwiki/vimwiki'
@@ -84,7 +85,7 @@ Plug 'fatih/vim-go'
 "Plug 'MarcWeber/vim-addon-mw-utils'
 
 " Snippet Support
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Plug 'johngrib/vim-game-code-break'
@@ -111,7 +112,7 @@ Plug 'junegunn/vim-easy-align'
 " work motions work on snake and camelcase - not 100% right
 " Plug 'chaoren/vim-wordmotion'
 
-Plug 'ledger/vim-ledger'
+" Plug 'ledger/vim-ledger'
 Plug 'djoshea/vim-autoread'
 call plug#end()
 

@@ -2,6 +2,7 @@
 export BROWSER=/usr/bin/firefox
 export GVFS_DISABLE_FUSE=1
 
+source ~/.profile
 source ~/.xprofile.local
 
 #export GDK_DPI_SCALE=0.8

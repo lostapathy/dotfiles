@@ -43,6 +43,8 @@
   - name: Remove unwanted packages
     apt:
       name:
+        - tracker-miner-fs
+        - tracker-extract
         - yt-dlp # ubuntu doesn't stay up to date enough
         - notify-osd
         - xautolock
@@ -68,7 +70,7 @@
     apt:
       state: latest
       name:
-        - mbsync
+        - isync
         - libreoffice
         - tlp
         - dict
@@ -222,6 +224,14 @@
         - python3-zombie-imp
         - xcape
         - pm-utils
+        # newsboat build deps
+        - libxml2-dev
+        - libstfl-dev
+        - libjson-c-dev
+        - libncursesw5-dev
+        - libsqlite3-dev
+        - pkg-config
+        - gettext
 
   - name: Install shotcut flatpak
     community.general.flatpak:
@@ -253,10 +263,16 @@
       name:
         - nativefier
 
-  - name: install newsboat snap
+  - name: install tailscale snap
     community.general.snap:
       name:
-        - newsboat
+        - tailscale
+
+
+  - name: remove newsboat snap
+    community.general.snap:
+      name: newsboat
+      state: absent
 
   - name: install snaps
     community.general.snap:
@@ -358,3 +374,47 @@
   #   ansible.builtin.lineinfile:
   #     path: /etc/auto.direct
   #     line: SELINUX=enforcingkk
+
+- hosts: localhost
+  become: false
+  connection: local
+
+  tasks:
+  - name: Create ~/bin directory
+    ansible.builtin.file:
+      path: ~/bin
+      state: directory
+      mode: '0755'
+
+  - name: Check if newsboat binary exists
+    ansible.builtin.stat:
+      path: ~/bin/newsboat
+    register: newsboat_binary
+
+  - name: Clone, build, and install newsboat from source
+    when: not newsboat_binary.stat.exists
+    block:
+      - name: Clone newsboat source to ~/tmp
+        ansible.builtin.git:
+          repo: https://github.com/newsboat/newsboat.git
+          dest: ~/tmp/newsboat
+
+      - name: Build newsboat
+        ansible.builtin.shell: |
+          export PATH="$HOME/.cargo/bin:$PATH"
+          make newsboat -j$(nproc)
+        args:
+          chdir: ~/tmp/newsboat
+          executable: /bin/bash
+
+      - name: Copy newsboat binary to ~/bin
+        ansible.builtin.copy:
+          src: ~/tmp/newsboat/newsboat
+          dest: ~/bin/newsboat
+          mode: '0755'
+          remote_src: yes
+
+      - name: Remove newsboat build directory
+        ansible.builtin.file:
+          path: ~/tmp/newsboat
+          state: absent
