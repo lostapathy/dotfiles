@@ -13,8 +13,8 @@ fi
 # Validate supported distro/version
 case "$DISTRO" in
   ubuntu)
-    if [ "$VERSION_ID" != "24.04" ] && [ "$VERSION_ID" != "22.04" ]; then
-      echo "ERROR: Unsupported Ubuntu version: $VERSION_ID (need 22.04 or 24.04)"
+    if [ "$VERSION_ID" != "24.04" ] && [ "$VERSION_ID" != "26.04" ]; then
+      echo "ERROR: Unsupported Ubuntu version: $VERSION_ID (need 24.04 or 26.04)"
       exit 1
     fi
     ;;
@@ -39,6 +39,21 @@ commands=(git ansible-playbook ansible-galaxy rcup)
 for cmd in "${commands[@]}"; do
   command -v "$cmd" > /dev/null || { echo "ERROR: command not found: ${cmd}" ; exit 1; }
 done
+
+# Ubuntu 26.04 ships sudo-rs as the default sudo, which doesn't implement
+# all the flags/prompt behavior ansible's become plugin relies on. If we
+# detect sudo-rs, install classic sudo and point the alternative at it.
+if command -v sudo >/dev/null 2>&1 && sudo --version 2>/dev/null | head -n1 | grep -qi 'sudo-rs'; then
+  echo "Detected sudo-rs; installing classic sudo for ansible compatibility..."
+  sudo apt-get install -y sudo
+  if update-alternatives --list sudo >/dev/null 2>&1; then
+    classic_sudo=$(update-alternatives --list sudo 2>/dev/null | grep -v -- '-rs' | head -n1)
+    [ -n "$classic_sudo" ] && sudo update-alternatives --set sudo "$classic_sudo"
+  fi
+  if sudo --version 2>/dev/null | head -n1 | grep -qi 'sudo-rs'; then
+    echo "WARNING: sudo still resolves to sudo-rs; ansible may fail to escalate."
+  fi
+fi
 
 # Update dotfiles with rcm.
 rcup -v
